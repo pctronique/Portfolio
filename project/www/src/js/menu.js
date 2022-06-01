@@ -18,6 +18,12 @@ check_nav_right.addEventListener("click", function() {
     }
 })
 
-/*document.getElementById("nav-left").querySelectorAll(".lien").forEach(element => {
-    if(element)
-});*/
+document.getElementById("nav-left").querySelectorAll(".lien").forEach(element => {
+    if(element.classList.contains("lien")) {
+        element.addEventListener("click", function() {
+            element.querySelectorAll("a").forEach(element_a => {
+                window.location.href=element_a.href;
+            });
+        })
+    }
+});

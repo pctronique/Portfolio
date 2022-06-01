@@ -1,28 +1,84 @@
+// A partir du code : https://codepen.io/P3R0/pen/MwgoKv
+
 let body_matrix = document.getElementById("body_matrix");
 let ctx = body_matrix.getContext("2d");
 let myInterval = undefined;
 
+let choice_display = 0;
+
+function ascii_to_hexa(str){
+	let arr1 = [];
+	let start = "";
+	for (let n = 0, l = str.length; n < l; n ++) 
+     {
+		let hex = Number(str.charCodeAt(n)).toString(16);
+		for(let a = hex.length; a < 2; a++) {
+			start += "0";
+		}
+		arr1.push(start+hex.toUpperCase());
+	 }
+	return arr1.join('');
+}
+
+function ascii_to_bin(str){
+	let arr1 = [];
+	let start = "";
+	for (let n = 0, l = str.length; n < l; n ++) 
+     {
+		let hex = Number(str.charCodeAt(n)).toString(2);
+		for(let a = hex.length; a < 8; a++) {
+			start += "0";
+		}
+		arr1.push(start+hex);
+	 }
+	return arr1.join('');
+}
+
+let text_display = [];
+
+function tabTxtMatrix(txt) {
+	text_display = [
+		ascii_to_bin(txt),
+		ascii_to_hexa(txt),
+		txt
+	];
+}
+
+tabTxtMatrix("PCTRONIQUE");
+
+if(document.querySelector("#txt_matrix") != undefined) {
+	tabTxtMatrix(document.getElementById("txt_matrix").innerText);
+}
+
 function matrix() {
 	//making the canvas full screen
-	body_matrix.height = screen.height;
-	body_matrix.width = screen.width;
+	body_matrix.height = window.innerHeight;
+	body_matrix.width = window.innerWidth;
+	if(screen.height < window.innerHeight) {
+		body_matrix.height = screen.height;
+	}
+	if(screen.width < window.innerWidth) {
+		body_matrix.width = screen.width;
+	}
 
+	// si l'ecran est trop petit, mettre a une taille fixe
 	if(body_matrix.width < 320) {
 		body_matrix.width=320;
 	}
 
 	//txt_matrix characters - taken from the unicode charset
-	var txt_matrix = "001010100010100101000010001111110001010011110001101";
+	let txt_matrix = text_display[choice_display];
+	//let txt_matrix = "4E41554C4F54204C75646F766963";
 	//converting the string into an array of single characters
 	txt_matrix = txt_matrix.split("");
 
-	var font_size = 10;
-	var columns = body_matrix.width/font_size; //number of columns for the rain
+	let font_size = 10;
+	let columns = body_matrix.width/font_size; //number of columns for the rain
 	//an array of drops - one per column
-	var drops = [];
+	let drops = [];
 	//x below is the x coordinate
 	//1 = y co-ordinate of the drop(same for every drop initially)
-	for(var x = 0; x < columns; x++)
+	for(let x = 0; x < columns; x++)
 		drops[x] = 1; 
 
 	//drawing the characters
@@ -36,10 +92,10 @@ function matrix() {
 		ctx.fillStyle = "#0F0"; //green text
 		ctx.font = font_size + "px arial";
 		//looping over drops
-		for(var i = 0; i < drops.length; i++)
+		for(let i = 0; i < drops.length; i++)
 		{
 			//a random txt_matrix character to print
-			var text = txt_matrix[Math.floor(Math.random()*txt_matrix.length)];
+			let text = txt_matrix[Math.floor(Math.random()*txt_matrix.length)];
 			//x = i*font_size, y = value of drops[i]*font_size
 			ctx.fillText(text, i*font_size, drops[i]*font_size);
 			
@@ -57,6 +113,25 @@ function matrix() {
 }
 
 matrix();
+
+function modifBackground() {
+	choice_display++;
+	if(text_display.length <= choice_display) {
+		choice_display=0;
+	}
+	clearInterval(myInterval);
+	matrix();
+}
+
+document.querySelectorAll("section").forEach(element => {
+	element.addEventListener("click", function() {
+		modifBackground();
+	});
+});
+
+body_matrix.addEventListener("click", function() {
+	modifBackground();
+});
 
 window.addEventListener('resize', function() {
 	clearInterval(myInterval);

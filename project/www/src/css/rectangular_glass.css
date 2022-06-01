@@ -1,0 +1,30 @@
+.rectangular_glass:before {
+  content: "";
+  position: absolute;
+  margin-left: -20px;
+  margin-bottom: -20px;
+  background-color: #84a6bfa1;
+  border: 0.5px #84a6bfb0 solid;
+  border-radius: 20px;
+  background-size: 100%;
+  /*width: 100%;
+  height: 100%;*/
+}
+
+.rectangular_glass {
+position: relative;
+  background-color: #84a6bfa1;
+  border: 0.5px #84a6bfb0 solid;
+  border-radius: 20px;
+  box-shadow: -3px 3px 0px #84a6bf62, -5px 5px 0px #84a6bf62,
+    -8px 8px 0px #84a6bf62, -10px 10px 0px #84a6bf62, -13px 13px 0px #84a6bf62,
+    -15px 15px 0px #84a6bf62, -18px 18px 0px #84a6bf62, -20px 20px 0px #84a6bf62;
+}
+
+.rectangular_glass label {
+  text-align: center;
+  font-weight: bold;
+  font-size: 40px;
+  color: #ffffff;
+  text-shadow: 2px -2px rgba(0, 23, 126, 0.438), -1px -1px #444;
+}
