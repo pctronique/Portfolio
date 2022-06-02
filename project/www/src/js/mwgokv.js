@@ -6,6 +6,12 @@ let myInterval = undefined;
 
 let choice_display = 0;
 
+let tabNamesCode = [
+	"BINARY",
+	"HEXADECIMAL",
+	"ASCII"
+];
+
 function ascii_to_hexa(str){
 	let arr1 = [];
 	let start = "";
@@ -123,15 +129,23 @@ function modifBackground() {
 	matrix();
 }
 
-document.querySelectorAll("section").forEach(element => {
+/*document.querySelectorAll("section").forEach(element => {
 	element.addEventListener("click", function() {
 		modifBackground();
 	});
+});*/
+
+document.querySelectorAll("#choix-background").forEach(element => {
+	element.innerText = tabNamesCode[choice_display];
+	element.addEventListener("click", function() {
+		modifBackground();
+		element.innerText = tabNamesCode[choice_display];
+	});
 });
 
-body_matrix.addEventListener("click", function() {
+/*body_matrix.addEventListener("click", function() {
 	modifBackground();
-});
+});*/
 
 window.addEventListener('resize', function() {
 	clearInterval(myInterval);

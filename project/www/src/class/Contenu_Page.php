@@ -24,11 +24,11 @@ if (!class_exists('Contenu_Page')) {
         }
 
         public function addCss(?string $lien): void {
-
+            array_push($this->tab_css, $lien);
         }
 
         public function addJs(?string $lien): void {
-            
+            array_push($this->tab_js, $lien);
         }
 
         public function setContenu(?string $contenu): void {

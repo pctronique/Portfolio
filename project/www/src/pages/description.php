@@ -10,4 +10,5 @@ $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', 
 
 $html = str_replace("[##produit##]", $name_desc, $html);
 
+$page_desc->addCss("./src/css/style_description.css");
 $page_desc->setContenu($html);

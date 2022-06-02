@@ -53,7 +53,7 @@ if(!empty($ind)) {
     }
 }
 
-echo str_replace("[##CONTENU_CSS##]", $css, 
-    str_replace("[##CONTENU_JS##]", $js,
+echo str_replace("[##CONTENU_CSS##]", !empty($css) ? "\n".$css : "", 
+    str_replace("[##CONTENU_JS##]", !empty($js) ? "\n".$js : "",
     str_replace("[##CONTENU##]", $contenu, 
     file_get_contents(dirname(__FILE__) . '/src/templates/menu_footer_header.html', true))));

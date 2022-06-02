@@ -164,9 +164,22 @@ footer #taking li {
 
 section {
     position: absolute;
-    padding-top: 90px;
+    padding-top: 65px;
     min-width: 320px;
     width: 100%;
+}
+
+#choix-background {
+    margin-left: 5px;
+    color: #808080ab;
+    position: absolute;
+    border: 1px #808080ab solid;
+    padding: 5px;
+}
+
+#choix-background:hover {
+    cursor: pointer;
+    transform: scale(1.03);
 }
 
 /**********************/
