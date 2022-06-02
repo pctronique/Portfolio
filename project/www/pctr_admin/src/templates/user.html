@@ -1,0 +1,43 @@
+<section class="container">
+    <form id="form-user" action="#" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formName" class="form-label text-light">nom</label>
+            <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_USER##]">
+        </div>
+        <div class="mb-3">
+            <label for="formFirstName" class="form-label text-light">prénom</label>
+            <input type="text" class="form-control" name="first-name" id="formFirstName" placeholder="" value="[##FIRST_NAME_USER##]">
+        </div>
+        <div class="mb-3">
+            <label for="formLogin" class="form-label text-light">login</label>
+            <input type="text" class="form-control" name="login" id="formLogin" placeholder="" value="[##LOGIN_USER##]">
+        </div>
+        <div class="mb-3">
+            <label for="formEmail" class="form-label text-light">email</label>
+            <input type="email" class="form-control" name="email" id="formEmail" placeholder="" value="[##EMAIL_USER##]">
+        </div>
+        <button class="btn btn-dark d-grid mx-auto">
+            Valider
+        </button>
+    </form>
+</section>
+
+<section class="container">
+    <form id="form-pass" action="#" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <label for="formOldPass" class="form-label text-light">old-pass</label>
+            <input type="password" class="form-control" name="old-pass" id="formOldPass" autocomplete >
+        </div>
+        <div class="mb-3">
+            <label for="formNewPass" class="form-label text-light">new-pass</label>
+            <input type="password" class="form-control" name="new_pass" id="formNewPass" autocomplete >
+        </div>
+        <div class="mb-3">
+            <label for="formRepetPass" class="form-label text-light">repet-pass</label>
+            <input type="password" class="form-control" name="repet-pass" id="formRepetPass" autocomplete >
+        </div>
+        <button class="btn btn-dark d-grid mx-auto">
+            Valider
+        </button>
+    </form>
+</section>

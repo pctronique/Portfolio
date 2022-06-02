@@ -1,0 +1,65 @@
+<section class="container">
+    <form id="form-competence" action="#" method="post" enctype="multipart/form-data">
+        <div class="mb-3">
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" id="radiosExp" value="exp" [##EXP_COMP##]>
+                <label class="form-check-label text-light" for="radiosExp">
+                  Expériences
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="type" id="radiosForma" value="forma" [##FORM_COMP##]>
+                <label class="form-check-label text-light" for="radiosForma">
+                  Formations
+                </label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="formTitle" class="form-label text-light">titre</label>
+            <input type="text" class="form-control" name="title" id="formTitle" placeholder="" value="[##TITLE_COMP##]">
+        </div>
+        <div class="mb-3">
+            <label for="formDateStart" class="form-label text-light">début</label>
+            <input type="date" class="form-control" name="date-start" id="formDateStart" placeholder="" value="[##START_COMP##]">
+        </div>
+        <div class="mb-3">
+            <input class="form-check-input" type="checkbox" name="progress" value="" id="checkProgress" [##PROGRESS_COMP##]>
+            <label class="form-check-label text-light" for="checkProgress">
+                En cours
+            </label>
+        </div>
+        <div class="mb-3">
+            <label for="formDateEnd" class="form-label text-light">fin</label>
+            <input type="date" class="form-control" name="date-end" id="formDateEnd" placeholder="" value="[##FIN_COMP##]">
+        </div>
+        <div class="mb-3">
+            <label for="formCompetence" class="form-label text-light">compétence</label>
+            <input type="text" class="form-control" name="competence" id="formCompetence" placeholder="" value="[##COMPT_COMP##]">
+        </div>
+        <div class="mb-3">
+            <label for="formLieu" class="form-label text-light">lieu</label>
+            <input type="text" class="form-control" name="lieu" id="formLieu" placeholder="" value="[##LIEU_COMP##]">
+        </div>
+        <div class="mb-3">
+            <label for="formDescription" class="form-label text-light">Description</label>
+            <textarea class="form-control" name="description" id="formDescription" rows="3">[##DESC_COMP##]</textarea>
+        </div>
+        <button class="btn btn-dark d-grid mx-auto">
+            Valider
+        </button>
+    </form>
+</section>
+<section class="container m-5">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
+                <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
+                <th>titre</th>
+            </tr>
+        </thead>
+        <tbody id="tab_find">
+            [##FIND_COMP##]
+        </tbody>
+    </table>
+</section>
