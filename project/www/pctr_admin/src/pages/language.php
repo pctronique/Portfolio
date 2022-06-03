@@ -31,7 +31,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("langp", $data["id_language"], $data["nom_language"]);
+        $find .= add_td_find("langp", $valueLine["id_language"], $valueLine["nom_language"]);
     }
 
     $html = str_replace("[##ID_LANGP##]", $id, $html);
