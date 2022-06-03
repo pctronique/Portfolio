@@ -1,15 +1,16 @@
-<section class="container">
+<section class="container mt-5">
     <form id="form-languageP" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id" value="[##ID_LANGP##]" />
         <div class="mb-3">
             <label for="formVame" class="form-label text-light">nom</label>
             <input type="text" class="form-control" name="name" id="formVame" placeholder="" value="[##NAME_LANGP##]">
         </div>
-        <button class="btn btn-dark d-grid mx-auto">
+        <button id="validation" class="btn btn-dark d-grid mx-auto">
             Valider
         </button>
     </form>
 </section>
-<section class="container m-5">
+<section class="container mt-5">
     <table class="table table-dark table-striped">
         <thead>
             <tr>

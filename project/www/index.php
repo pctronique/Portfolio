@@ -3,6 +3,17 @@
 /*Connexion*/
 include_once dirname(__FILE__) . '/src/fonctions/connexion_sgbd.php';
 
+session_start();
+
+$isConnected = false;
+
+if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) && 
+array_key_exists('id_admin', $_SESSION) && array_key_exists('nom', $_SESSION) &&   
+array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
+array_key_exists('email', $_SESSION)) {
+    $isConnected = true;
+}
+
 $sgbd = connexion_sgbd();
 if(!empty($sgbd)) {
 
@@ -17,6 +28,20 @@ $contenu = $page_acc->getContenu();
 
 if(!empty($_GET) && array_key_exists("ind", $_GET)) {
     $ind=$_GET['ind'];
+}
+
+$connected = "<form id=\"form-pass\" action=\"#\" method=\"post\">";
+$connected .= "<input type=\"text\" name=\"name-user\" id=\"name-user\" />";
+$connected .= "<input type=\"password\" name=\"pass-user\" id=\"pass-user\" autocomplete />";
+$connected .= "<a href=\"./?ind=mdp_perd\" id=\"bt-pass-perdu\">Mot de passe perdu</a><br />";
+$connected .= "<a href=\"#\" id=\"connected\">Se connecter</a>";
+$connected .= "</form>";
+
+if($isConnected) {
+    $connected = "<ul>";
+    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./pctr_admin\">Admin</a></li>";
+    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./src/exec/deconnexion_exec.php\">Déconnexion</a></li>";
+    $connected .= "</ul>";
 }
 
 if(!empty($ind)) {
@@ -56,4 +81,5 @@ if(!empty($ind)) {
 echo str_replace("[##CONTENU_CSS##]", !empty($css) ? "\n".$css : "", 
     str_replace("[##CONTENU_JS##]", !empty($js) ? "\n".$js : "",
     str_replace("[##CONTENU##]", $contenu, 
-    file_get_contents(dirname(__FILE__) . '/src/templates/menu_footer_header.html', true))));
+    str_replace("[##CONNECTED##]", $connected, 
+    file_get_contents(dirname(__FILE__) . '/src/templates/menu_footer_header.html', true)))));

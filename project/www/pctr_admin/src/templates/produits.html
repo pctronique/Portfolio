@@ -1,5 +1,6 @@
-<section class="container">
+<section class="container mt-5">
     <form id="form-produit" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id" value="[##ID_PROD##]" />
         <div class="mb-3">
             <label for="formName" class="form-label text-light">nom</label>
             <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_PROD##]">
@@ -9,6 +10,10 @@
             <textarea class="form-control" name="description" id="formDescription" rows="3">[##DESC_PROD##]</textarea>
         </div>
         <div class="mb-3">
+            <label for="formDescription" class="form-label text-light">Src</label>
+            <textarea class="form-control" name="src" id="formDescription" rows="3">[##SRC_PROD##]</textarea>
+        </div>
+        <div class="mb-3">
             <label class="form-label text-light">Catégories</label>
             [##CAT_PROD##]
         </div>
@@ -16,12 +21,12 @@
             <label class="form-label text-light">Language</label>
             [##LANGP_PROD##]
         </div>
-        <button class="btn btn-dark d-grid mx-auto">
+        <button id="validation" class="btn btn-dark d-grid mx-auto">
             Valider
         </button>
     </form>
 </section>
-<section class="container m-5">
+<section class="container mt-5">
     <table class="table table-dark table-striped">
         <thead>
             <tr>

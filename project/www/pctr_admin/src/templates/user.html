@@ -1,4 +1,4 @@
-<section class="container">
+<section class="container mt-5">
     <form id="form-user" action="#" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="formName" class="form-label text-light">nom</label>
@@ -16,13 +16,13 @@
             <label for="formEmail" class="form-label text-light">email</label>
             <input type="email" class="form-control" name="email" id="formEmail" placeholder="" value="[##EMAIL_USER##]">
         </div>
-        <button class="btn btn-dark d-grid mx-auto">
+        <button id="validation" class="btn btn-dark d-grid mx-auto">
             Valider
         </button>
     </form>
 </section>
 
-<section class="container">
+<section class="container mt-5">
     <form id="form-pass" action="#" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="formOldPass" class="form-label text-light">old-pass</label>
@@ -36,7 +36,7 @@
             <label for="formRepetPass" class="form-label text-light">repet-pass</label>
             <input type="password" class="form-control" name="repet-pass" id="formRepetPass" autocomplete >
         </div>
-        <button class="btn btn-dark d-grid mx-auto">
+        <button id="validation_pass" class="btn btn-dark d-grid mx-auto">
             Valider
         </button>
     </form>
