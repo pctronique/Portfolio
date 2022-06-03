@@ -33,7 +33,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cat", $data["id_loisir"], $data["name_loisir"]);
+        $find .= add_td_find("cat", $valueLine["id_loisir"], $valueLine["name_loisir"]);
     }
 
     $html = str_replace("[##ID_LOISI##]", $id, $html);

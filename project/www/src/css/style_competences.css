@@ -8,3 +8,22 @@
 #comptences-contenu {
     padding: 10px;
 }
+
+#competences-infos {
+    margin: auto;
+    float: none;
+    margin-top: 65px;
+    width: 1020px;
+}
+
+#comptences-contenu-infos {
+    padding: 10px;
+}
+
+h4 {
+    font-size: 25px !important;
+}
+
+div {
+    transform:translateZ(1px);
+}

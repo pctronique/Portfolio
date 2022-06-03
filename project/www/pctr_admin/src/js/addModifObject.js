@@ -16,9 +16,10 @@ function valiadtionForm(e) {
       response
     ) {
         /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
-        if ("true") {
-            location.reload();
+        if (response == "true") {
+           location.reload();
         } else {
+         console.log(response);
             alert(response);
         }
     });
@@ -50,7 +51,8 @@ function deletObject(e) {
 function modifObject(e) {
    // pour ne pas prendre l'adresse de l'action du formulaire.
    e.preventDefault();
-   window.location.href = nameLienModifExec+"&id="+0;
+   let id = e.target.id.split("_")[1];
+   window.location.href = nameLienModifExec+"&id="+id;
 }
 
 document.querySelectorAll("#validation").forEach((element) => {

@@ -34,10 +34,9 @@
     -15px 15px 0px #84a6bf62, -18px 18px 0px #84a6bf62, -20px 20px 0px #84a6bf62;
 }
 
-.rectangular-glass label {
-  text-align: center;
+.rectangular-glass label, .rectangular-glass .text_grav {
   font-weight: bold;
   font-size: 40px;
   color: rgb(201 243 255 / 58%);
-  text-shadow: 2px -2px rgb(63 69 96 / 44%), -1px -1px #444;
+  text-shadow: 2px -2px rgb(105 108 120 / 87%), 1px -1px #04007aab;
 }

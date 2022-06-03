@@ -147,6 +147,18 @@ footer #taking li {
     display: inline-block;
 }
 
+#text_3d {
+  position: unset;
+  margin-top: -28px;
+  width: 800px;
+  height: 171px;
+  /*border: red 2px solid;*/
+  margin-right: auto;
+  margin-left: auto;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
 /*h2 {
     color: #fff;
     / *font-family: "Kanit";* /

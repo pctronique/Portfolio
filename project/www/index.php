@@ -14,9 +14,16 @@ array_key_exists('email', $_SESSION)) {
     $isConnected = true;
 }
 
+$cats = "";
+
 $sgbd = connexion_sgbd();
 if(!empty($sgbd)) {
-
+    $res = $sgbd->prepare("SELECT * FROM categorie");
+    $res->execute();
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($data as $valueLine) {
+        $cats .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./?ind=cat&cat=".$valueLine["id_cat"]."\">".$valueLine["nom_cat"]."</a></li>";
+    }
 }
 
 $ind=null;
@@ -82,4 +89,5 @@ echo str_replace("[##CONTENU_CSS##]", !empty($css) ? "\n".$css : "",
     str_replace("[##CONTENU_JS##]", !empty($js) ? "\n".$js : "",
     str_replace("[##CONTENU##]", $contenu, 
     str_replace("[##CONNECTED##]", $connected, 
-    file_get_contents(dirname(__FILE__) . '/src/templates/menu_footer_header.html', true)))));
+    str_replace("[##CATEGORIES##]", $cats, 
+    file_get_contents(dirname(__FILE__) . '/src/templates/menu_footer_header.html', true))))));

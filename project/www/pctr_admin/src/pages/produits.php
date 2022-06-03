@@ -5,12 +5,13 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION)) {
 
-    function add(?string $name, ?string $title, bool $checked = false) {
-        $checkbox = "<input class=\"form-check-input\" type=\"checkbox\" value=\"true\" name=\"".$name."\" id=\"flexCheckDefault\"";
-        $checkbox .= $checked ? "" : "checked"." >"."\n";
-        $checkbox .= "<label class=\"form-check-label text-light\" for=\"flexCheckDefault\">"."\n";
+    function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, bool $checked = false) {
+        $checkbox = "<input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
+        $checkbox .= $checked ? "checked" : "";
+        $checkbox .= " >"."\n";
+        $checkbox .= "<label class=\"form-check-label text-light\" for=\"flexCheck".$type.$name."\">"."\n";
         $checkbox .= $title."\n";
-        $checkbox .= "</label>"."\n";
+        $checkbox .= "</label>[##n##]"."\n";
         return $checkbox;
     }
 
@@ -39,16 +40,28 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $name = $data['nom_produit'];
             $desc = $data['description_produit'];
             $src = $data['src_produit'];
-            /*$cat = $data['id_user'];
-            $langp = $data['date_produit'];*/
         }
+    }
+
+    $res = $sgbd->prepare("SELECT * FROM categorie");
+    $res->execute();
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($data as $valueLine) {
+        $cat .= addCheckbox("cat", $valueLine["id_cat"], $valueLine["nom_cat"], $valueLine["id_cat"]);
+    }
+
+    $res = $sgbd->prepare("SELECT * FROM language");
+    $res->execute();
+    $data = $res->fetchAll(PDO::FETCH_ASSOC);
+    foreach ($data as $valueLine) {
+        $langp .= addCheckbox("langP", $valueLine["id_language"], $valueLine["nom_language"], $valueLine["id_language"]);
     }
 
     $res = $sgbd->prepare("SELECT * FROM produits");
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cat", $data["id_produit"], $data["nom_produit"]);
+        $find .= add_td_find("cat", $valueLine["id_produit"], $valueLine["nom_produit"]);
     }
 
     $html = str_replace("[##ID_PROD##]", $id, $html);
@@ -58,6 +71,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##SRC_PROD##]", $src, $html);
     $html = str_replace("[##LANGP_PROD##]", $langp, $html);
     $html = str_replace("[##FIND_PROD##]", $find, $html);
+    $html = str_replace("[##n##]", "<br />", $html);
     $page_prod->setContenu($html);
     $page_prod->addJs("./src/js/produits.js");
 } else {
