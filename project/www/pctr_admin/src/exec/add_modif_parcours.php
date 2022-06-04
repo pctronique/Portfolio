@@ -8,8 +8,14 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION) && !empty($_POST)) {
     
+    $exp = "type";
     $values = array(
-                ":name" => "",
+                ":title" => "",
+                ":start" => "",
+                ":progress" => "",
+                ":fin" => "",
+                ":compt" => "",
+                ":lieu" => "",
                 ":desc" => ""
             );
 
@@ -21,8 +27,28 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $values[":id_user"] = $_SESSION['id_user'];
     }
 
-    if(array_key_exists("name", $_POST) && !empty($_POST['name'])) {
-        $values[":name"] = $_POST['name'];
+    if(array_key_exists("title", $_POST) && !empty($_POST['title'])) {
+        $values[":title"] = $_POST['title'];
+    }
+
+    if(array_key_exists("start", $_POST) && !empty($_POST['start'])) {
+        $values[":start"] = $_POST['start'];
+    }
+
+    if(array_key_exists("progress", $_POST) && !empty($_POST['progress'])) {
+        $values[":progress"] = $_POST['progress'];
+    }
+
+    if(array_key_exists("fin", $_POST) && !empty($_POST['fin'])) {
+        $values[":fin"] = $_POST['fin'];
+    }
+
+    if(array_key_exists("compt", $_POST) && !empty($_POST['compt'])) {
+        $values[":compt"] = $_POST['compt'];
+    }
+
+    if(array_key_exists("lieu", $_POST) && !empty($_POST['lieu'])) {
+        $values[":lieu"] = $_POST['lieu'];
     }
 
     if(array_key_exists("description", $_POST) && !empty($_POST['description'])) {
@@ -38,10 +64,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         /* se proteger des erreurs de requete sql (pour ne pas afficher l'erreur a l'ecran) */
         try {
             if(!empty($id)) {
-                $res = $sgbd->prepare("UPDATE competences SET title_competence=:name, description_competences=:desc WHERE id_competences=:id");
+                $res = $sgbd->prepare("UPDATE categorie1 SET nom_cat=:name, description_cat=:desc WHERE id_cat=:id");
                 $res->execute($values);
             } else {
-                $res = $sgbd->prepare("INSERT INTO competences (title_competence, description_competences, id_user) VALUES (:name, :desc, :id_user)");
+                $res = $sgbd->prepare("INSERT INTO categorie1 (nom_cat, description_cat, id_user) VALUES (:name, :desc, :id_user)");
                 $res->execute($values);
             }
             echo "true";

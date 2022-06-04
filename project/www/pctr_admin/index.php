@@ -43,9 +43,9 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $contenu = $page_cat->getContenu();
         } else if($ind == "comp") {
             include_once dirname(__FILE__) . '/src/pages/competences.php';
-            $css = $page_compt->displayCss();
-            $js = $page_compt->displayJs();
-            $contenu = $page_compt->getContenu();
+            $css = $page_comp->displayCss();
+            $js = $page_comp->displayJs();
+            $contenu = $page_comp->getContenu();
         } else if($ind == "lang") {
             include_once dirname(__FILE__) . '/src/pages/language.php';
             $css = $page_langP->displayCss();
@@ -56,11 +56,11 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $css = $page_loisir->displayCss();
             $js = $page_loisir->displayJs();
             $contenu = $page_loisir->getContenu();
-        } else if($ind == "info") {
-            include_once dirname(__FILE__) . '/src/pages/informations.php';
-            $css = $page_info->displayCss();
-            $js = $page_info->displayJs();
-            $contenu = $page_info->getContenu();
+        } else if($ind == "parc") {
+            include_once dirname(__FILE__) . '/src/pages/parcours.php';
+            $css = $page_parc->displayCss();
+            $js = $page_parc->displayJs();
+            $contenu = $page_parc->getContenu();
         } else if($ind == "user") {
             include_once dirname(__FILE__) . '/src/pages/user.php';
             $css = $page_user->displayCss();

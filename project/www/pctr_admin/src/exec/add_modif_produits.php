@@ -20,9 +20,9 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     foreach ($_POST as $key => $value) {
         $name = explode("_", $key)[0];
         if($name == "langP") {
-            array_push($tab_cat, $value);
-        } else if($name == "cat") {
             array_push($tab_langP, $value);
+        } else if($name == "cat") {
+            array_push($tab_cat, $value);
         }
     }
 
@@ -66,17 +66,16 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                 $id = $sgbd->lastInsertId();
             }
             foreach ($tab_langP as $value) {
-                $res = $sgbd->prepare("INSERT INTO language_produit(id_language, id_produit, id_user) VALUES (:id_language, :id_produit, :id_user)");
+                $res = $sgbd->prepare("INSERT INTO language_produit(id_language, id_produit) VALUES (:id_language, :id_produit)");
                 $res->execute([
                     ":id_language" => $value,
-                    ":id_produit" => $id,
-                    ":id_user" => $_SESSION['id_user']
+                    ":id_produit" => $id
                 ]);
             }
-            foreach ($tab_langP as $value) {
-                $res = $sgbd->prepare("INSERT INTO cat_produit(id_cat, id_produit) VALUES (:id_language, :id_produit)");
+            foreach ($tab_cat as $value) {
+                $res = $sgbd->prepare("INSERT INTO cat_produit(id_cat, id_produit) VALUES (:id_cat, :id_produit)");
                 $res->execute([
-                    ":id_language" => $value,
+                    ":id_cat" => $value,
                     ":id_produit" => $id
                 ]);
             }

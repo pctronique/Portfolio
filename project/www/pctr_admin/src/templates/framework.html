@@ -1,13 +1,12 @@
 <section class="container mt-5">
-    <form id="form-information" action="#" method="post" enctype="multipart/form-data">
-        <input type="hidden" name="id" id="id" value="[##ID_INF##]" />
+    <h2 class="text-light text-center">Languages</h2>
+</section>
+<section class="container mt-5">
+    <form id="form-languageP" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id" value="[##ID_LANGP##]" />
         <div class="mb-3">
-            <label for="formName" class="form-label text-light">nom</label>
-            <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_INF##]">
-        </div>
-        <div class="mb-3">
-            <label for="formDescription" class="form-label text-light">Description</label>
-            <textarea class="form-control" name="description" id="formDescription" rows="3">[##DESC_INF##]</textarea>
+            <label for="formVame" class="form-label text-light">nom</label>
+            <input type="text" class="form-control" name="name" id="formVame" placeholder="" value="[##NAME_LANGP##]">
         </div>
         <button id="validation" class="btn btn-dark d-grid mx-auto">
             Valider
@@ -24,7 +23,7 @@
             </tr>
         </thead>
         <tbody id="tab_find">
-            [##FIND_INF##]
+            [##FIND_LANGP##]
         </tbody>
     </table>
 </section>

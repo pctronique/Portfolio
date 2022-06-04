@@ -9,8 +9,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('email', $_SESSION) && !empty($_POST)) {
     
     $values = array(
-                ":name" => "",
-                ":desc" => ""
+                ":name" => ""
             );
 
     $id = 0;
@@ -38,10 +37,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         /* se proteger des erreurs de requete sql (pour ne pas afficher l'erreur a l'ecran) */
         try {
             if(!empty($id)) {
-                $res = $sgbd->prepare("UPDATE info_competences SET title_info_competence=:name, description_competences=:desc WHERE id_info_competences=:id");
+                $res = $sgbd->prepare("UPDATE language SET nom_language=:name WHERE id_language=:id");
                 $res->execute($values);
             } else {
-                $res = $sgbd->prepare("INSERT INTO info_competences (title_info_competence, description_competences, id_user) VALUES (:name, :desc, :id_user)");
+                $res = $sgbd->prepare("INSERT INTO language (nom_language, id_user) VALUES (:name, :id_user)");
                 $res->execute($values);
             }
             echo "true";

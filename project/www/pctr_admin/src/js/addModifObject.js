@@ -63,22 +63,22 @@ document.querySelectorAll("#validation").forEach((element) => {
  * activer les boutons de la page
  */
  function activeClick() {
+   document.querySelectorAll("#tab_find").forEach((element0) => {
     /* activer le changement de format des cellules */
-     document
-     .getElementById("tab_find")
+    element0
      .querySelectorAll(".delete_row")
      .forEach((element) => {
         element.addEventListener("click", deletObject);
      });
   
      /* activer le bouton de suppression */
-     document
-     .getElementById("tab_find")
+     element0
      .querySelectorAll(".modif_row")
      .forEach((element) => {
         element.addEventListener("click", modifObject);
      });
-  }
+   });
+}
   
-  /* activer les cellules de la table, pour changer la valeur quand on clique dessus */
-  activeClick();
+/* activer les cellules de la table, pour changer la valeur quand on clique dessus */
+activeClick();

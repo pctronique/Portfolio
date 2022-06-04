@@ -43,18 +43,45 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         }
     }
 
+    $tab_cat = [];
+    $tab_langP = [];
+
+    if($id != 0) {
+        $res = $sgbd->prepare("SELECT * FROM cat_produit WHERE id_produit=:id_produit");
+        $res->execute([":id_produit" => $id]);
+        $data = $res->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $valueLine) {
+            array_push($tab_cat, $valueLine["id_cat"]);
+        }
+
+        $res = $sgbd->prepare("SELECT * FROM language_produit WHERE id_produit=:id_produit");
+        $res->execute([":id_produit" => $id]);
+        $data = $res->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($data as $valueLine) {
+            array_push($tab_langP, $valueLine["id_language"]);
+        }
+    }
+
     $res = $sgbd->prepare("SELECT * FROM categorie");
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $cat .= addCheckbox("cat", $valueLine["id_cat"], $valueLine["nom_cat"], $valueLine["id_cat"]);
+        $the_checked = false;
+        if (in_array($valueLine["id_cat"], $tab_cat)) {
+            $the_checked = true;
+        }
+        $cat .= addCheckbox("cat", $valueLine["id_cat"], $valueLine["nom_cat"], $valueLine["id_cat"], $the_checked);
     }
 
     $res = $sgbd->prepare("SELECT * FROM language");
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $langp .= addCheckbox("langP", $valueLine["id_language"], $valueLine["nom_language"], $valueLine["id_language"]);
+        $the_checked = false;
+        if (in_array($valueLine["id_language"], $tab_langP)) {
+            $the_checked = true;
+        }
+        $langp .= addCheckbox("langP", $valueLine["id_language"], $valueLine["nom_language"], $valueLine["id_language"], $the_checked);
     }
 
     $res = $sgbd->prepare("SELECT * FROM produits");
