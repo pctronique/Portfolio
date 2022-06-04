@@ -37,7 +37,7 @@ let heightRadius3D = 5;
 
 function frontBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.width = width+"px";
     item.style.height = height+"px";
     item.style.borderRadius = radius3D+"px";
@@ -46,7 +46,7 @@ function frontBox3D(item, itemMain) {
 
 function backBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.width = width+"px";
     item.style.height = height+"px";
     item.style.borderRadius = radius3D+"px";
@@ -55,7 +55,7 @@ function backBox3D(item, itemMain) {
 
 function topBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginLeft = radius3D+"px";
     item.style.width = (width-(radius3D*2))+"px";
     item.style.height = depth3D+"px";
@@ -64,7 +64,7 @@ function topBox3D(item, itemMain) {
 
 function bottomBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginLeft = radius3D+"px";
     item.style.width = (width-(radius3D*2))+"px";
     item.style.height = depth3D+"px";
@@ -73,7 +73,7 @@ function bottomBox3D(item, itemMain) {
 
 function leftBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginTop = radius3D+"px";
     item.style.width = depth3D+"px";
     item.style.height = (height-(radius3D*2))+"px";
@@ -82,7 +82,7 @@ function leftBox3D(item, itemMain) {
 
 function rightBox3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginTop = radius3D+"px";
     item.style.width = depth3D+"px";
     item.style.height = (height-(radius3D*2))+"px";
@@ -91,7 +91,7 @@ function rightBox3D(item, itemMain) {
 
 function border1Box3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginTop = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = depth3D+"px";
     item.style.height = (radius3D/3)+"px";
@@ -100,7 +100,7 @@ function border1Box3D(item, itemMain) {
 
 function border2Box3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginTop = (radius3D-((radius3D/32)*1)+0.5)+"px";
     item.style.marginLeft = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = depth3D+"px";
@@ -110,7 +110,7 @@ function border2Box3D(item, itemMain) {
 
 function border3Box3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginLeft = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = (radius3D/3)+"px";
     item.style.height = depth3D+"px";
@@ -119,7 +119,7 @@ function border3Box3D(item, itemMain) {
 
 function border4Box3D(item, itemMain) {
     let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetWidth;
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
     item.style.marginLeft = (radius3D-((radius3D/32)*1)+0.5)+"px";
     item.style.marginTop = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = ((radius3D/3)+2.5)+"px";
@@ -163,7 +163,7 @@ function addborder(item) {
 
 function createFormeBox3D(item) {
     let width = item.querySelector(".box-3D-size").offsetWidth;
-    let height = item.querySelector(".box-3D-size").offsetWidth;
+    let height = item.querySelector(".box-3D-size").offsetHeight;
     item.querySelector(".object-3D").style.marginTop = (-1*(height/2))+"px";
     item.querySelector(".object-3D").style.marginLeft = (-1*(width/2))+"px";
     item.style.marginTop = (height/4)+"px";
