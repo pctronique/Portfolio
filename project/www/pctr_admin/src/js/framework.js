@@ -1,5 +1,5 @@
-idform = "form-languageP";
-namePageExec = "add_modif_language";
+idform = "form-framework";
+namePageExec = "add_modif_framework";
 namePageDeletExec = "";
 namePageModifExec = "";
-nameLienModifExec = "./?ind=lang";
+nameLienModifExec = "./?ind=framW";

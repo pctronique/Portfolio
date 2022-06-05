@@ -8,7 +8,7 @@
 if (!function_exists('add_td_find')) {
 
     // fonction pour faire la connexion a la base de donnes
-    function add_td_find(?string $name_id, ?string $id, ?string $name) {
+    function add_td_find(?string $name_id, ?string $id, ?string $name): ?string {
         $td = "<tr id=\"".$name_id."_".$id."\">";
         $td .= "<td>";
         $td .= "<a href=\"#\"><img class=\"delete_row\" id=\"delete_".$id."\" src=\"./src/img/icons8-supprimer-pour-toujours-90_white.svg\" /></a>";

@@ -7,38 +7,38 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     include_once dirname(__FILE__) . '/../../../src/class/Contenu_Page.php';
 
-    $page_langP = new Contenu_Page();
+    $page_framW = new Contenu_Page();
 
-    $html = file_get_contents(dirname(__FILE__) . '/../templates/language.html', true);
+    $html = file_get_contents(dirname(__FILE__) . '/../templates/framework.html', true);
 
     $id = 0;
     $name = "";
     $find = "";
 
     if(!empty($_GET) && array_key_exists("id", $_GET)) {
-        $res = $sgbd->prepare("SELECT * FROM language WHERE id_language=:id");
+        $res = $sgbd->prepare("SELECT * FROM  framework WHERE id_framework=:id");
         $res->execute([
             ":id" => $_GET['id']
         ]);
         if($res->rowCount() > 0) {
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $id = $_GET['id'];
-            $name = $data['nom_language'];
+            $name = $data['nom_framework'];
         }
     }
 
-    $res = $sgbd->prepare("SELECT * FROM language");
+    $res = $sgbd->prepare("SELECT * FROM  framework");
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("langp", $valueLine["id_language"], $valueLine["nom_language"]);
+        $find .= add_td_find("framw", $valueLine["id_framework"], $valueLine["nom_framework"]);
     }
 
-    $html = str_replace("[##ID_LANGP##]", $id, $html);
-    $html = str_replace("[##NAME_LANGP##]", $name, $html);
-    $html = str_replace("[##FIND_LANGP##]", $find, $html);
-    $page_langP->setContenu($html);
-    $page_langP->addJs("./src/js/language.js");
+    $html = str_replace("[##ID_FRAMW##]", $id, $html);
+    $html = str_replace("[##NAME_FRAMW##]", $name, $html);
+    $html = str_replace("[##FIND_FRAMW##]", $find, $html);
+    $page_framW->setContenu($html);
+    $page_framW->addJs("./src/js/framework.js");
 } else {
     header('Location: ./../../../');
     exit();

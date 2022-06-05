@@ -17,7 +17,8 @@ function valiadtionForm(e) {
     ) {
         /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
         if (response == "true") {
-           location.reload();
+           //location.reload();
+           window.location.href = nameLienModifExec;
         } else {
          console.log(response);
             alert(response);

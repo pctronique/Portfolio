@@ -1,5 +1,7 @@
 <?php
 
+define("USER_ID", "1");
+
 /*Connexion*/
 include_once dirname(__FILE__) . '/src/fonctions/connexion_sgbd.php';
 

@@ -89,6 +89,10 @@ header {
     align-items: center;
 }
 
+.menu-and-bt #nav-right li {
+    text-align: left;
+}
+
 .menu-and-bt #nav-right * {
     text-align: center;
     padding: 5px;

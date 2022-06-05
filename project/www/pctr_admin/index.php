@@ -46,11 +46,36 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $css = $page_comp->displayCss();
             $js = $page_comp->displayJs();
             $contenu = $page_comp->getContenu();
+        } else if($ind == "add_logo") {
+            include_once dirname(__FILE__) . '/src/pages/add_logo.php';
+            $css = $page_add_logo->displayCss();
+            $js = $page_add_logo->displayJs();
+            $contenu = $page_add_logo->getContenu();
+        } else if($ind == "add_cv") {
+            include_once dirname(__FILE__) . '/src/pages/add_cv.php';
+            $css = $page_add_cv->displayCss();
+            $js = $page_add_cv->displayJs();
+            $contenu = $page_add_cv->getContenu();
+        } else if($ind == "disp_cv") {
+            include_once dirname(__FILE__) . '/src/pages/display_cv.php';
+            $css = $page_disp_cv->displayCss();
+            $js = $page_disp_cv->displayJs();
+            $contenu = $page_disp_cv->getContenu();
+        } else if($ind == "comp_logo") {
+            include_once dirname(__FILE__) . '/src/pages/comp_logo.php';
+            $css = $page_comp_logo->displayCss();
+            $js = $page_comp_logo->displayJs();
+            $contenu = $page_comp_logo->getContenu();
         } else if($ind == "lang") {
             include_once dirname(__FILE__) . '/src/pages/language.php';
             $css = $page_langP->displayCss();
             $js = $page_langP->displayJs();
             $contenu = $page_langP->getContenu();
+        } else if($ind == "framW") {
+            include_once dirname(__FILE__) . '/src/pages/framework.php';
+            $css = $page_framW->displayCss();
+            $js = $page_framW->displayJs();
+            $contenu = $page_framW->getContenu();
         } else if($ind == "loisi") {
             include_once dirname(__FILE__) . '/src/pages/loisir.php';
             $css = $page_loisir->displayCss();

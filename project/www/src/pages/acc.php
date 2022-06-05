@@ -1,13 +1,17 @@
 <?php
 
-include_once dirname(__FILE__) . '/../class/Contenu_Page.php';
+if(defined("USER_ID") && !empty(USER_ID)) {
 
-$page_acc = new Contenu_Page();
+    include_once dirname(__FILE__) . '/../class/Contenu_Page.php';
 
-$name_cat = "jjj";//print_r($_SESSION);
+    $page_acc = new Contenu_Page();
 
-$html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);
+    $name_cat = "jjj";//print_r($_SESSION);
 
-$html = str_replace("[##categorie##]", $name_cat, $html);
+    $html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);
 
-$page_acc->setContenu($html);
+    $html = str_replace("[##categorie##]", $name_cat, $html);
+
+    $page_acc->setContenu($html);
+
+}

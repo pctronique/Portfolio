@@ -19,6 +19,10 @@
             </div>
         </div>
         <div class="mb-3">
+            <label for="formTitle" class="form-label text-light">nom</label>
+            <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_PARC##]">
+        </div>
+        <div class="mb-3">
             <label for="formTitle" class="form-label text-light">titre</label>
             <input type="text" class="form-control" name="title" id="formTitle" placeholder="" value="[##TITLE_PARC##]">
         </div>
@@ -27,7 +31,7 @@
             <input type="date" class="form-control" name="date-start" id="formDateStart" placeholder="" value="[##START_PARC##]">
         </div>
         <div class="mb-3">
-            <input class="form-check-input" type="checkbox" name="progress" value="" id="checkProgress" [##PROGRESS_PARC##]>
+            <input class="form-check-input" type="checkbox" name="progress" value="true" id="checkProgress" [##PROGRESS_PARC##]>
             <label class="form-check-label text-light" for="checkProgress">
                 En cours
             </label>
@@ -35,10 +39,6 @@
         <div class="mb-3">
             <label for="formDateEnd" class="form-label text-light">fin</label>
             <input type="date" class="form-control" name="date-end" id="formDateEnd" placeholder="" value="[##FIN_PARC##]">
-        </div>
-        <div class="mb-3">
-            <label for="formCompetence" class="form-label text-light">compétence</label>
-            <input type="text" class="form-control" name="competence" id="formCompetence" placeholder="" value="[##COMPT_PARC##]">
         </div>
         <div class="mb-3">
             <label for="formLieu" class="form-label text-light">lieu</label>

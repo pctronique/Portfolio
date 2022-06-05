@@ -1,14 +1,18 @@
 <?php
 
-include_once dirname(__FILE__) . '/../class/Contenu_Page.php';
+if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && defined("USER_ID") && !empty(USER_ID)) {
 
-$page_desc = new Contenu_Page();
+    include_once dirname(__FILE__) . '/../class/Contenu_Page.php';
 
-$name_desc = "WEB";
+    $page_desc = new Contenu_Page();
 
-$html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
+    $name_desc = "WEB";
 
-$html = str_replace("[##produit##]", $name_desc, $html);
+    $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
 
-$page_desc->addCss("./src/css/style_description.css");
-$page_desc->setContenu($html);
+    $html = str_replace("[##produit##]", $name_desc, $html);
+
+    $page_desc->addCss("./src/css/style_description.css");
+    $page_desc->setContenu($html);
+
+}

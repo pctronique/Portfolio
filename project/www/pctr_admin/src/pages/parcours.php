@@ -14,11 +14,11 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $id = 0;
     $exp = "checked";
     $form = "";
+    $name = "";
     $title = "";
     $start = "";
     $progress = "";
     $fin = "";
-    $compt = "";
     $lieu = "";
     $desc = "";
     $find = "";
@@ -29,13 +29,33 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             ":id" => $_GET['id']
         ]);
         if($res->rowCount() > 0) {
+            $exp = "";
+            $form = "";
+            $resForm = $sgbd->prepare("SELECT * FROM formations WHERE id_parcours=:id");
+            $resForm->execute([
+                ":id" => $_GET['id']
+            ]);
+            if($resForm->rowCount() > 0) {
+                $form = "checked";
+            }
+            $resExp = $sgbd->prepare("SELECT * FROM experiences WHERE id_parcours=:id");
+            $resExp->execute([
+                ":id" => $_GET['id']
+            ]);
+            if($resExp->rowCount() > 0) {
+                $exp = "checked";
+            }
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $id = $_GET['id'];
-            $title = $data['title_compt'];
-            $start = $data['date_debut_parcours'];
+            $name = $data['nom_parcours'];
+            $title = $data['title_parcours'];
+            if($data['date_debut_parcours'] != "0000-00-00 00:00:00") {
+                $start = date('Y-m-d', strtotime($data['date_debut_parcours']));
+            }
             $progress = $data['in_progress_parcours'] == "1" ? "checked" : "";
-            $fin = $data['date_fin_parcours'];
-            $compt = $data['type_parcours'];
+            if($data['date_fin_parcours'] != "0000-00-00 00:00:00") {
+                $fin = date('Y-m-d', strtotime($data['date_fin_parcours']));
+            }
             $lieu = $data['lieu_parcours'];
             $desc = $data['description_parcours'];
         }
@@ -45,17 +65,17 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("comp", $valueLine["id_parcours"], $valueLine["title_compt"]);
+        $find .= add_td_find("comp", $valueLine["id_parcours"], $valueLine["nom_parcours"]);
     }
 
     $html = str_replace("[##ID_PARC##]", $id, $html);
     $html = str_replace("[##EXP_PARC##]", $exp, $html);
     $html = str_replace("[##FORM_PARC##]", $form, $html);
+    $html = str_replace("[##NAME_PARC##]", $name, $html);
     $html = str_replace("[##TITLE_PARC##]", $title, $html);
     $html = str_replace("[##START_PARC##]", $start, $html);
     $html = str_replace("[##PROGRESS_PARC##]", $progress, $html);
     $html = str_replace("[##FIN_PARC##]", $fin, $html);
-    $html = str_replace("[##COMPT_PARC##]", $compt, $html);
     $html = str_replace("[##LIEU_PARC##]", $lieu, $html);
     $html = str_replace("[##DESC_PARC##]", $desc, $html);
     $html = str_replace("[##FIND_PARC##]", $find, $html);
