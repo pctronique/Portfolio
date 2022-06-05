@@ -7,6 +7,13 @@ function posObject3D() {
     }
 }
 
+function dimBox3D(itemMain) {
+    return {
+        width: itemMain.querySelector(".box-3D-front").offsetWidth,
+        height: itemMain.querySelector(".box-3D-front").offsetHeight
+    }
+}
+
 let mouseObject3D = posObject3D();
 
 let positionObject3D = posObject3D();
@@ -36,8 +43,9 @@ let radius3D = 20; // ne pas modifier
 let heightRadius3D = 5;
 
 function frontBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.width = width+"px";
     item.style.height = height+"px";
     item.style.borderRadius = radius3D+"px";
@@ -45,8 +53,9 @@ function frontBox3D(item, itemMain) {
 }
 
 function backBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.width = width+"px";
     item.style.height = height+"px";
     item.style.borderRadius = radius3D+"px";
@@ -54,8 +63,9 @@ function backBox3D(item, itemMain) {
 }
 
 function topBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginLeft = radius3D+"px";
     item.style.width = (width-(radius3D*2))+"px";
     item.style.height = depth3D+"px";
@@ -63,17 +73,19 @@ function topBox3D(item, itemMain) {
 }
 
 function bottomBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginLeft = radius3D+"px";
     item.style.width = (width-(radius3D*2))+"px";
     item.style.height = depth3D+"px";
-    item.style.transform = "rotateX(-90deg) translateZ("+((width)-(depth3D/2))+"px)";
+    item.style.transform = "rotateX(-90deg) translateZ("+((height)-(depth3D/2))+"px)";
 }
 
 function leftBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginTop = radius3D+"px";
     item.style.width = depth3D+"px";
     item.style.height = (height-(radius3D*2))+"px";
@@ -81,17 +93,19 @@ function leftBox3D(item, itemMain) {
 }
 
 function rightBox3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginTop = radius3D+"px";
     item.style.width = depth3D+"px";
     item.style.height = (height-(radius3D*2))+"px";
-    item.style.transform = "rotateY(-90deg) translateZ(-"+((height)-(depth3D/2))+"px)";
+    item.style.transform = "rotateY(-90deg) translateZ(-"+((width)-(depth3D/2))+"px)";
 }
 
 function border1Box3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginTop = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = depth3D+"px";
     item.style.height = (radius3D/3)+"px";
@@ -99,8 +113,9 @@ function border1Box3D(item, itemMain) {
 }
 
 function border2Box3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginTop = (radius3D-((radius3D/32)*1)+0.5)+"px";
     item.style.marginLeft = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = depth3D+"px";
@@ -109,8 +124,9 @@ function border2Box3D(item, itemMain) {
 }
 
 function border3Box3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginLeft = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = (radius3D/3)+"px";
     item.style.height = depth3D+"px";
@@ -118,8 +134,9 @@ function border3Box3D(item, itemMain) {
 }
 
 function border4Box3D(item, itemMain) {
-    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
-    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(itemMain);
+    let width = dim2d.width;
+    let height = dim2d.height;
     item.style.marginLeft = (radius3D-((radius3D/32)*1)+0.5)+"px";
     item.style.marginTop = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = ((radius3D/3)+2.5)+"px";
@@ -128,6 +145,7 @@ function border4Box3D(item, itemMain) {
 }
 
 function addborder(item) {
+    let dim2d = dimBox3D(item);
     let border1 = item.querySelector(".box-3D-border-1");
     let border2 = item.querySelector(".box-3D-border-2");
     let border3 = item.querySelector(".box-3D-border-3");
@@ -135,15 +153,15 @@ function addborder(item) {
     let leftBottom = item.querySelector(".border-3D-left-bottom");
     let rightBottom = item.querySelector(".border-3D-right-bottom");
     let rightTop = item.querySelector(".border-3D-right-top");
-    leftBottom.style.width = item.querySelector(".box-3D-size").offsetWidth;
-    leftBottom.style.height = item.querySelector(".box-3D-size").offsetHeight;
-    leftBottom.style.marginTop = -item.querySelector(".box-3D-size").offsetHeight+"px";
-    rightBottom.style.width = item.querySelector(".box-3D-size").offsetWidth;
-    rightBottom.style.height = item.querySelector(".box-3D-size").offsetHeight;
-    rightBottom.style.marginTop = -item.querySelector(".box-3D-size").offsetHeight+"px";
-    rightTop.style.width = item.querySelector(".box-3D-size").offsetWidth;
-    rightTop.style.height = item.querySelector(".box-3D-size").offsetHeight;
-    rightTop.style.marginTop = -item.querySelector(".box-3D-size").offsetHeight+"px";
+    leftBottom.style.width = dim2d.width+"px";
+    leftBottom.style.height = dim2d.height+"px";
+    rightBottom.style.width = dim2d.width+"px";
+    rightBottom.style.height = dim2d.height+"px";
+    rightTop.style.width = dim2d.width+"px";
+    rightTop.style.height = dim2d.height+"px";
+    leftBottom.style.marginTop = -dim2d.height+"px";
+    rightBottom.style.marginTop = -dim2d.height+"px";
+    rightTop.style.marginTop = -dim2d.height+"px";
     leftBottom.appendChild(border1.cloneNode(true));
     rightBottom.appendChild(border1.cloneNode(true));
     rightTop.appendChild(border1.cloneNode(true));
@@ -162,12 +180,19 @@ function addborder(item) {
 }
 
 function createFormeBox3D(item) {
-    let width = item.querySelector(".box-3D-size").offsetWidth;
-    let height = item.querySelector(".box-3D-size").offsetHeight;
+    let dim2d = dimBox3D(item);
+    let width = dim2d.width;
+    let height = dim2d.height;
+    item.querySelector(".object-3D").style.width = width;
+    item.querySelector(".object-3D").style.height = height;
     item.querySelector(".object-3D").style.marginTop = (-1*(height/2))+"px";
     item.querySelector(".object-3D").style.marginLeft = (-1*(width/2))+"px";
-    item.style.marginTop = (height/4)+"px";
-    item.style.marginLeft = (width/4)+"px";
+    item.style.marginTop = (1*(height/2))+"px";
+    item.style.marginLeft = (1*(width/2))+"px";
+    item.style.width = dim2d.width+"px";
+    item.style.height = dim2d.height+"px";
+    item.parentNode.style.width = dim2d.width+"px";
+    item.parentNode.style.height = dim2d.height+"px";
     frontBox3D(item.querySelector(".box-3D-front"), item);
     backBox3D(item.querySelector(".box-3D-back"), item);
     topBox3D(item.querySelector(".box-3D-top"), item);
@@ -210,7 +235,7 @@ document.querySelectorAll(".box-3D").forEach(element0 => {
 
     createFormeBox3D(element0);
 
-    element0.addEventListener("mousedown", function(e) {
+    element0.addEventListener("pointerdown", function(e) {
         mouseStartObject3D.x = e.clientX;
         mouseStartObject3D.y = e.clientY;
         targetObject = findParent(e.target);
@@ -221,15 +246,43 @@ document.querySelectorAll(".box-3D").forEach(element0 => {
 
 });
 
-window.addEventListener("mouseup", function(e) {
+window.addEventListener("pointerup", function(e) {
         mouseStartObject3D.x = 0;
         mouseStartObject3D.y = 0;
         targetObject = undefined;
 });
 
-window.addEventListener('mousemove', function (event) {
+window.addEventListener('pointermove', function (event) {
     mouseObject3D.x = event.clientX;
     mouseObject3D.y = event.clientY;
     
     object_move(event);
 });
+
+/*
+function onPointerDown(event) {
+	if (event.isPrimary === false) return;
+
+	pointerXOnPointerDown = event.clientX - windowHalfX;
+	targetRotationOnPointerDown = targetRotation;
+
+	document.addEventListener("pointermove", onPointerMove);
+	document.addEventListener("pointerup", onPointerUp);
+	}
+
+	function onPointerMove(event) {
+	if (event.isPrimary === false) return;
+
+	pointerX = event.clientX - windowHalfX;
+
+	targetRotation =
+		targetRotationOnPointerDown + (pointerX - pointerXOnPointerDown) * 0.02;
+	}
+
+	function onPointerUp(event) {
+	if (event.isPrimary === false) return;
+
+	document.removeEventListener("pointermove", onPointerMove);
+	document.removeEventListener("pointerup", onPointerUp);
+	}
+    */

@@ -15,3 +15,7 @@
 .img-3D {
     min-width: 400px;
 }
+
+#list {
+    display: flex;
+}

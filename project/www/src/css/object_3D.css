@@ -5,7 +5,7 @@
 }
 
 .wrap-object-3D {
-    margin: 0px 745px;
+    /*margin: 0px 745px;*/
 }
 
 .object-3D, .border-3D-left-top, .border-3D-right-top, .border-3D-left-bottom, .border-3D-right-bottom {
@@ -13,6 +13,7 @@
     width: inherit;
     height: inherit;
     transform-style: preserve-3d;
+
 }
 
 .box-3D {
@@ -45,5 +46,12 @@
 
 .box-3D-color-glass {
     background-color: #84a6bfa1;
-    /*border: 0.5px #84a6bfb0 solid;*/
+    border: 0.5px #84a6bfb0 solid;
+}
+
+.box-3D label, .box-3D .text_grav {
+    font-weight: bold;
+    font-size: 40px;
+    color: rgba(201, 243, 255, 0.719);
+    text-shadow: 2px -2px rgb(105 108 120 / 87%), 1px -1px #04007aab;
 }
