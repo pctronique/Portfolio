@@ -1,4 +1,4 @@
-let rotationForceObject3D = 2;
+let rotationForceObject3D = 0.02;
 
 function posObject3D() {
     return {
@@ -230,22 +230,23 @@ function zoom(event) {
     el.style.transform = `scale(${scale})`;
 }
 
-
 document.querySelectorAll(".box-3D").forEach(element0 => {
 
     createFormeBox3D(element0);
 
-    element0.addEventListener("pointerdown", function(e) {
+    element0.addEventListener("pointerdown", obj3DPointerDown);
+    /*element0.addEventListener("pointerdown", function(e) {
         mouseStartObject3D.x = e.clientX;
         mouseStartObject3D.y = e.clientY;
         targetObject = findParent(e.target);
-    });
+    });*/
 
     //element0.addEventListener('mousewheel', zoom);
 
 
 });
 
+/*
 window.addEventListener("pointerup", function(e) {
         mouseStartObject3D.x = 0;
         mouseStartObject3D.y = 0;
@@ -257,32 +258,31 @@ window.addEventListener('pointermove', function (event) {
     mouseObject3D.y = event.clientY;
     
     object_move(event);
-});
+});*/
 
-/*
-function onPointerDown(event) {
+
+function obj3DPointerDown(event) {
 	if (event.isPrimary === false) return;
 
-	pointerXOnPointerDown = event.clientX - windowHalfX;
-	targetRotationOnPointerDown = targetRotation;
+    mouseStartObject3D.x = event.clientX;
+    mouseStartObject3D.y = event.clientY;
 
-	document.addEventListener("pointermove", onPointerMove);
-	document.addEventListener("pointerup", onPointerUp);
-	}
+	document.addEventListener("pointermove", obj3DPointerMove);
+	document.addEventListener("pointerup", obj3DPointerUp);
+}
 
-	function onPointerMove(event) {
+function obj3DPointerMove(event) {
 	if (event.isPrimary === false) return;
 
-	pointerX = event.clientX - windowHalfX;
+    mouseObject3D.x = event.clientX;
+    mouseObject3D.y = event.clientY;
+    
+    object_move(event);
+}
 
-	targetRotation =
-		targetRotationOnPointerDown + (pointerX - pointerXOnPointerDown) * 0.02;
-	}
-
-	function onPointerUp(event) {
+function obj3DPointerUp(event) {
 	if (event.isPrimary === false) return;
 
-	document.removeEventListener("pointermove", onPointerMove);
-	document.removeEventListener("pointerup", onPointerUp);
-	}
-    */
+	document.removeEventListener("pointermove", obj3DPointerMove);
+	document.removeEventListener("pointerup", obj3DPointerUp);
+}

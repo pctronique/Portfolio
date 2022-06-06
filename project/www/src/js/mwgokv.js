@@ -57,15 +57,27 @@ if(document.querySelector("#txt_matrix") != undefined) {
 }
 
 function matrix() {
+	let header_main = document.getElementById('header-main').offsetHeight;
+	let footer_main = document.getElementById('footer-main');
+	let contenu_main = document.getElementById('contenu-main');
 	//making the canvas full screen
-	body_matrix.height = window.innerHeight;
+	body_matrix.height = document.body.style.height;
 	body_matrix.width = window.innerWidth;
+	let windowHeight = window.innerHeight-footer_main.offsetHeight;
 	if(screen.height < window.innerHeight) {
-		body_matrix.height = screen.height;
+		windowHeight = screen.height-footer_main.offsetHeight;
+	}
+	if(contenu_main < windowHeight) {
+		body_matrix.height = windowHeight;
 	}
 	if(screen.width < window.innerWidth) {
 		body_matrix.width = screen.width;
 	}
+
+	/*document.querySelectorAll(".contenu_main").forEach(element => {
+		element.height = body_matrix.height+"px";
+		element.width = body_matrix.width+"px";
+	});*/
 
 	// si l'ecran est trop petit, mettre a une taille fixe
 	if(body_matrix.width < 320) {

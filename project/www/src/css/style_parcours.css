@@ -1,0 +1,7 @@
+#contenu_cat {
+    display: flex;
+}
+
+#contenu_cat .box-3D-front {
+    padding: 10px;
+}
