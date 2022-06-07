@@ -200,6 +200,26 @@ footer #taking li {
     text-shadow: 0 1px 0 #dba1a1, 0 2px 0 #d89999, 0 3px 0 #d59292, 0 4px 0 #d28a8a, 0 5px 0 #cf8383, 0 6px 0 #cd7c7c, 0 7px 0 #ca7474, 0 8px 0 #c76d6d, 0 0 5px rgba(230, 139, 139, .05), 0 -1px 3px rgba(230, 139, 139, .2), 0 9px 9px rgba(230, 139, 139, .3), 0 12px 12px rgba(230, 139, 139, .3), 0 15px 15px rgba(230, 139, 139, .3);
 }*/
 
+#form-pass {
+    display: flex;
+    width: 100%;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+#connected {
+    width: 80%;
+    border: #8f8f8f 1px solid;
+    border-radius: 5px;
+    background-color: #606060;
+    margin-top: -2px;
+}
+
+#connected:hover {
+    transform: scale(1.08);
+}
+
 section {
     position: absolute;
     padding: 65px 0px;

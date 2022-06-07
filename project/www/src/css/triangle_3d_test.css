@@ -16,7 +16,8 @@
     height: 0;
     border-left: 75px solid transparent;
     border-right: 75px solid transparent;
-    border-bottom: 130px solid #FF8D00;
+    /*border-bottom: 130px solid #FF8D00;*/
+    border-bottom: 130px solid #00e1ff;
     /* 129.903810568 */
     transform-origin: 75px 0;
     /* perspective: 150px; */
@@ -94,12 +95,15 @@
 }
 @keyframes color1 {
     0% {
-        border-bottom-color:#FF8D00;
+        /*border-bottom-color:#FF8D00;*/
+        border-bottom-color:#00e1ff;
     }
     50% {
-        border-bottom-color: #9B4700;
+        /*border-bottom-color: #9B4700;*/
+        border-bottom-color: #008394;
     }
     100% {
-        border-bottom-color:#FF8D00;
+        /*border-bottom-color:#FF8D00;*/
+        border-bottom-color:#00e1ff;
     }
 }

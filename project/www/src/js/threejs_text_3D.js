@@ -1,7 +1,7 @@
 import * as THREE from "three";
 
-import { FontLoader } from "../../src/bin/three_js/examples/jsm/loaders/FontLoader.js";
-import { TextGeometry } from "../../src/bin/three_js/examples/jsm/geometries/TextGeometry.js";
+import { FontLoader } from "./../../src/bin/three_js/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "./../../src/bin/three_js/examples/jsm/geometries/TextGeometry.js";
 
 function textTitle3D() {
 
@@ -145,8 +145,8 @@ function textTitle3D() {
 	container.style.touchAction = "none";
 	container.addEventListener("pointerdown", onPointerDown);
 
-	document.addEventListener("keypress", onDocumentKeyPress);
-	document.addEventListener("keydown", onDocumentKeyDown);
+	/*document.addEventListener("keypress", onDocumentKeyPress);
+	document.addEventListener("keydown", onDocumentKeyDown);*/
 
 	hex = decimalToHex("FFFFFF");
 

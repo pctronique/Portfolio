@@ -160,7 +160,6 @@ document.querySelectorAll("#choix-background").forEach(element => {
 });*/
 
 window.addEventListener('resize', function() {
-	element.innerText = tabNamesCode[choice_display];
 	clearInterval(myInterval);
 	matrix();
 });

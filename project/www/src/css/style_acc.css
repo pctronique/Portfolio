@@ -1,0 +1,128 @@
+.msg {
+    display: block;
+    padding: 20px;
+    margin: auto;
+    float: none;
+    width: 1020px;
+    border-radius: 20px;
+}
+
+.box-3D-size {
+    overflow: hidden;
+    background-color: black;
+    width: 1020px;
+    height: 633px;
+}
+
+.box-3D {
+  margin: 0px auto;
+}
+
+.box-3D h2 {
+    margin: auto;
+    color: black;
+    text-align: center;
+    padding: 10px;
+}
+
+.box-3D .img {
+    /*display: flex;
+    float: right;
+    align-items: center;*/
+    overflow: hidden;
+    /*width: 1020px;*/
+    height: 100%;
+    /*border-bottom-left-radius: 20px;
+    border-bottom-right-radius: 20px;*/
+}
+
+.produit {
+    position: absolute;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: stretch;
+    background-color: #000000;
+    border-radius: 20px;
+}
+
+.produit .title {
+    display: flex;
+    background-color: #9cfffd;
+    /*border-top-left-radius: 20px;
+    border-top-right-radius: 20px;*/
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.box-3D .image_a {
+    display: flex;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+.box-3D .image_a:hover {
+    transform: scale(0.95);
+}
+
+.box-3D .button-fake-1{
+    background-color: red;
+}
+.box-3D .button-fake-2{
+    background-color: orange;
+}
+.box-3D .button-fake-3 {
+    background-color: green;
+}
+
+.button-fake-all {
+    margin-left: 20px;
+    display: flex;
+}
+
+.button-fake {
+    margin: 5px;
+    border: black 1px solid;
+    border-radius: 50%;
+    width: 24px;
+    height: 24px !important;    box-shadow: -5px 5px 10px 0.5px #8080807d;
+}
+
+/**********************/
+/** version tablette **/
+/**********************/
+@media screen and (max-width: 1050px) {
+    /*--------------*/
+    /** formulaire **/
+    .msg {
+        width: 500px;
+    }
+
+    .box-3D-size {
+        width: 500px;
+        height: 339px;
+    }
+}
+
+/**********************/
+/** version tablette **/
+/**********************/
+@media screen and (max-width: 540px) {
+    /*--------------*/
+    /** formulaire **/
+    .msg {
+        width: 300px;
+    }
+
+    .box-3D-size {
+        width: 300px;
+        height: 227px;
+    }
+
+    .button-fake-all {
+        display: none;
+    }
+}
