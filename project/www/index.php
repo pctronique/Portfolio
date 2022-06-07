@@ -59,6 +59,11 @@ if(!empty($ind)) {
         $css = $page_desc->displayCss();
         $js = $page_desc->displayJs();
         $contenu = $page_desc->getContenu();
+    } else if($ind == "propos") {
+        include_once dirname(__FILE__) . '/src/pages/a_propos.php';
+        $css = $page_propos->displayCss();
+        $js = $page_propos->displayJs();
+        $contenu = $page_propos->getContenu();
     } else if($ind == "cat") {
         include_once dirname(__FILE__) . '/src/pages/categories.php';
         $css = $page_cat->displayCss();

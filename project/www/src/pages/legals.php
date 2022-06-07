@@ -6,6 +6,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "legales" 
 
     $page_legal = new Contenu_Page();
 
-    $page_legal->setContenu(file_get_contents(dirname(__FILE__) . '/../templates/legal.html', true));
+    $page_legal->addCss("./src/css/legals.css");
+    $page_legal->setContenu(file_get_contents(dirname(__FILE__) . '/../templates/legals.html', true));
 
 }

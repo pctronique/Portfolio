@@ -6,11 +6,83 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
 
     $page_desc = new Contenu_Page();
 
-    $name_desc = "WEB";
+
+    $name_img = "";
+    $src_img = "";
+    $name_desc = "";
+    $lang_framw = "";
+    $description = "";
+
+    $id_desc = 0;
+    if(!empty($_GET) && array_key_exists("desc", $_GET)) {
+        $id_desc = $_GET['desc'];
+    }
+
+    $sgbd = connexion_sgbd();
+    if(!empty($sgbd)) {
+        $res = $sgbd->prepare("SELECT * FROM produits WHERE id_produit=:id_produit");
+        $res->execute([":id_produit" => $id_desc]);
+        if($res->rowCount() > 0) {
+            $data = $res->fetch(PDO::FETCH_ASSOC);
+            $name_desc = $data["nom_produit"];
+
+            $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id_produit LIMIT 1");
+            $resPhoto->execute([":id_produit" => $id_desc]);
+            if($resPhoto->rowCount() > 0) {
+                $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
+                $src_img = "./data/img/".$dataPhoto['src_photo'];
+            }
+                $name_img = "image du project ".$data['nom_produit'];
+                $description = str_replace("\n", "<br />", $data['description_produit']);
+
+            $resCat = $sgbd->prepare("SELECT * FROM categorie INNER JOIN cat_produit ON categorie.id_cat=cat_produit.id_cat INNER JOIN produits ON produits.id_produit=cat_produit.id_produit WHERE produits.id_produit=:id_produit");
+            $resCat->execute([":id_produit" => $id_desc]);
+            if($resCat->rowCount() > 0) {
+                $lang_framw .= '<h2>Catégories</h2>'."\n";
+                $lang_framw .= '<ul>'."\n";
+                $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($dataCat as $valueLine) {
+                    $lang_framw .= '<li>'.$valueLine['nom_cat'].'</li>';
+                }
+
+                $lang_framw .= '</ul>'."\n";
+            }
+
+            $resCat = $sgbd->prepare("SELECT * FROM language INNER JOIN language_produit ON language.id_language=language_produit.id_language INNER JOIN produits ON produits.id_produit=language_produit.id_produit WHERE produits.id_produit=:id_produit");
+            $resCat->execute([":id_produit" => $id_desc]);
+            if($resCat->rowCount() > 0) {
+                $lang_framw .= '<h2>Languages</h2>'."\n";
+                $lang_framw .= '<ul>'."\n";
+                $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($dataCat as $valueLine) {
+                    $lang_framw .= '<li>'.$valueLine['nom_language'].'</li>';
+                }
+
+                $lang_framw .= '</ul>'."\n";
+            }
+
+            $resCat = $sgbd->prepare("SELECT * FROM framework INNER JOIN framework_produit ON framework.id_framework=framework_produit.id_framework INNER JOIN produits ON produits.id_produit=framework_produit.id_produit WHERE produits.id_produit=:id_produit");
+            $resCat->execute([":id_produit" => $id_desc]);
+            if($resCat->rowCount() > 0) {
+                $lang_framw .= '<h2>FrameWorks</h2>'."\n";
+                $lang_framw .= '<ul>'."\n";
+                $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($dataCat as $valueLine) {
+                    $lang_framw .= '<li>'.$valueLine['nom_framework'].'</li>';
+                }
+
+                $lang_framw .= '</ul>'."\n";
+            }
+        }
+    }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
 
     $html = str_replace("[##produit##]", $name_desc, $html);
+    $html = str_replace("[##SRC_IMG##]", $src_img, $html);
+    $html = str_replace("[##NAME_IMG##]", $name_img, $html);
+    $html = str_replace("[##LANG_FRAMW##]", $lang_framw, $html);
+    $html = str_replace("[##DESC##]", $description, $html);
 
     $page_desc->addCss("./src/css/style_description.css");
     $page_desc->setContenu($html);

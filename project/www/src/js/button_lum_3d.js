@@ -18,7 +18,7 @@ window.addEventListener('mousemove', function (event) {
 
     document.querySelectorAll('.container-bt-3D').forEach(element => {
 
-        let button = element.querySelector('.button');
+        let button = element.querySelector('.button-3D');
         let buttonGlow = element.querySelector('.button_glow');
 
         let buttonPos = {

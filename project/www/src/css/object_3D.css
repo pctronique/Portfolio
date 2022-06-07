@@ -5,10 +5,11 @@
 }
 
 .wrap-object-3D {
+    box-sizing: border-box;
     /*margin: 0px 745px;*/
 }
 
-.object-3D, .border-3D-left-top, .border-3D-right-top, .border-3D-left-bottom, .border-3D-right-bottom {
+.object-3D, .border-3D-left-top, .border-3D-right-top, .border-3D-left-bottom, .border-3D-right-bottom, .object-3D-5F {
     display: block;
     width: inherit;
     height: inherit;
@@ -42,6 +43,11 @@
     background-color:blue;
     /*background-color: #84a6bfa1;
     border: 0.5px #84a6bfb0 solid;*/
+}
+
+.box-3D-color-gray {
+    background-color: #616161;
+    border: 0.5px #5e5e5e solid;
 }
 
 .box-3D-color-glass {

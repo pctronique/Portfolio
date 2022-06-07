@@ -1,5 +1,5 @@
 idform = "form-competence";
 namePageExec = "add_modif_competences";
-namePageDeletExec = "";
+namePageDeletExec = "delete_competences";
 namePageModifExec = "";
 nameLienModifExec = "./?ind=comp";

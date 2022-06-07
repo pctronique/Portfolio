@@ -1,29 +1,69 @@
-#competences {
+
+
+  .msg {
+      padding: 20px;
     margin: auto;
     float: none;
-    margin-top: 65px;
+    /*margin-top: 30px;*/
     width: 1020px;
-}
+  }
 
-#comptences-contenu {
+  .box-3D {
+    margin: 0px auto;
+  }
+
+  .section-comp {
     padding: 10px;
-}
+    border: gray 0.5px solid;
+    margin: 5px;
+    border-radius: 20px;
+  }
 
-#competences-infos {
-    margin: auto;
-    float: none;
-    margin-top: 65px;
-    width: 1020px;
-}
+  .section-comp h3 {
+    font-size: 30px !important;
+    text-align: center;
+  }
 
-#comptences-contenu-infos {
-    padding: 10px;
-}
-
-h4 {
+  .section-comp p {
     font-size: 25px !important;
-}
+    padding-bottom: 30px;
+  }
 
-div {
-    transform:translateZ(1px);
-}
+  #logos-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .section-logo {
+    display: flex;
+    padding: 10px;
+    border: gray 0.5px solid;
+    margin: 5px;
+    border-radius: 20px;
+    width: 250px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-logo h3 {
+    font-size: 30px !important;
+    text-align: center;
+  }
+
+  .section-logo img {
+    width: 120px;
+  }
+
+  /**********************/
+    /** version tablette **/
+    /**********************/
+    @media screen and (max-width: 1024px) {
+      /*--------------*/
+      /** formulaire **/
+      .msg {
+        width: 100%;
+      }
+  }

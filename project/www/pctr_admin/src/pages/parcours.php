@@ -16,6 +16,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $form = "";
     $name = "";
     $title = "";
+    $entreprise = "";
     $start = "";
     $progress = "";
     $fin = "";
@@ -49,6 +50,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['nom_parcours'];
             $title = $data['title_parcours'];
+            $entreprise = $data['entreprise_parcours'];
             if($data['date_debut_parcours'] != "0000-00-00 00:00:00") {
                 $start = date('Y-m-d', strtotime($data['date_debut_parcours']));
             }
@@ -69,6 +71,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     }
 
     $html = str_replace("[##ID_PARC##]", $id, $html);
+    $html = str_replace("[##ENTREPRISE_PARC##]", $entreprise, $html);
     $html = str_replace("[##EXP_PARC##]", $exp, $html);
     $html = str_replace("[##FORM_PARC##]", $form, $html);
     $html = str_replace("[##NAME_PARC##]", $name, $html);

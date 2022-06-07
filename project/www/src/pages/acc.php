@@ -6,7 +6,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
 
     $page_acc = new Contenu_Page();
 
-    $name_cat = "jjj";//print_r($_SESSION);
+    $name_cat = "";
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);
 

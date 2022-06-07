@@ -11,26 +11,10 @@ if (!function_exists('addBox3D')) {
 
     // fonction pour faire la connexion a la base de donnes
     function addBox3D(?string $contenu):?string {
-        $addBox = '<figure class="wrap-object-3D">'."\n";
-        $addBox .= '<figure class="box-3D">'."\n";
+        $addBox = '<figure class="box-3D box-3D-mov">'."\n";
         $addBox .= '<figure class="object-3D">'."\n";
-        $addBox .= '<figure class="box-3D-front box-3D-default box-3D-color-glass">'."\n";
+        $addBox .= '<figure class="box-3D-front box-3D-default box-3D-color-glass box-3D-size">'."\n";
         $addBox .= '<figure class="contenu-on-cat">'.$contenu.'</figure>'."\n";
-        $addBox .= '</figure>'."\n";
-        $addBox .= '<figure class="box-3D-bottom box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-back box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-top box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-left box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-right box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="border-3D-left-top">'."\n";
-        $addBox .= '<figure class="box-3D-border box-3D-border-1 box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-border box-3D-border-2 box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-border box-3D-border-3 box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '<figure class="box-3D-border box-3D-border-4 box-3D-default box-3D-color-glass"></figure>'."\n";
-        $addBox .= '</figure>'."\n";
-        $addBox .= '<figure class="border-3D-right-top"></figure>'."\n";
-        $addBox .= '<figure class="border-3D-left-bottom"></figure>'."\n";
-        $addBox .= '<figure class="border-3D-right-bottom"></figure>'."\n";
         $addBox .= '</figure>'."\n";
         $addBox .= '</figure>'."\n";
         $addBox .= '</figure>'."\n";

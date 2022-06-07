@@ -25,7 +25,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                 ":name" => "",
                 ":first_name" => "",
                 ":login" => "",
-                ":email" => ""
+                ":email" => "",
+                ":description" => ""
             );
 
     $values[":id_user"] = $_SESSION['id_user'];
@@ -44,6 +45,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     if(array_key_exists("email", $_POST) && !empty($_POST['email'])) {
         $values[":email"] = htmlspecialchars(stripslashes(trim($_POST['email'])));
+    }
+
+    if(array_key_exists("description", $_POST) && !empty($_POST['description'])) {
+        $values[":description"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
     }
 
     /*Connexion*/
@@ -98,7 +103,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             }
             /* si c'est valide, on continu la verification */
             if($valide) {
-                $res = $sgbd->prepare("UPDATE utilisateur SET nom_user=:name,prenom_user=:first_name,login_user=:login,email_user=:email WHERE id_user=:id_user");
+                $res = $sgbd->prepare("UPDATE utilisateur SET nom_user=:name,prenom_user=:first_name,login_user=:login,email_user=:email, description_user=:description WHERE id_user=:id_user");
                 $res->execute($values);
                 if(!empty($img)) {
                     $res = $sgbd->prepare("SELECT * FROM utilisateur WHERE id_user=:id");

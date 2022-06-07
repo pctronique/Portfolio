@@ -15,6 +15,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $name = "";
     $first_name = "";
     $login = "";
+    $description = "";
     $email = "";
 
     $res = $sgbd->prepare("SELECT * FROM utilisateur WHERE id_user=:id");
@@ -27,6 +28,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $first_name = $data["prenom_user"];
         $login = $data["login_user"];
         $email = $data["email_user"];
+        $description = $data["description_user"];
         if(!empty($data["avatar_user"])) {
             $img = "./../data/img/".$data["avatar_user"];
         }
@@ -37,6 +39,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##FIRST_NAME_USER##]", $first_name, $html);
     $html = str_replace("[##LOGIN_USER##]", $login, $html);
     $html = str_replace("[##EMAIL_USER##]", $email, $html);
+    $html = str_replace("[##DESC_USER##]", $description, $html);
 
     $page_user->setContenu($html);
     $page_user->addCss("./src/css/addimg.css");

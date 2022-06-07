@@ -5,13 +5,13 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION)) {
 
-    function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, bool $checked = false) {
-        $checkbox = "<input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
+    function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, string $src, bool $checked = false) {
+        $checkbox = "<figure><input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
         $checkbox .= $checked ? "checked" : "";
         $checkbox .= " >"."\n";
-        $checkbox .= "<label class=\"form-check-label text-light\" for=\"flexCheck".$type.$name."\">"."\n";
+        $checkbox .= "<img class=\"logo-img\" src=\"./../data/img/".$src."\" alt=\"logo ".$name."\" /><label class=\"form-check-label text-light\" for=\"flexCheck".$type.$name."\">"."\n";
         $checkbox .= $title."\n";
-        $checkbox .= "</label>[##n##]"."\n";
+        $checkbox .= "</label></figure>[##n##]"."\n";
         return $checkbox;
     }
 
@@ -40,7 +40,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         if (in_array($valueLine["id_competences_logo"], $tab_logo)) {
             $the_checked = true;
         }
-        $logos .= addCheckbox("logo", $valueLine["id_competences_logo"], $valueLine["title_competences_logo"], $valueLine["id_competences_logo"], $the_checked);
+        $logos .= addCheckbox("logo", $valueLine["id_competences_logo"], $valueLine["title_competences_logo"], $valueLine["id_competences_logo"], $valueLine["src_competences_logo"], $the_checked);
     }
 
     $html = str_replace("[##CHECK_LOGO##]", $logos, $html);

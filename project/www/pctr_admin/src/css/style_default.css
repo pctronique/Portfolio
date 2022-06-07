@@ -24,3 +24,19 @@ table img {
 .dropdown {
     margin-right: 15px;
 }
+
+.logo-img {
+    display: inline;
+    width: 50px;
+    padding: 5px;
+}
+
+.comp-contenu {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.comp-contenu figure {
+    margin: 25px;
+}

@@ -7,8 +7,6 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('id_admin', $_SESSION) && array_key_exists('nom', $_SESSION) &&   
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION) && !empty($_POST)) {
-
-    print_r($_POST);
     
     $type = "exp";
     $values = array(
@@ -18,7 +16,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                 ":in_progress_parcours" => 0,
                 ":date_fin_parcours" => 0,
                 ":lieu_parcours" => "",
-                ":description_parcours" => ""
+                ":description_parcours" => "",
+                ":entreprise_parcours" => ""
             );
 
     
@@ -63,6 +62,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $values[":description_parcours"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
     }
 
+    if(array_key_exists("entreprise", $_POST) && !empty($_POST['entreprise'])) {
+        $values[":entreprise_parcours"] = htmlspecialchars(stripslashes(trim($_POST['entreprise'])));
+    }
+
     /*Connexion*/
     include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
     include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
@@ -96,7 +99,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res1 = $sgbd->prepare("UPDATE parcours SET nom_parcours=:nom_parcours, title_parcours=:title_parcours, date_debut_parcours=:date_debut_parcours,  date_fin_parcours=:date_fin_parcours,lieu_parcours=:lieu_parcours, description_parcours=:description_parcours, in_progress_parcours=:in_progress_parcours WHERE id_parcours=:id_parcours");
+                    $res1 = $sgbd->prepare("UPDATE parcours SET nom_parcours=:nom_parcours, title_parcours=:title_parcours, date_debut_parcours=:date_debut_parcours,  date_fin_parcours=:date_fin_parcours,lieu_parcours=:lieu_parcours, description_parcours=:description_parcours, in_progress_parcours=:in_progress_parcours, entreprise_parcours=:entreprise_parcours WHERE id_parcours=:id_parcours");
                     foreach ($values as $key => $value) {
                         if(is_numeric($value)) {
                             $res1->bindValue($key, $value, PDO::PARAM_INT);
@@ -106,7 +109,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                     }
                     $res1->execute();
                 } else {
-                    $res1 = $sgbd->prepare("INSERT INTO parcours (nom_parcours, title_parcours, date_debut_parcours, date_fin_parcours, lieu_parcours, description_parcours, in_progress_parcours, id_user) VALUES (:nom_parcours, :title_parcours, :date_debut_parcours, :date_fin_parcours, :lieu_parcours, :description_parcours, :in_progress_parcours, :id_user)");
+                    $res1 = $sgbd->prepare("INSERT INTO parcours (nom_parcours, title_parcours, date_debut_parcours, date_fin_parcours, lieu_parcours, description_parcours, in_progress_parcours, entreprise_parcours, id_user) VALUES (:nom_parcours, :title_parcours, :date_debut_parcours, :date_fin_parcours, :lieu_parcours, :description_parcours, :in_progress_parcours, :entreprise_parcours, :id_user)");
                     foreach ($values as $key => $value) {
                         if(is_numeric($value)) {
                             $res1->bindValue($key, $value, PDO::PARAM_INT);
@@ -131,7 +134,6 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                         $res->execute([":id_parcours" => $id]);
                     }
                 }
-                print_r($values);
                 echo "true";
             }
             /* on transmets les commits sous format securise */

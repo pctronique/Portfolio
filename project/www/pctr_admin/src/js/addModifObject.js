@@ -29,21 +29,25 @@ function valiadtionForm(e) {
 function deletObject(e) {
    // pour ne pas prendre l'adresse de l'action du formulaire.
    e.preventDefault();
-   let name = e.parentNode.querySelector(".name").innerText;
+   let values = {
+      id: e.target.id.split("_")[1]
+  };
+   let name = e.target.parentNode.parentNode.parentNode.querySelector(".name").innerText;
    let lien = "./src/exec/"+namePageDeletExec+".php";
    /* message de confirmation */
-   let isExecuted = confirm("Attention vous allez supprimer l'utilisateur. 'Ok' pour continuer.");
+   let isExecuted = confirm("Attention vous allez supprimer '"+name+"'. 'Ok' pour continuer.");
    /* si on confirme la suppression */
    if(isExecuted) {
       /* envoyer les informations du message sur la page php a partir d'un formulaire */
-      fetch_form(lien, idform).then(function (
+      fetch_post(lien, values).then(function (
          response
       ) {
          /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
-         if ("true") {
-               location.reload();
+         if (response == "true") {
+            //location.reload();
+            window.location.href = nameLienModifExec;
          } else {
-               alert(response);
+            alert(response);
          }
       });
    }

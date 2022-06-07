@@ -25,6 +25,7 @@
     box-shadow: unset;
     margin-left: -2px;
     margin-top: 2px;
+    background-color: #63d49678;
     /*transform: scale(1.05);*/
     cursor: pointer;
   }
@@ -121,13 +122,10 @@
   }
 
   #msg {
-    margin: auto;
     float: none;
     /*margin-top: 30px;*/
     width: 1020px;
   }
-
-  
   
   /** formulaire **/
   #form_contact {
@@ -266,8 +264,12 @@
     object-fit: unset;
   }
 
-  .wrap-object-3D {
-    margin: 0px auto;
+  .box-3D {
+    margin: auto;
+  }
+
+  .button-form-3D {
+    transform: translateZ(15px);
   }
   
   /**********************/
@@ -277,7 +279,7 @@
       /*--------------*/
       /** formulaire **/
       #msg {
-        width: 95%;
+        width: 100%;
       }
     
       #section_contact_title {

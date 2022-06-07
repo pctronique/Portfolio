@@ -1,4 +1,4 @@
-let rotationForceObject3D = 0.02;
+let rotationForceObject3D = 2;
 
 function posObject3D() {
     return {
@@ -7,10 +7,19 @@ function posObject3D() {
     }
 }
 
+let sizeBoxDefault = 0;
+
 function dimBox3D(itemMain) {
+    let windowWidth = window.innerWidth;
+	if(screen.width < window.innerWidth) {
+		windowWidth = screen.width;
+	}
+    if(windowWidth < 320) {
+        windowWidth = 320;
+    }
     return {
-        width: itemMain.querySelector(".box-3D-front").offsetWidth,
-        height: itemMain.querySelector(".box-3D-front").offsetHeight
+        width: (windowWidth < sizeBoxDefault) ? windowWidth : sizeBoxDefault,
+        height: itemMain.querySelector(".box-3D-size").offsetHeight
     }
 }
 
@@ -39,6 +48,7 @@ function object_move(e) {
 }
 
 let depth3D = 60;
+let depth3DHeight = 60;
 let radius3D = 20; // ne pas modifier
 let heightRadius3D = 5;
 
@@ -109,7 +119,7 @@ function border1Box3D(item, itemMain) {
     item.style.marginTop = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = depth3D+"px";
     item.style.height = (radius3D/3)+"px";
-    item.style.transform = "rotateY(-90deg) rotateX(15deg) translateZ("+(depth3D/2)+"px)";
+    item.style.transform = "rotateY(-90deg) rotateX(15deg) translateZ("+(depth3DHeight/2)+"px)";
 }
 
 function border2Box3D(item, itemMain) {
@@ -120,7 +130,7 @@ function border2Box3D(item, itemMain) {
     item.style.marginLeft = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = depth3D+"px";
     item.style.height = ((radius3D/3)+2.5)+"px";
-    item.style.transform = "rotateY(-90deg) rotateX(30deg) translateZ("+((depth3D/2))+"px)";
+    item.style.transform = "rotateY(-90deg) rotateX(30deg) translateZ("+((depth3DHeight/2))+"px)";
 }
 
 function border3Box3D(item, itemMain) {
@@ -130,7 +140,7 @@ function border3Box3D(item, itemMain) {
     item.style.marginLeft = (radius3D-((radius3D/32)*0)+0.5)+"px";
     item.style.width = (radius3D/3)+"px";
     item.style.height = depth3D+"px";
-    item.style.transform = "rotateX(-90deg) rotateY(15deg) translateZ(-"+(depth3D/2)+"px)";
+    item.style.transform = "rotateX(-90deg) rotateY(15deg) translateZ(-"+(depth3DHeight/2)+"px)";
 }
 
 function border4Box3D(item, itemMain) {
@@ -141,7 +151,7 @@ function border4Box3D(item, itemMain) {
     item.style.marginTop = (((radius3D/32)*1)-0.5)+"px";
     item.style.width = ((radius3D/3)+2.5)+"px";
     item.style.height = depth3D+"px";
-    item.style.transform = "rotateX(-90deg) rotateY(30deg) translateZ(-"+(depth3D/2)+"px)";
+    item.style.transform = "rotateX(-90deg) rotateY(30deg) translateZ(-"+((depth3DHeight/2))+"px)";
 }
 
 function addborder(item) {
@@ -150,6 +160,7 @@ function addborder(item) {
     let border2 = item.querySelector(".box-3D-border-2");
     let border3 = item.querySelector(".box-3D-border-3");
     let border4 = item.querySelector(".box-3D-border-4");
+    let leftTop = item.querySelector(".border-3D-left-top");
     let leftBottom = item.querySelector(".border-3D-left-bottom");
     let rightBottom = item.querySelector(".border-3D-right-bottom");
     let rightTop = item.querySelector(".border-3D-right-top");
@@ -159,6 +170,7 @@ function addborder(item) {
     rightBottom.style.height = dim2d.height+"px";
     rightTop.style.width = dim2d.width+"px";
     rightTop.style.height = dim2d.height+"px";
+    leftTop.style.marginTop = -dim2d.height+"px";
     leftBottom.style.marginTop = -dim2d.height+"px";
     rightBottom.style.marginTop = -dim2d.height+"px";
     rightTop.style.marginTop = -dim2d.height+"px";
@@ -179,20 +191,80 @@ function addborder(item) {
     rightTop.style.transform = "rotateY(180deg)";
 }
 
+function deleteNode3D(item) {
+    let object = item.querySelector(".object-3D");
+    object.removeChild(object.querySelector(".object-3D-5F"));
+    object.removeChild(object.querySelector(".border-3D-left-top"));
+    object.removeChild(object.querySelector(".border-3D-right-top"));
+    object.removeChild(object.querySelector(".border-3D-left-bottom"));
+    object.removeChild(object.querySelector(".border-3D-right-bottom"));
+}
+
+function createNode3D(item) {
+    let object_3D_5F = document.createElement("figure");
+    object_3D_5F.classList.add("object-3D-5F");
+    let border_3D_left_top = document.createElement("figure");
+    border_3D_left_top.classList.add("border-3D-left-top");
+    let border_3D_right_top = document.createElement("figure");
+    border_3D_right_top.classList.add("border-3D-right-top");
+    let border_3D_left_bottom = document.createElement("figure");
+    border_3D_left_bottom.classList.add("border-3D-left-bottom");
+    let border_3D_right_bottom = document.createElement("figure");
+    border_3D_right_bottom.classList.add("border-3D-right-bottom");
+    /*if(item.querySelector(".box-3D-depth3D") != undefined) {
+        depth3D = item.querySelector(".box-3D-depth3D").value;
+    } else {
+        depth3D = 60;
+    }*/
+    let fomatMain = item.querySelector(".box-3D-front").cloneNode(true);
+    fomatMain.innerHTML = "";
+    fomatMain.classList.remove("box-3D-front");
+    fomatMain.classList.remove("box-3D-size");
+    fomatMain.style.borderRadius = "unset";
+    let format1 = fomatMain.cloneNode(true);
+    format1.classList.add("box-3D-bottom");
+    object_3D_5F.appendChild(format1);
+    let format2 = fomatMain.cloneNode(true);
+    format2.classList.add("box-3D-back");
+    object_3D_5F.appendChild(format2);
+    let format3 = fomatMain.cloneNode(true);
+    format3.classList.add("box-3D-top");
+    object_3D_5F.appendChild(format3);
+    let format4 = fomatMain.cloneNode(true);
+    format4.classList.add("box-3D-left");
+    object_3D_5F.appendChild(format4);
+    let format5 = fomatMain.cloneNode(true);
+    format5.classList.add("box-3D-right");
+    object_3D_5F.appendChild(format5);
+    fomatMain.classList.add("box-3D-border");
+    let format6 = fomatMain.cloneNode(true);
+    format6.classList.add("box-3D-border-1");
+    border_3D_left_top.appendChild(format6);
+    let format7 = fomatMain.cloneNode(true);
+    format7.classList.add("box-3D-border-2");
+    border_3D_left_top.appendChild(format7);
+    let format8 = fomatMain.cloneNode(true);
+    format8.classList.add("box-3D-border-3");
+    border_3D_left_top.appendChild(format8);
+    fomatMain.classList.add("box-3D-border-4");
+    border_3D_left_top.appendChild(fomatMain);
+    item.appendChild(object_3D_5F.cloneNode(true));
+    item.appendChild(border_3D_left_top.cloneNode(true));
+    item.appendChild(border_3D_right_top.cloneNode(true));
+    item.appendChild(border_3D_left_bottom.cloneNode(true));
+    item.appendChild(border_3D_right_bottom.cloneNode(true));
+}
+
 function createFormeBox3D(item) {
+    let object_3D = item.querySelector(".object-3D");
+    createNode3D(object_3D);
     let dim2d = dimBox3D(item);
     let width = dim2d.width;
     let height = dim2d.height;
-    item.querySelector(".object-3D").style.width = width;
-    item.querySelector(".object-3D").style.height = height;
-    item.querySelector(".object-3D").style.marginTop = (-1*(height/2))+"px";
-    item.querySelector(".object-3D").style.marginLeft = (-1*(width/2))+"px";
-    item.style.marginTop = (1*(height/2))+"px";
-    item.style.marginLeft = (1*(width/2))+"px";
+    object_3D.style.width = width;
+    object_3D.style.height = height;
     item.style.width = dim2d.width+"px";
     item.style.height = dim2d.height+"px";
-    item.parentNode.style.width = dim2d.width+"px";
-    item.parentNode.style.height = dim2d.height+"px";
     frontBox3D(item.querySelector(".box-3D-front"), item);
     backBox3D(item.querySelector(".box-3D-back"), item);
     topBox3D(item.querySelector(".box-3D-top"), item);
@@ -205,8 +277,6 @@ function createFormeBox3D(item) {
     border4Box3D(item.querySelector(".box-3D-border-4"), item);
     addborder(item);
 }
-
-
 
 function findParent(item) {
     if(item === undefined || item.classList.contains("box-3D")) {
@@ -232,33 +302,17 @@ function zoom(event) {
 
 document.querySelectorAll(".box-3D").forEach(element0 => {
 
+    sizeBoxDefault = element0.querySelector(".box-3D-size").offsetWidth;
+
     createFormeBox3D(element0);
 
+});
+
+document.querySelectorAll(".box-3D-mov").forEach(element0 => {
+
     element0.addEventListener("pointerdown", obj3DPointerDown);
-    /*element0.addEventListener("pointerdown", function(e) {
-        mouseStartObject3D.x = e.clientX;
-        mouseStartObject3D.y = e.clientY;
-        targetObject = findParent(e.target);
-    });*/
-
-    //element0.addEventListener('mousewheel', zoom);
-
 
 });
-
-/*
-window.addEventListener("pointerup", function(e) {
-        mouseStartObject3D.x = 0;
-        mouseStartObject3D.y = 0;
-        targetObject = undefined;
-});
-
-window.addEventListener('pointermove', function (event) {
-    mouseObject3D.x = event.clientX;
-    mouseObject3D.y = event.clientY;
-    
-    object_move(event);
-});*/
 
 
 function obj3DPointerDown(event) {
@@ -266,6 +320,7 @@ function obj3DPointerDown(event) {
 
     mouseStartObject3D.x = event.clientX;
     mouseStartObject3D.y = event.clientY;
+    targetObject = findParent(event.target);
 
 	document.addEventListener("pointermove", obj3DPointerMove);
 	document.addEventListener("pointerup", obj3DPointerUp);
@@ -273,16 +328,27 @@ function obj3DPointerDown(event) {
 
 function obj3DPointerMove(event) {
 	if (event.isPrimary === false) return;
-
     mouseObject3D.x = event.clientX;
     mouseObject3D.y = event.clientY;
-    
     object_move(event);
 }
 
 function obj3DPointerUp(event) {
 	if (event.isPrimary === false) return;
 
+    mouseStartObject3D.x = 0;
+    mouseStartObject3D.y = 0;
+    targetObject = undefined;
+
 	document.removeEventListener("pointermove", obj3DPointerMove);
 	document.removeEventListener("pointerup", obj3DPointerUp);
 }
+
+window.addEventListener('resize', function() {
+	document.querySelectorAll(".box-3D").forEach(element0 => {
+
+        deleteNode3D(element0);
+        createFormeBox3D(element0);
+    
+    });
+});

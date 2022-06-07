@@ -7,13 +7,13 @@
     height: 50px;
     perspective: 1000px;
 }
-.button {
+.button-3D {
     display: block;
     width: inherit;
     height: inherit;
     transform-style: preserve-3d;
 }
-.button:hover .button_side:after {
+.button-3D:hover .button_side:after {
     opacity: 1;
 }
 .button_side {

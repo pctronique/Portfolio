@@ -61,13 +61,13 @@ function matrix() {
 	let footer_main = document.getElementById('footer-main');
 	let contenu_main = document.getElementById('contenu-main');
 	//making the canvas full screen
-	body_matrix.height = document.body.style.height;
+	body_matrix.height = contenu_main.offsetHeight;
 	body_matrix.width = window.innerWidth;
 	let windowHeight = window.innerHeight-footer_main.offsetHeight;
 	if(screen.height < window.innerHeight) {
 		windowHeight = screen.height-footer_main.offsetHeight;
 	}
-	if(contenu_main < windowHeight) {
+	if(contenu_main.offsetHeight < windowHeight) {
 		body_matrix.height = windowHeight;
 	}
 	if(screen.width < window.innerWidth) {
@@ -160,6 +160,7 @@ document.querySelectorAll("#choix-background").forEach(element => {
 });*/
 
 window.addEventListener('resize', function() {
+	element.innerText = tabNamesCode[choice_display];
 	clearInterval(myInterval);
 	matrix();
 });
