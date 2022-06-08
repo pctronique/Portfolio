@@ -10,9 +10,9 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
         $lieu_parcours = $array['lieu_parcours'];
         $description_parcours = $array['description_parcours'];
         $in_progress_parcours = ($array['in_progress_parcours'] == "1");
-        $value = '<figure class="date-start">'.$date_debut_parcours.'</figure>';
+        $value = '<figure class="date-start">&rarr; '.$date_debut_parcours.'</figure>';
         if($in_progress_parcours) {
-            $value = '<figure class="date-start two-colum">Depuis le '.$date_debut_parcours.'</figure>';
+            $value = '<figure class="date-start two-colum">&rarr; Depuis le '.$date_debut_parcours.'</figure>';
         } else {
             $value .= '<figure class="date-end">'.$date_fin_parcours.'</figure>';
         }

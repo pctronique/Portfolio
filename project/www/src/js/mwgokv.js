@@ -93,6 +93,10 @@ function matrix() {
 	//txt_matrix characters - taken from the unicode charset
 	let txt_matrix = text_display[choice_display];
 	//let txt_matrix = "4E41554C4F54204C75646F766963";
+	if(txt_matrix == undefined) {
+		choice_display = 0;
+		txt_matrix = text_display[choice_display];
+	}
 	//converting the string into an array of single characters
 	txt_matrix = txt_matrix.split("");
 

@@ -29,10 +29,14 @@
     margin: auto;
   }
 
-  .conteneur-parc {
+  #msg .conteneur-parc {
     display: grid;
     grid-template-columns: auto auto 1fr;
-    font-size: 20px !important;
+    font-size: 20px;
+  }
+
+  #msg .title-main-parc {
+    font-size: 30px;
   }
 
   .conteneur-parc .desc {
@@ -68,12 +72,16 @@
   /** version 560px **/
   /**********************/
   @media screen and (max-width: 560px) {
-    .conteneur-parc {
+    #msg .conteneur-parc {
       grid-template-columns: auto 1fr ;
     }
 
     .conteneur-parc .desc, .conteneur-parc .title-parc {
       grid-column-start: 1;
       grid-column-end: 3;
+    }
+
+    .conteneur-parc .txt-parc {
+      font-size: 15px;
     }
 }

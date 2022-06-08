@@ -253,6 +253,8 @@ section {
 #reserves {
     color:rgb(156, 156, 156);
     font-size: 15px;
+    margin-top: 20px;
+    text-align: center;
 }
 
 #form-pass-perdu {
@@ -278,7 +280,7 @@ section {
 }
 
 #recep-mod-pass {
-    width: 100%;
+    width: 90%;
     margin-top: 15px;
 }
 

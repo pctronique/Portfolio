@@ -3,11 +3,11 @@
 if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && defined("USER_ID") && !empty(USER_ID)) {
 
     function addLogo(?string $name, ?string $src):?string {
-        return '<figure class="section-logo"><h3 class="text_grav">'.$name.'</h3><img src="./data/img/'.$src.'" alt="logo '.$name.'" /></figure>';
+        return '<figure class="section-logo"><h3 class="text_grav title-logo">'.$name.'</h3><img src="./data/img/'.$src.'" alt="logo '.$name.'" /></figure>';
     }
 
     function addComp(?string $title, ?string $desc):?string {
-        return '<figure class="section-comp"><h3 class="text_grav">'.$title.'</h3><p class="text_grav">'.str_replace("\n", "<br />", $desc).'</p></figure>';
+        return '<figure class="section-comp"><h3 class="text_grav title-logo">'.$title.'</h3><p class="text_grav">'.str_replace("\n", "<br />", $desc).'</p></figure>';
     }
 
     include_once dirname(__FILE__) . '/../class/Contenu_Page.php';

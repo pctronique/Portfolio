@@ -26,14 +26,8 @@
 }
 
 .box-3D .img {
-    /*display: flex;
-    float: right;
-    align-items: center;*/
     overflow: hidden;
-    /*width: 1020px;*/
     height: 100%;
-    /*border-bottom-left-radius: 20px;
-    border-bottom-right-radius: 20px;*/
 }
 
 .produit {
@@ -59,9 +53,6 @@
     position: absolute;
     width: 100%;
     display: flex;
-    /*background-color: #9cfffd;*/
-    /*border-top-left-radius: 20px;
-    border-top-right-radius: 20px;*/
     align-items: center;
     flex-wrap: nowrap;
     justify-content: flex-start;
@@ -146,6 +137,23 @@
     }
 
     .button-fake-all {
+        display: none;
+    }
+
+    .produit .title {
+        /*display: none;*/
+    }
+    
+    .box-3D .title-main, .box-3D .title-main-0 {
+        background-color: #9cfffd;
+    }
+
+    .box-3D h2 {
+        font-size: 1em;
+    }
+
+    
+    .box-3D .title-main-0 {
         display: none;
     }
 

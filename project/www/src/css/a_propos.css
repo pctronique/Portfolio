@@ -12,12 +12,12 @@
 }
 
 #msg h2 {
-  font-size: 40px !important;
-  padding-top: 25px;
+  font-size: 30px !important;
+  padding-top: 20px;
 }
 
 #msg p, #msg ul {
-  font-size: 25px !important;
+  font-size: 15px !important;
 }
 
 #msg ul {
