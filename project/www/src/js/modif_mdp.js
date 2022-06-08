@@ -96,4 +96,3 @@ document.body.addEventListener("keydown", (event) => {
 
 /* action sur le bouton valider ou annuler */
 document.getElementById("valider").addEventListener("click", valider);
-document.getElementById("annuler").addEventListener("click", annuler);

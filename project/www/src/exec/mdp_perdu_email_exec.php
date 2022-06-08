@@ -47,9 +47,9 @@ if (!empty($_POST) && array_key_exists('email', $_POST)) {
             /* si une adresse email a ete trouve */
             if($res->rowCount() > 0) {
                 /* recupere l'email de l'administrateur */
-                $email_admin = $res->fetch(PDO::FETCH_ASSOC)["email"];
+                $email_admin = $res->fetch(PDO::FETCH_ASSOC)["email_user"];
                 /* demande les information de l'utilisateur */
-                $res = $sgbd->prepare("SELECT * FROM utilisateur WHERE email=:email LIMIT 1");
+                $res = $sgbd->prepare("SELECT * FROM utilisateur WHERE email_user=:email LIMIT 1");
                 $res->execute([
                     ":email" => htmlspecialchars(stripslashes(trim($_POST['email'])))
                 ]);
@@ -60,14 +60,14 @@ if (!empty($_POST) && array_key_exists('email', $_POST)) {
                     $id = $result['id_user'];
 
                     // creation d'une clee unique
-                    $key = md5(uniqid() . $id . $result['login'] . $_POST["email"] . time());
+                    $key = md5(uniqid() . $id . $result['login_user'] . $_POST["email"] . time());
 
                     /* rempli les clees avec les bonnes valeurs */
                     $tab_code["[##CODE##]"] = $key;
-                    $tab_code["[##LOGIN##]"] = $result['login'];
+                    $tab_code["[##LOGIN##]"] = $result['login_user'];
 
                     // ajoute la demande de validite
-                    $res = $sgbd->prepare("INSERT INTO pass_perdu (id_user, jeton, expiration) VALUES (:id_user, :jeton, :expiration)");
+                    $res = $sgbd->prepare("INSERT INTO pass_perdu (id_user, jeton_pass_perdu, expiration_pass_perdu) VALUES (:id_user, :jeton, :expiration)");
                     $res->execute([
                         ":id_user" => $id,
                         ":jeton" => $tab_code["[##CODE##]"],

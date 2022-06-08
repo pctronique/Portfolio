@@ -18,8 +18,8 @@ function create_carrousel_main() {
         let color_progressBar_paused = "orange";
         let activated_progressBar = true;
         let activated_paused = true;
-        let activated_paused_button = true;
-        let activated_paused_click = true;
+        let activated_paused_button = false;
+        let activated_paused_click = false;
 
         /* creation de la div d'affichage */
         let new_flex = document.createElement("div");
@@ -124,7 +124,6 @@ function create_carrousel_main() {
             
             /* Action a effectuer a la fin de l'animation */
             liste_defilement[i].addEventListener('animationend', function (e) {
-                console.log(liste_defilement[i]);
                 click_first_button = false;
                 liste_defilement[num_carrousel].style.animationPlayState = "paused";
                 listBouton[num_carrousel].style.backgroundColor = background_color_progressBar_def;
@@ -142,6 +141,12 @@ function create_carrousel_main() {
                 if(activated_paused && activated_paused_click) {
                     paused();
                 }
+            });
+
+            document.querySelectorAll(".button-fake").forEach(element => {
+                element.addEventListener('click', function (e) {
+                    paused();
+                });
             });
 
             /* on ajoute le bouton dans une liste */
@@ -163,8 +168,6 @@ function create_carrousel_main() {
 let start_load_carrousel = false;
 create_carrousel_main();
 start_load_carrousel = true;
-
-console.log(liste_defilement);
 
 /*
 if (screen.width < 1024 || window.innerWidth < 1024) {

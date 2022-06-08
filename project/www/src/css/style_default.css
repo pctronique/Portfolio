@@ -130,7 +130,7 @@ header {
     margin-left: 20px;
 }
 
-.check-nav {
+.check-nav, #pass-perdu-display {
     display: none;
 }
 
@@ -208,7 +208,7 @@ footer #taking li {
     align-items: center;
 }
 
-#connected {
+.bt-connect {
     width: 80%;
     border: #8f8f8f 1px solid;
     border-radius: 5px;
@@ -216,7 +216,7 @@ footer #taking li {
     margin-top: -2px;
 }
 
-#connected:hover {
+.bt-connect:hover {
     transform: scale(1.08);
 }
 
@@ -251,8 +251,35 @@ section {
 }
 
 #reserves {
-    color:gray;
+    color:rgb(156, 156, 156);
     font-size: 15px;
+}
+
+#form-pass-perdu {
+    display: none;
+}
+
+#pass-perdu-display:checked ~ #form-pass-perdu {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: #8f8f8f 0.5px solid;
+    border-radius: 5px;
+    margin-top: 15px;
+}
+
+.nav-default input::placeholder {
+    color: rgb(180, 180, 180);
+    font-size: 1.1em;
+}
+
+#form-pass-perdu {
+
+}
+
+#recep-mod-pass {
+    width: 100%;
+    margin-top: 15px;
 }
 
 

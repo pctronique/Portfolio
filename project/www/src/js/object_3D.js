@@ -10,6 +10,17 @@ function posObject3D() {
 let sizeBoxDefault = 0;
 
 function dimBox3D(itemMain) {
+    let height = itemMain.querySelector(".box-3D-size").offsetHeight;
+    let width = itemMain.querySelector(".box-3D-size").offsetWidth;
+    itemMain.querySelectorAll(".box-3D-main-size").forEach(element => {
+        height = element.offsetHeight;
+        width = element.offsetWidth;
+    });
+    itemMain.querySelectorAll(".box-3D-maxHeight").forEach(element => {
+        let maxWidth = itemMain.querySelector(".box-3D-maxWidth").value;
+        let maxHeight = itemMain.querySelector(".box-3D-maxHeight").value;
+        height = maxHeight/(maxWidth/itemMain.querySelector(".box-3D-size").offsetWidth);
+    });
     let windowWidth = window.innerWidth;
 	if(screen.width < window.innerWidth) {
 		windowWidth = screen.width;
@@ -19,7 +30,7 @@ function dimBox3D(itemMain) {
     }
     return {
         width: (windowWidth < sizeBoxDefault) ? windowWidth : sizeBoxDefault,
-        height: itemMain.querySelector(".box-3D-size").offsetHeight
+        height: height
     }
 }
 
@@ -303,6 +314,14 @@ function zoom(event) {
 document.querySelectorAll(".box-3D").forEach(element0 => {
 
     sizeBoxDefault = element0.querySelector(".box-3D-size").offsetWidth;
+
+    element0.querySelectorAll(".box-3D-main-size").forEach(element => {
+        sizeBoxDefault = element.offsetWidth;
+    });
+
+    element0.querySelectorAll(".box-3D-maxWidth").forEach(element => {
+        sizeBoxDefault = parseInt(element0.querySelector(".box-3D-maxWidth").value);
+    });
 
     createFormeBox3D(element0);
 

@@ -39,11 +39,12 @@ if(!empty($_GET) && array_key_exists("ind", $_GET)) {
     $ind=$_GET['ind'];
 }
 
-$connected = "<form id=\"form-pass\" action=\"#\" method=\"post\">";
-$connected .= "<input type=\"text\" name=\"name-user\" id=\"name-user\" />";
-$connected .= "<input type=\"password\" name=\"pass-user\" id=\"pass-user\" autocomplete />";
-$connected .= "<a href=\"./?ind=mdp_perd\" id=\"bt-pass-perdu\">Mot de passe perdu</a><br />";
-$connected .= "<a href=\"#\" id=\"connected\">Se connecter</a>";
+$connected = "<input type=\"checkbox\" name=\"pass-perdu-display\" id=\"pass-perdu-display\" />";
+$connected .= "<form id=\"form-pass\" action=\"#\" method=\"post\">";
+$connected .= "<input type=\"text\" name=\"name-user\" id=\"name-user\" placeholder=\"Login\" />";
+$connected .= "<input type=\"password\" name=\"pass-user\" id=\"pass-user\" placeholder=\"Mot de passe\" autocomplete />";
+$connected .= "<label for=\"pass-perdu-display\">Mot de passe perdu</label>";
+$connected .= "<a href=\"#\" id=\"connected\" class=\"bt-connect\">Se connecter</a>";
 $connected .= "</form>";
 
 if($isConnected) {
@@ -89,6 +90,11 @@ if(!empty($ind)) {
         $css = $page_legal->displayCss();
         $js = $page_legal->displayJs();
         $contenu = $page_legal->getContenu();
+    } else if($ind == "mmdp") {
+        include_once dirname(__FILE__) . '/src/pages/modif_mdp.php';
+        $css = $page_mmdp->displayCss();
+        $js = $page_mmdp->displayJs();
+        $contenu = $page_mmdp->getContenu();
     }
 }
 

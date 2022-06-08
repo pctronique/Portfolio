@@ -6,6 +6,12 @@ let myInterval = undefined;
 
 let choice_display = 0;
 
+let choice_background = getCookie("choice_background");
+
+if(choice_background != undefined) {
+	choice_display = parseInt(choice_background);
+}
+
 let tabNamesCode = [
 	"BINARY",
 	"HEXADECIMAL",
@@ -151,6 +157,7 @@ document.querySelectorAll("#choix-background").forEach(element => {
 	element.innerText = tabNamesCode[choice_display];
 	element.addEventListener("click", function() {
 		modifBackground();
+		setCookie("choice_background",choice_display);
 		element.innerText = tabNamesCode[choice_display];
 	});
 });

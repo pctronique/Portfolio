@@ -8,9 +8,6 @@ function valiadtionForm(e) {
    // pour ne pas prendre l'adresse de l'action du formulaire.
    e.preventDefault();
    let lien = "./src/exec/"+namePageExec+".php";
-   console.log(lien);
-   console.log(idform);
-   console.log(document.getElementById(idform));
    /* envoyer les informations du message sur la page php a partir d'un formulaire */
    fetch_form(lien, idform).then(function (
       response
@@ -20,7 +17,6 @@ function valiadtionForm(e) {
            //location.reload();
            window.location.href = nameLienModifExec;
         } else {
-         console.log(response);
             alert(response);
         }
     });

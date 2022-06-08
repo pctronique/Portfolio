@@ -91,6 +91,11 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $css = $page_user->displayCss();
             $js = $page_user->displayJs();
             $contenu = $page_user->getContenu();
+        } else if($ind == "msg") {
+            include_once dirname(__FILE__) . '/src/pages/message.php';
+            $css = $page_msg->displayCss();
+            $js = $page_msg->displayJs();
+            $contenu = $page_msg->getContenu();
         }
     }
 

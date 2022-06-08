@@ -9,11 +9,6 @@ if(defined("USER_ID") && !empty(USER_ID)) {
             $contenu = '<figure class="produit carrousel">';
         }
         $contenu .= '<figure class="title" id="title_'.$id.'">';
-        $contenu .= '<figure class="button-fake-all">';
-        $contenu .= '<figure class="button-fake button-fake-1"></figure>';
-        $contenu .= '<figure class="button-fake button-fake-2"></figure>';
-        $contenu .= '<figure class="button-fake button-fake-3"></figure>';
-        $contenu .= '</figure>';
         $contenu .= '<h2>'.$name.'</h2>';
         $contenu .= '</figure>';
         $contenu .= '<figure class="image" id="image_'.$id.'">';
@@ -60,6 +55,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
     $page_acc->addCss("./src/css/style_acc.css");
     $page_acc->addCss("./src/css/carrousel.css");
     $page_acc->addJs("./src/js/carrousel.js");
+    $page_acc->addJs("./src/js/acc.js");
     $page_acc->setContenu($html);
 
 }

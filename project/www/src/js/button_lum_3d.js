@@ -29,6 +29,22 @@ window.addEventListener('mousemove', function (event) {
         rotation.x = (mouse.y - buttonPos.y) / (window.innerHeight * rotationForce);
         rotation.y = (mouse.x - buttonPos.x) / (window.innerWidth * rotationForce);
 
+        if(rotation.y > 45) {
+            rotation.y = 45;
+        }
+
+        if(rotation.y < -45) {
+            rotation.y = -45;
+        }
+
+        if(rotation.x > 45) {
+            rotation.x = 45;
+        }
+
+        if(rotation.x < -45) {
+            rotation.x = -45;
+        }
+
         button.style.transform = 'rotateX(' + rotation.x + 'deg)' + 'rotateY(' + rotation.y + 'deg)';
         buttonGlow.style.transform = 'rotateX(' + -1 * rotation.x + 'deg)' + 'rotateY(' + -1 * rotation.y + 'deg)';
         

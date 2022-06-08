@@ -6,6 +6,7 @@
 /* inclure des fonctionnalites à la page */
 include_once dirname(__FILE__) . '/../fonctions/connexion_sgbd.php';
 include_once dirname(__FILE__) . '/../class/Error_Log.php';
+include_once dirname(__FILE__) . '/../fonctions/message_email.php';
 
 // verifier qu'on est bien passe par un formulaire (ou transmit les informations par post)
 if(!empty($_POST) && array_key_exists('name', $_POST) && array_key_exists('first_name', $_POST) && 
@@ -45,6 +46,10 @@ if(!empty($_POST) && array_key_exists('name', $_POST) && array_key_exists('first
                     ":id_msg" => $id_insert,
                     ":id_user" => 1
                 ]);
+                $text = htmlspecialchars(stripslashes(trim($_POST['name'])))."<br />";
+                $text = htmlspecialchars(stripslashes(trim($_POST['first_name'])))."<br />";
+                $text = htmlspecialchars(stripslashes(trim($_POST['user_text'])))."<br />";
+                message_email("mon_email@moi.fr", htmlspecialchars(stripslashes(trim($_POST['email']))), htmlspecialchars(stripslashes(trim($_POST['objet']))), $text);
                 /* on transmets les commits sous format securise */
                 $sgbd->commit();
                 echo "true";

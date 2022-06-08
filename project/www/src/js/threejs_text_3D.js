@@ -163,8 +163,8 @@ function textTitle3D() {
 	function onWindowResize() {
 	windowHalfX = sizeBox3D().x / 2;
 
-	camera1.aspect = sizeBox3D().x / sizeBox3D().y;
-	camera1.updateProjectionMatrix();
+	/*camera1.aspect = sizeBox3D().x / sizeBox3D().y;
+	camera1.updateProjectionMatrix();*/
 
 	renderer1.setSize(sizeBox3D().x, sizeBox3D().y);
 	}

@@ -38,6 +38,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
             $resCat = $sgbd->prepare("SELECT * FROM categorie INNER JOIN cat_produit ON categorie.id_cat=cat_produit.id_cat INNER JOIN produits ON produits.id_produit=cat_produit.id_produit WHERE produits.id_produit=:id_produit");
             $resCat->execute([":id_produit" => $id_desc]);
             if($resCat->rowCount() > 0) {
+                $lang_framw .= '<figure class="drop_contenu">'."\n";
+                $lang_framw .= '<figure id="Categories" class="drag_contenu" draggable="true">'."\n";
                 $lang_framw .= '<h2>Catégories</h2>'."\n";
                 $lang_framw .= '<ul>'."\n";
                 $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
@@ -46,24 +48,31 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 }
 
                 $lang_framw .= '</ul>'."\n";
+                $lang_framw .= '</figure>'."\n";
+                $lang_framw .= '</figure>'."\n";
             }
 
             $resCat = $sgbd->prepare("SELECT * FROM language INNER JOIN language_produit ON language.id_language=language_produit.id_language INNER JOIN produits ON produits.id_produit=language_produit.id_produit WHERE produits.id_produit=:id_produit");
             $resCat->execute([":id_produit" => $id_desc]);
             if($resCat->rowCount() > 0) {
+                $lang_framw .= '<figure class="drop_contenu">'."\n";
+                $lang_framw .= '<figure id="Languages" class="drag_contenu" draggable="true">'."\n";
                 $lang_framw .= '<h2>Languages</h2>'."\n";
                 $lang_framw .= '<ul>'."\n";
                 $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($dataCat as $valueLine) {
                     $lang_framw .= '<li>'.$valueLine['nom_language'].'</li>';
                 }
-
                 $lang_framw .= '</ul>'."\n";
+                $lang_framw .= '</figure>'."\n";
+                $lang_framw .= '</figure>'."\n";
             }
 
             $resCat = $sgbd->prepare("SELECT * FROM framework INNER JOIN framework_produit ON framework.id_framework=framework_produit.id_framework INNER JOIN produits ON produits.id_produit=framework_produit.id_produit WHERE produits.id_produit=:id_produit");
             $resCat->execute([":id_produit" => $id_desc]);
             if($resCat->rowCount() > 0) {
+                $lang_framw .= '<figure class="drop_contenu">'."\n";
+                $lang_framw .= '<figure id="FrameWorks" class="drag_contenu" draggable="true">'."\n";
                 $lang_framw .= '<h2>FrameWorks</h2>'."\n";
                 $lang_framw .= '<ul>'."\n";
                 $dataCat = $resCat->fetchAll(PDO::FETCH_ASSOC);
@@ -72,6 +81,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 }
 
                 $lang_framw .= '</ul>'."\n";
+                $lang_framw .= '</figure>'."\n";
+                $lang_framw .= '</figure>'."\n";
             }
         }
     }
@@ -85,6 +96,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $html = str_replace("[##DESC##]", $description, $html);
 
     $page_desc->addCss("./src/css/style_description.css");
+    $page_desc->addJs("./src/js/drag_drop.js");
     $page_desc->setContenu($html);
 
 }

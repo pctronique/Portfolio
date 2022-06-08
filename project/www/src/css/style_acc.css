@@ -44,13 +44,22 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
-    background-color: #000000;
     border-radius: 20px;
 }
 
 .produit .title {
     display: flex;
     background-color: #9cfffd;
+    align-items: center;
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+}
+
+.box-3D .title-main, .box-3D .title-main-0 {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    /*background-color: #9cfffd;*/
     /*border-top-left-radius: 20px;
     border-top-right-radius: 20px;*/
     align-items: center;
@@ -58,14 +67,22 @@
     justify-content: flex-start;
 }
 
-.box-3D .image_a {
+.box-3D .title-main-0 {
+    position: absolute;
+    width: 100%;
+    display: flex;
+    background-color: #9cfffd;
+    height: 57px;
+}
+
+.carrousel .image_a {
     display: flex;
     box-sizing: border-box;
     overflow: hidden;
 }
 
-.box-3D .image_a:hover {
-    transform: scale(0.95);
+.box-3D .image_a:hover, .box-3D .img:hover {
+    cursor:pointer;
 }
 
 .box-3D .button-fake-1{
@@ -81,6 +98,8 @@
 .button-fake-all {
     margin-left: 20px;
     display: flex;
+    padding: 11px 0px;
+    background-color: #9cfffd;
 }
 
 .button-fake {
@@ -89,6 +108,10 @@
     border-radius: 50%;
     width: 24px;
     height: 24px !important;    box-shadow: -5px 5px 10px 0.5px #8080807d;
+}
+
+.button-fake:hover {
+    cursor:pointer;
 }
 
 /**********************/
@@ -119,10 +142,14 @@
 
     .box-3D-size {
         width: 300px;
-        height: 227px;
+        /*height: 227px;*/
     }
 
     .button-fake-all {
         display: none;
     }
+
+    /*.produit .title {
+        background-color: #9cfffd;
+    }*/
 }
