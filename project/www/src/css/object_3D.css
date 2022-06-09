@@ -1,0 +1,63 @@
+:root {
+    --width-size: 200px;
+    --height-size: 200px;
+    --depth-size: 20px;
+}
+
+.wrap-object-3D {
+    box-sizing: border-box;
+    /*margin: 0px 745px;*/
+}
+
+.object-3D, .border-3D-left-top, .border-3D-right-top, .border-3D-left-bottom, .border-3D-right-bottom, .object-3D-5F {
+    display: block;
+    width: inherit;
+    height: inherit;
+    transform-style: preserve-3d;
+
+}
+
+.box-3D {
+    position: relative;
+}
+
+.box-3D-border {
+    position: absolute;
+}
+
+.box-3D-default {
+    position: absolute;
+    /*border: red 1px solid;*/
+}
+
+.box-3D-default-1 {
+    position: absolute;
+    border: green 1px solid;
+}
+
+.box_none {
+    display: none;
+}
+
+.box-3D-color-blue {
+    background-color:blue;
+    /*background-color: #84a6bfa1;
+    border: 0.5px #84a6bfb0 solid;*/
+}
+
+.box-3D-color-gray {
+    background-color: #929292;
+    border: 0.5px #808080 solid;
+}
+
+.box-3D-color-glass {
+    background-color: #84a6bfa1;
+    border: 0.5px #84a6bfb0 solid;
+}
+
+.box-3D label, .box-3D .text_grav {
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(0 0 0 / 65%);
+    text-shadow: 2px -2px rgb(162 162 163 / 87%), 1px -1px #9190bfab;
+}

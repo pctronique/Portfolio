@@ -1,0 +1,32 @@
+<section class="container mt-5">
+    <h2 class="text-light text-center">Compétences</h2>
+</section><section class="container mt-5">
+    <form id="form-competence" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" id="id" value="[##ID_COMP##]" />
+        <div class="mb-3">
+            <label for="formName" class="form-label text-light">nom</label>
+            <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_COMP##]">
+        </div>
+        <div class="mb-3">
+            <label for="formDescription" class="form-label text-light">Description</label>
+            <textarea class="form-control" name="description" id="formDescription" rows="3">[##DESC_COMP##]</textarea>
+        </div>
+        <button id="validation" class="btn btn-dark d-grid mx-auto">
+            Valider
+        </button>
+    </form>
+</section>
+<section class="container mt-5">
+    <table class="table table-dark table-striped">
+        <thead>
+            <tr>
+                <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
+                <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
+                <th>titre</th>
+            </tr>
+        </thead>
+        <tbody id="tab_find">
+            [##FIND_COMP##]
+        </tbody>
+    </table>
+</section>

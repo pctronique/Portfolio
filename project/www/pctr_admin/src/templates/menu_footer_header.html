@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
+    <link rel="stylesheet" href="./../src/css/normalizer.css" />
+    <link rel="stylesheet" href="./../src/css/font.css" />
+    <link rel="stylesheet" href="./src/css/style_default.css" />[##CONTENU_CSS##]
+    <script
+      async
+      src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"
+    ></script>
+    <title>Portfolio</title>
+  </head>
+  <body>
+    <header class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <nav class="navbar-brand">
+        <img
+          src="./../favicon.ico"
+          width="60"
+          height="60"
+          class="d-inline-block align-top"
+          alt=""
+        />
+      </nav>
+      <a
+        class="mx-auto"
+        href="./"
+        ><i class="bi bi-house h1 text-light">Ludovic NAULOT</i></a
+      >
+      <div class="dropdown d-flex">
+        <button
+          class="btn btn-dark"
+          type="button"
+          id="navbarDarkDropdownMenuLink"
+          data-bs-toggle="dropdown"
+          aria-expanded="false"
+        >
+          <img src="./src/img/burger_icon.svg" alt="menu" />
+        </button>
+        <ul class="dropdown-menu  dropdown-menu-lg-end dropdown-menu-dark" aria-labelledby="navbarDarkDropdownMenuLink">
+          <li><a class="dropdown-item" href="./../">portfolio</a></li>
+          <li><a class="dropdown-item" href="./?ind=desc">projets</a></li>
+          <li><a class="dropdown-item" href="./?ind=cat">categories</a></li>
+          <li><a class="dropdown-item" href="./?ind=parc">parcours</a></li>
+          <li><a class="dropdown-item" href="./?ind=comp">compétences</a></li>
+          <li><a class="dropdown-item" href="./?ind=comp_logo">compétences en logo</a></li>
+          <li><a class="dropdown-item" href="./?ind=add_logo">Ajouter un logo</a></li>
+          <li><a class="dropdown-item" href="./?ind=lang">language</a></li>
+          <li><a class="dropdown-item" href="./?ind=framW">framework</a></li>
+          <li><a class="dropdown-item" href="./?ind=loisi">loisir</a></li>
+          <li><a class="dropdown-item" href="./?ind=add_cv">Ajouter CV</a></li>
+          <li><a class="dropdown-item" href="./?ind=disp_cv">CV</a></li>
+          <li><a class="dropdown-item" href="./?ind=user">utilisateur</a></li>
+          <li><a class="dropdown-item" href="./?ind=msg">messages</a></li>
+          <li><a class="dropdown-item" href="./../src/exec/deconnexion_exec.php">Déconnexion</a></li>
+        </ul>
+      </div>
+    </header>
+    [##CONTENU##]
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
+    <script src="./../src/js/le_fetch.js"></script>
+    <script src="./../src/js/popup.js"></script>
+    <script src="./src/js/addModifObject.js"></script>[##CONTENU_JS##]
+  </body>
+</html>

@@ -1,0 +1,145 @@
+/*.desc-img {
+    width: 200px;
+    margin-left: 25px;
+    margin-top: 10px;
+}*/
+
+#desc-img-contenu {
+    padding: 10px;
+}
+
+.box-3D-front {
+    padding: 10px;
+}
+
+.box-3D {
+    margin-left: 10px;
+    margin-top: -36px;
+}
+
+.img-3D {
+    width: 300px;
+}
+
+.img-3D img:hover {
+    transform: scale(2);
+    margin-left: 148px;
+    margin-top: 81px;
+}
+
+#page_desc {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+    align-items: start;
+
+}
+
+#img-produit {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+#language-framework {
+  grid-column-start: 1;
+  grid-column-end: 2;
+  grid-row-start: 2;
+  grid-row-end: 3;
+}
+
+#description {
+    grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 3;
+}
+
+#language-framework, #description {
+    margin: 10px;
+    padding: 15px;
+    background-color: black;
+    border: gray 1px solid;
+    border-radius: 20px;
+}
+
+#title-drag-drop {
+    transform: rotate(-90deg);
+    font-size: 15px;
+    color: #646464;
+    margin-left: -62px;
+    margin-right: -33px;
+}
+
+#language-framework {
+    display: flex;
+    padding-bottom: 45px;
+    align-items: center;
+}
+
+#language-framework li {
+    list-style: inside;
+}
+
+.drop_contenu, .drag_contenu {
+    background-color: black;
+}
+
+.drag_contenu.over {
+    border: 3px dotted #666;
+}
+
+#language-framework h2 {
+    margin-top : 20px;
+}
+
+
+/**********************/
+  /** version tablette **/
+  /**********************/
+  @media screen and (max-width: 750px) {
+    #page_desc {
+        display: grid;
+        grid-template-columns: unset;
+    }
+    
+    #img-produit {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 1;
+        grid-row-end: 2;
+    }
+    
+    #language-framework {
+      grid-column-start: 1;
+      grid-column-end: 2;
+      grid-row-start: 3;
+      grid-row-end: 4;
+    }
+    
+    #description {
+        grid-column-start: 1;
+        grid-column-end: 2;
+        grid-row-start: 2;
+        grid-row-end: 3;
+    }
+
+    .box-3D {
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .img-3D img:hover {
+        transform: scale(1.3);
+        margin-left: unset;
+        margin-top: unset;
+    }
+
+    #language-framework, #description {
+        width: 95%;
+        min-width: 200px;
+    }
+}
+
+

@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./src/css/normalizer.css" />
+    <link rel="stylesheet" href="./src/css/font.css" />
+    <link rel="stylesheet" href="./src/css/style_default.css" />
+    <link rel="stylesheet" href="./src/css/texte_3d.css" />
+    <link rel="stylesheet" href="./src/css/triangle_3d_test.css" />
+    <link rel="stylesheet" href="./src/css/object_glass.css" />
+    <style></style>
+    <script
+      async
+      src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"
+    ></script>
+    <title>Portfolio</title>
+  </head>
+  <body>
+    <header>
+      <div class="menu-and-bt" id="menu-and-bt-left">
+        <input
+          type="checkbox"
+          name="check-nav-left"
+          id="check-nav-left"
+          class="check-nav"
+        />
+        <figure id="nav-left" class="nav-default">
+          <ul>
+            <li class="lien"><a class="click-lien" href="./">Accueil</a></li>
+            <li>
+              Projects
+              <ul class="submenu">
+                <li class="lien">
+                  <a class="click-lien" href="./?ind=cat&cat=web">Web</a>
+                </li>
+                <li class="lien">
+                  <a class="click-lien" href="./?ind=cat&cat=java">Java</a>
+                </li>
+              </ul>
+            </li>
+            <li class="lien">
+              <a class="click-lien" href="./?ind=comp">Conpétences</a>
+            </li>
+            <li class="lien">
+              <a class="click-lien" href="./?ind=parc">Parcours</a>
+            </li>
+          </ul>
+        </figure>
+        <label id="bt-nav-left" class="bt-nav-default" for="check-nav-left">
+          <img id="img-nav-left" src="./src/img/menu-white.svg" alt="" />
+        </label>
+      </div>
+      <h1 id="txt_matrix">Ludovic NAULOT</h1>
+
+      <div class="menu-and-bt" id="menu-and-bt-right">
+        <input
+          type="checkbox"
+          name="check-nav-right"
+          id="check-nav-right"
+          class="check-nav"
+        />
+        <label id="bt-nav-right" class="bt-nav-default" for="check-nav-right">
+          <img
+            id="img-nav-right"
+            src="./src/img/cadenas-ferme-white.svg"
+            alt=""
+          />
+        </label>
+        <nav id="nav-right" class="nav-default">
+          <p>Accèx utilisateur</p>
+        </nav>
+      </div>
+    </header>
+    <section>
+      <canvas id="myCanvas" width="600" height="250" style="border:1px solid black;">
+      </canvas>
+      <figure id="text_3D">
+        <input type="hidden" id="profondeur_text_3D" value="20" />
+        <input
+          type="hidden"
+          id="text_title_pg"
+          name="text_title_pg"
+          value="test"
+        />
+        <figure id="title_pg" class="color_3D">TEST 3D</figure>
+      </figure>
+    </section>
+    <canvas id="body_matrix"></canvas>
+    <footer>
+      <ul>
+        <li><a href="./?ind=msg">Contact</a></li>
+        <li><a href="./?ind=legales"></a>Mentions Légales</li>
+      </ul>
+      <ul id="taking">
+        <li>
+          <a href="https://github.com/pctronique"
+            ><img src="./src/img/signe-github.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href="https://www.linkedin.com/in/ludovic-naulot-0451284b"
+            ><img src="./src/img/linkedin.svg" alt=""
+          /></a>
+        </li>
+      </ul>
+    </footer>
+    <script src="./src/js/mwgokv.js"></script>
+    <script src="./src/js/menu.js"></script>
+    <script src="./src/js/object_glass.js"></script>
+    <script src="./src/js/le_fetch.js"></script>
+    <script src="./src/js/connexion.js"></script>
+    <script>
+        window.onload = function(){
+          canvas = document.getElementById("myCanvas");
+          context = canvas.getContext("2d");
+          
+          context.font = "40pt Calibri";
+          context.fillStyle = "black";
+          // align text horizontally center
+          context.textAlign = "center";
+          // align text vertically center
+          context.textBaseline = "middle";
+          draw3dText(context, "Hello 3D World!", canvas.width / 2, 120, 5);
+      };
+
+      function draw3dText(context, text, x, y, textDepth){
+          var n;
+          
+          // draw bottom layers
+          for (n = 0; n < textDepth; n++) {
+              context.fillText(text, x - n, y - n);
+          }
+          
+          // draw top layer with shadow casting over
+          // bottom layers
+          context.fillStyle = "#5E97FF";
+          context.shadowColor = "black";
+          context.shadowBlur = 10;
+          context.shadowOffsetX = textDepth + 2;
+          context.shadowOffsetY = textDepth + 2;
+          context.fillText(text, x - n, y - n);
+      }
+
+
+    </script>
+  </body>
+</html>

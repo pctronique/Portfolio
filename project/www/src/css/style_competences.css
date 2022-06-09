@@ -1,0 +1,92 @@
+
+
+  .msg {
+      padding: 20px;
+    margin: auto;
+    float: none;
+    /*margin-top: 30px;*/
+    width: 1020px;
+  }
+
+  .box-3D {
+    margin: 0px auto;
+  }
+
+  .section-comp {
+    padding: 10px;
+    border: gray 0.5px solid;
+    margin: 5px;
+    border-radius: 20px;
+  }
+
+  .section-comp .title-logo {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .section-comp p {
+    font-size: 20px !important;
+    padding-bottom: 30px;
+  }
+
+  #logos-list {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .section-logo {
+    display: flex;
+    padding: 10px;
+    border: gray 0.5px solid;
+    margin: 5px;
+    border-radius: 20px;
+    width: 250px;
+    height: 187px;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .section-logo .title-logo {
+    font-size: 30px;
+    text-align: center;
+  }
+
+  .section-logo img {
+    width: 120px;
+  }
+
+  /**********************/
+    /** version tablette **/
+    /**********************/
+    @media screen and (max-width: 1024px) {
+      /*--------------*/
+      /** formulaire **/
+      .msg {
+        width: 100%;
+      }
+  }
+
+/**********************/
+/** version tablette **/
+/**********************/
+@media screen and (max-width: 620px) {
+  /*--------------*/
+  /** formulaire **/
+  .section-logo .title-logo {
+    font-size: 20px;
+    text-align: center;
+  }
+
+  .section-logo {
+    width: 125px;
+    height: 93px;
+  }
+
+  .section-logo img {
+    width: 40px;
+    height: 40px;
+  }
+}

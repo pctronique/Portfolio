@@ -1,0 +1,45 @@
+#msg {
+    padding: 20px;
+    margin: auto;
+    float: none;
+    /*margin-top: 30px;*/
+    width: 1020px;
+    padding-bottom: 45px;
+}
+
+.box-3D {
+    margin: auto;
+}
+
+#msg h2 {
+  font-size: 30px !important;
+  padding-top: 20px;
+}
+
+#msg p, #msg ul {
+  font-size: 15px !important;
+}
+
+#msg ul {
+  list-style: inside;
+}
+
+/**********************/
+/** version tablette **/
+/**********************/
+@media screen and (min-width: 655px) and (max-width: 1024px) {
+    /*--------------*/
+    /** formulaire **/
+    #msg {
+      width: 100%;
+    }
+}
+
+/***************************/
+/** version mobile 655px ***/
+/***************************/
+@media screen and (max-width: 655px) {
+    #msg {
+      width: 100%;
+    }
+}
