@@ -58,6 +58,7 @@
 .box-3D label, .box-3D .text_grav {
     font-weight: bold;
     font-size: 40px;
-    color: rgb(0 0 0 / 65%);
+    color: rgb(0 0 0);
+    /*color: rgb(0 0 0 / 65%);*/
     text-shadow: 2px -2px rgb(162 162 163 / 87%), 1px -1px #9190bfab;
 }
