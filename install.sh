@@ -17,6 +17,9 @@ mkdir -p projecttmp/log/httpd
 mkdir -p projecttmp/log/xdebug
 mkdir -p projecttmp/log/mysql
 
+# copier les configurations et fichiers
+cp -R config/data/ project/www/
+
 # modifier les droits sur les dossiers
 chmod 777 -R project
 chmod 777 -R projecttmp
