@@ -15,6 +15,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $name = "";
     $desc = "";
     $find = "";
+    $display = "checked";
     $img = "./src/img/icons8-ajouter-une-image-90.png";
 
     if(!empty($_GET) && array_key_exists("id", $_GET)) {
@@ -27,6 +28,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['nom_cat'];
             $desc = $data['description_cat'];
+            $display = $data['display_cat'] == "1" ? "checked" : "";
             if(!empty($data["avatar_cat"])) {
                 $img = "./../data/img/".$data["avatar_cat"];
             }
@@ -45,6 +47,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##NAME_CAT##]", $name, $html);
     $html = str_replace("[##DESC_CAT##]", $desc, $html);
     $html = str_replace("[##FIND_CAT##]", $find, $html);
+    $html = str_replace("[##DISPLAY_CAT##]", $display, $html);
     $page_cat->setContenu($html);
     $page_cat->addCss("./src/css/addimg.css");
     $page_cat->addJs("./src/js/addimg.js");

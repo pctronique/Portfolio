@@ -34,19 +34,19 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
 
     $sgbd = connexion_sgbd();
     if(!empty($sgbd)) {
-        $res = $sgbd->prepare("SELECT * FROM parcours INNER JOIN formations ON parcours.id_parcours=formations.id_parcours WHERE id_user=:id_user ORDER BY date_debut_parcours DESC");
+        $res = $sgbd->prepare("SELECT * FROM parcours INNER JOIN formations ON parcours.id_parcours=formations.id_parcours WHERE id_user=:id_user AND display_parcours=1 ORDER BY date_debut_parcours DESC");
         $res->execute([":id_user" => USER_ID]);
         $dataForm = $res->fetchAll(PDO::FETCH_ASSOC);
         foreach ($dataForm as $valueLine) {
             $formation .= parcours($valueLine);
         }
-        $res = $sgbd->prepare("SELECT * FROM parcours INNER JOIN experiences ON parcours.id_parcours=experiences.id_parcours WHERE id_user=:id_user ORDER BY date_debut_parcours DESC");
+        $res = $sgbd->prepare("SELECT * FROM parcours INNER JOIN experiences ON parcours.id_parcours=experiences.id_parcours WHERE id_user=:id_user AND display_parcours=1 ORDER BY date_debut_parcours DESC");
         $res->execute([":id_user" => USER_ID]);
         $dataExp = $res->fetchAll(PDO::FETCH_ASSOC);
         foreach ($dataExp as $valueLine) {
             $experience .= parcours($valueLine);
         }
-        $res = $sgbd->prepare("SELECT * FROM cv INNER JOIN cv_display ON cv.id_cv=cv_display.id_cv WHERE cv_display.id_user=:id_user ORDER BY cv_display.id_cv DESC LIMIT 1");
+        $res = $sgbd->prepare("SELECT * FROM cv WHERE id_user=:id_user AND display_cv=1 ORDER BY id_cv DESC LIMIT 1");
         $res->execute([":id_user" => USER_ID]);
         if($res->rowCount() > 0) {
             $data = $res->fetch(PDO::FETCH_ASSOC);

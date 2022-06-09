@@ -13,6 +13,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $id = 0;
     $exp = "checked";
+    $display = "checked";
     $form = "";
     $name = "";
     $title = "";
@@ -54,6 +55,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             if($data['date_debut_parcours'] != "0000-00-00 00:00:00") {
                 $start = date('Y-m-d', strtotime($data['date_debut_parcours']));
             }
+            $display = $data['display_parcours'] == "1" ? "checked" : "";
             $progress = $data['in_progress_parcours'] == "1" ? "checked" : "";
             if($data['date_fin_parcours'] != "0000-00-00 00:00:00") {
                 $fin = date('Y-m-d', strtotime($data['date_fin_parcours']));
@@ -82,6 +84,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##LIEU_PARC##]", $lieu, $html);
     $html = str_replace("[##DESC_PARC##]", $desc, $html);
     $html = str_replace("[##FIND_PARC##]", $find, $html);
+    $html = str_replace("[##DISPLAY_PARC##]", $display, $html);
     $page_parc->setContenu($html);
     $page_parc->addJs("./src/js/parcours.js");
 } else {

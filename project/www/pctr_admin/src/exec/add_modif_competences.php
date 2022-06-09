@@ -10,7 +10,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     
     $values = array(
                 ":name" => "",
-                ":desc" => ""
+                ":desc" => "",
+                ":display" => 0
             );
 
     $id = 0;
@@ -27,6 +28,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     if(array_key_exists("description", $_POST) && !empty($_POST['description'])) {
         $values[":desc"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
+    }
+
+    if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
+        $values[":display"] = 1;
     }
 
     /*Connexion*/
@@ -63,10 +68,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE competences SET title_competence=:name, description_competences=:desc WHERE id_competences=:id");
+                    $res = $sgbd->prepare("UPDATE competences SET title_competence=:name, description_competences=:desc, display_competences=:display WHERE id_competences=:id");
                     $res->execute($values);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO competences (title_competence, description_competences, id_user) VALUES (:name, :desc, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO competences (title_competence, description_competences, display_competences, id_user) VALUES (:name, :desc, :display, :id_user)");
                     $res->execute($values);
                 }
                 echo "true";

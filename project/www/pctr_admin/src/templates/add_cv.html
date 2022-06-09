@@ -1,8 +1,14 @@
 <section class="container mt-5">
-    <h2 class="text-light text-center">Ajouter un CV</h2>
+    <h2 class="text-light text-center"><a href="./?ind=add_cv"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Ajouter un CV</h2>
 </section>
 <section class="container mt-5">
     <form id="form-add-cv" action="#" method="post" enctype="multipart/form-data">
+        <div class="mb-3 d-flex justify-content-center form-check form-switch ">
+            <input class="form-check-input" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_CV##]>
+            <label class="form-check-label text-light labelDisplay" for="checkDisplay">
+                Afficher sur la page
+            </label>
+        </div>
         <input type="hidden" name="id" id="id" value="[##ID_CV##]" />
         <div class="mb-3">
             <label for="formName" class="form-label text-light">titre</label>

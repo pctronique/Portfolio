@@ -16,7 +16,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $values = array(
                 ":name" => "",
                 ":desc" => "",
-                ":src" => ""
+                ":src" => "",
+                ":display" => 0
             );
 
     $tab_cat = [];
@@ -58,6 +59,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $values[":desc"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
     }
 
+    if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
+        $values[":display"] = 1;
+    }
+
     /*Connexion*/
     include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
     include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
@@ -91,7 +96,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE produits SET nom_produit=:name, description_produit=:desc, src_produit=:src WHERE id_produit=:id");
+                    $res = $sgbd->prepare("UPDATE produits SET nom_produit=:name, description_produit=:desc, src_produit=:src, display_produit=:display WHERE id_produit=:id");
                     $res->execute($values);
 
                     $res = $sgbd->prepare("DELETE FROM cat_produit WHERE id_produit=:id");
@@ -101,7 +106,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                     $res = $sgbd->prepare("DELETE FROM framework_produit WHERE id_produit=:id");
                     $res->execute([":id" => $id]);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO produits (nom_produit, description_produit, src_produit, id_user) VALUES (:name, :desc, :src, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO produits (nom_produit, description_produit, src_produit, display_produit, id_user) VALUES (:name, :desc, :src, :display, :id_user)");
                     $res->execute($values);
                     /* recupere son id */
                     $id = $sgbd->lastInsertId();

@@ -1,9 +1,15 @@
 <section class="container mt-5">
-    <h2 class="text-light text-center">Loisir</h2>
+    <h2 class="text-light text-center"><a href="./?ind=loisi"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Loisir</h2>
 </section>
 <section class="container mt-5">
     <form id="form-loisir" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_LOISI##]" />
+        <div class="mb-3 d-flex justify-content-center form-check form-switch ">
+            <input class="form-check-input" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_LOISI##]>
+            <label class="form-check-label text-light labelDisplay" for="checkDisplay">
+                Afficher sur la page
+            </label>
+        </div>
         <div class="mb-3">
             <label for="formName" class="form-label text-light">nom</label>
             <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_LOISI##]">

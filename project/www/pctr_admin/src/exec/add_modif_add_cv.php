@@ -24,7 +24,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     
     $values = array(
                 ":name" => "",
-                ":title" => ""
+                ":title" => "",
+                ":display" => 0
             );
 
     $id = 0;
@@ -41,6 +42,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     if(array_key_exists("title", $_POST) && !empty($_POST['title'])) {
         $values[":title"] = htmlspecialchars(stripslashes(trim($_POST['title'])));
+    }
+
+    if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
+        $values[":display"] = 1;
     }
 
     /*Connexion*/
@@ -76,10 +81,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE cv SET nom_cv=:name, title_cv=:title WHERE id_cv=:id");
+                    $res = $sgbd->prepare("UPDATE cv SET nom_cv=:name, title_cv=:title, display_cv=:display WHERE id_cv=:id");
                     $res->execute($values);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO cv (nom_cv, title_cv, id_user) VALUES (:name, :title, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO cv (nom_cv, title_cv, display_cv, id_user) VALUES (:name, :title, :display, :id_user)");
                     $res->execute($values);
                     /* recupere son id */
                     $id = $sgbd->lastInsertId();

@@ -12,6 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/competences.html', true);
 
     $id = 0;
+    $display = "checked";
     $name = "";
     $desc = "";
     $find = "";
@@ -26,6 +27,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['title_competence'];
             $desc = $data['description_competences'];
+            $display = $data['display_competences'] == "1" ? "checked" : "";
         }
     }
 
@@ -40,6 +42,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##NAME_COMP##]", $name, $html);
     $html = str_replace("[##DESC_COMP##]", $desc, $html);
     $html = str_replace("[##FIND_COMP##]", $find, $html);
+    $html = str_replace("[##DISPLAY_COMP##]", $display, $html);
     $page_comp->setContenu($html);
     $page_comp->addJs("./src/js/competences.js");
 } else {

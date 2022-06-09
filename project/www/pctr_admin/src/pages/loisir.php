@@ -12,6 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/loisir.html', true);
 
     $id = 0;
+    $display = "checked";
     $name = "";
     $desc = "";
     $find = "";
@@ -26,6 +27,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['name_loisir'];
             $desc = $data['description_loisir'];
+            $display = $data['display_loisir'] == "1" ? "checked" : "";
         }
     }
 
@@ -40,6 +42,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##NAME_LOISI##]", $name, $html);
     $html = str_replace("[##DESC_LOISI##]", $desc, $html);
     $html = str_replace("[##FIND_LOISI##]", $find, $html);
+    $html = str_replace("[##DISPLAY_LOISI##]", $display, $html);
     $page_loisir->setContenu($html);
     $page_loisir->addJs("./src/js/loisir.js");
 } else {

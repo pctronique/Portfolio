@@ -23,6 +23,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $id = 0;
     $img = "./src/img/icons8-ajouter-une-image-90.png";
+    $display = "checked";
     $name = "";
     $desc = "";
     $src = "";
@@ -40,6 +41,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $id = $_GET['id'];
             $name = $data['nom_produit'];
+            $display = $data['display_produit'] == "1" ? "checked" : "";
             $desc = $data['description_produit'];
             $src = $data['src_produit'];
             /*if(!empty($data["avatar_user"])) {
@@ -132,6 +134,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##LANGP_PROD##]", $langp, $html);
     $html = str_replace("[##FRAMW_PROD##]", $framW, $html);
     $html = str_replace("[##FIND_PROD##]", $find, $html);
+    $html = str_replace("[##DISPLAY_PROD##]", $display, $html);
     $html = str_replace("[##n##]", "<br />", $html);
     $page_prod->setContenu($html);
     $page_prod->addCss("./src/css/addimg.css");

@@ -20,7 +20,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
 
     $sgbd = connexion_sgbd();
     if(!empty($sgbd)) {
-        $res = $sgbd->prepare("SELECT * FROM produits WHERE id_produit=:id_produit");
+        $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit INNER JOIN categorie ON cat_produit.id_cat=categorie.id_cat WHERE produits.id_produit=:id_produit AND display_produit=1 AND categorie.display_cat=1");
         $res->execute([":id_produit" => $id_desc]);
         if($res->rowCount() > 0) {
             $data = $res->fetch(PDO::FETCH_ASSOC);

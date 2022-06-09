@@ -20,7 +20,7 @@ $cats = "";
 
 $sgbd = connexion_sgbd();
 if(!empty($sgbd)) {
-    $res = $sgbd->prepare("SELECT * FROM categorie");
+    $res = $sgbd->prepare("SELECT * FROM categorie WHERE display_cat=1");
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {

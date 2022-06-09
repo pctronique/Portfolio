@@ -26,7 +26,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && 
         foreach ($dataForm as $valueLine) {
             $logos .= addLogo($valueLine['nom_competences_logo'], $valueLine['src_competences_logo']);
         }
-        $res = $sgbd->prepare("SELECT * FROM competences WHERE id_user=:id_user ORDER BY id_competences DESC");
+        $res = $sgbd->prepare("SELECT * FROM competences WHERE id_user=:id_user AND display_competences=1 ORDER BY id_competences DESC");
         $res->execute([":id_user" => USER_ID]);
         $dataExp = $res->fetchAll(PDO::FETCH_ASSOC);
         foreach ($dataExp as $valueLine) {

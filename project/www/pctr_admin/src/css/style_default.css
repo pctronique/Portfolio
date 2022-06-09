@@ -52,3 +52,11 @@ table img {
 .list-column .mb-3 {
     margin: 0px 15px;
 }
+
+.labelDisplay {
+    margin: 0px 5px;
+}
+
+.img_add_contenu {
+    width: 50px;
+}

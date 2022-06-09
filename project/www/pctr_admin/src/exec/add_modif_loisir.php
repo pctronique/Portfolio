@@ -10,7 +10,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     
     $values = array(
                 ":name" => "",
-                ":desc" => ""
+                ":desc" => "",
+                ":display" => 0
             );
 
     $id = 0;
@@ -27,6 +28,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     if(array_key_exists("description", $_POST) && !empty($_POST['description'])) {
         $values[":desc"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
+    }
+
+    if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
+        $values[":display"] = 1;
     }
 
     /*Connexion*/
@@ -61,10 +66,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE loisir SET name_loisir=:name, description_loisir=:desc WHERE id_loisir=:id");
+                    $res = $sgbd->prepare("UPDATE loisir SET name_loisir=:name, description_loisir=:desc, display_loisir=:display WHERE id_loisir=:id");
                     $res->execute($values);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO loisir (name_loisir, description_loisir, id_user) VALUES (:name, :desc, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO loisir (name_loisir, description_loisir, display_loisir, id_user) VALUES (:name, :desc, :display, :id_user)");
                     $res->execute($values);
                 }
                 echo "true";

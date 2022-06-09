@@ -1,9 +1,15 @@
 <section class="container mt-5">
-    <h2 class="text-light text-center">Parcours</h2>
+    <h2 class="text-light text-center"><a href="./?ind=parc"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Parcours</h2>
 </section>
 <section class="container mt-5">
     <form id="form-parcours" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_PARC##]" />
+        <div class="mb-3 d-flex justify-content-center form-check form-switch ">
+            <input class="form-check-input" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_PARC##]>
+            <label class="form-check-label text-light labelDisplay" for="checkDisplay">
+                Afficher sur la page
+            </label>
+        </div>
         <div class="mb-3">
             <div class="form-check">
                 <input class="form-check-input" type="radio" name="type" id="radiosExp" value="exp" [##EXP_PARC##]>

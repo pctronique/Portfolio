@@ -30,7 +30,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
     /*Connexion*/
     include_once dirname(__FILE__) . '/../fonctions/connexion_sgbd.php';
 
-    $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit WHERE id_user=:id_user LIMIT 5");
+    $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit INNER JOIN categorie ON cat_produit.id_cat =categorie.id_cat WHERE produits.id_user=:id_user AND display_produit=1 AND display_cat=1 LIMIT 5");
     $res->execute([":id_user" => USER_ID]);
             
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
