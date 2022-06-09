@@ -38,7 +38,7 @@
     flex-direction: column;
     flex-wrap: nowrap;
     align-items: stretch;
-    border-radius: 20px;
+    /*border-radius: 20px;*/
 }
 
 .produit .title {
@@ -103,6 +103,10 @@
 
 .button-fake:hover {
     cursor:pointer;
+}
+
+#section-main {
+    margin-bottom: -35px;
 }
 
 /**********************/

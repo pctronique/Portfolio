@@ -63,7 +63,7 @@ if(document.querySelector("#txt_matrix") != undefined) {
 }
 
 function matrix() {
-	let header_main = document.getElementById('header-main').offsetHeight;
+	let header_main = document.getElementById('header-main');
 	let footer_main = document.getElementById('footer-main');
 	let contenu_main = document.getElementById('contenu-main');
 	//making the canvas full screen
@@ -75,6 +75,7 @@ function matrix() {
 	}
 	if(contenu_main.offsetHeight < windowHeight) {
 		body_matrix.height = windowHeight;
+		//contenu_main.style.height = "90%";
 	}
 	if(screen.width < window.innerWidth) {
 		body_matrix.width = screen.width;

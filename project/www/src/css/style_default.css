@@ -175,14 +175,20 @@ footer #taking li {
 }
 
 #text_3d {
-  position: unset;
-  margin-top: -28px;
-  width: 800px;
-  height: 171px;
-  margin-right: auto;
-  margin-left: auto;
-  box-sizing: border-box;
-  overflow: hidden;
+    top: 0;
+    position: unset;
+    margin-top: -35px;
+    width: 800px;
+    height: 171px;
+    margin-right: auto;
+    margin-left: auto;
+    box-sizing: border-box;
+    overflow: hidden;
+}
+
+#section-main {
+    width: 100%;
+    height: 100%;
 }
 
 /*h2 {
@@ -228,9 +234,9 @@ section {
 }
 
 #choix-background {
+    display: inline;
     margin-left: 5px;
     color: #808080ab;
-    position: absolute;
     border: 1px #808080ab solid;
     padding: 5px;
 }

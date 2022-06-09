@@ -45,43 +45,46 @@ let targetObject = undefined;
 
 function recupererAngle(e) {
     let pos = posObject3D()
-    console.log(targetObject.querySelector(".object-3D").style.transform);
     let transform = targetObject.querySelector(".object-3D").style.transform;
-    if(transform != undefined) {
+    if(transform != undefined && transform.trim() != "") {
         if(transform.indexOf(")")) {
             let values = transform.split(")");
             values.forEach(element => {
                 if(element.indexOf("(")) {
-                    let valueTransform = transform.split(")");
-                    let valueAngle = parseInt(valueTransform.replaceAll('-', '').replaceAll('deg', '').trim());
-                    if(valueTransform[0].trim() == "rotateX") {
-                        pos.x = valueAngle;
-                    } else if(valueTransform[0].trim() == "rotateY") {
-                        pos.y = valueAngle;
-                    } else if(valueTransform[0].trim() == "rotateZ") {
-                        pos.z = valueAngle;
+                    let valueTransform = element.split("(");
+                    if(valueTransform[1] != undefined) {
+                        let valueAngle = parseInt(valueTransform[1].replaceAll('deg', '').trim());
+                        if(!isNaN(valueAngle)) {
+                            if(valueTransform[0].trim() == "rotateX") {
+                                pos.x = valueAngle;
+                            } else if(valueTransform[0].trim() == "rotateY") {
+                                pos.y = valueAngle;
+                            } else if(valueTransform[0].trim() == "rotateZ") {
+                                pos.z = valueAngle;
+                            }
+                        }
                     }
                 }
             });
         }
     }
+    return pos;
 }
 
 function object_move(e) {
     if(targetObject !== undefined) {
-        console.log(targetObject);
         let pos = recupererAngle();
         let diffPosObject3D = posObject3D();
         diffPosObject3D.x = mouseObject3D.x-mouseStartObject3D.x;
         diffPosObject3D.y = mouseObject3D.y-mouseStartObject3D.y;
         
-        positionObject3D.y += (diffPosObject3D.x*rotationForceObject3D);
-        positionObject3D.x -= (diffPosObject3D.y*rotationForceObject3D);
+        pos.y += (diffPosObject3D.x*rotationForceObject3D);
+        pos.x -= (diffPosObject3D.y*rotationForceObject3D);
 
         mouseStartObject3D.x = mouseObject3D.x;
         mouseStartObject3D.y = mouseObject3D.y;
         
-        targetObject.querySelector(".object-3D").style.transform = 'rotateX(' + positionObject3D.x + 'deg) rotateY(' + positionObject3D.y + 'deg)';
+        targetObject.querySelector(".object-3D").style.transform = 'rotateX(' + pos.x + 'deg) rotateY(' + pos.y + 'deg)';
         
         recupererAngle(targetObject);
     }

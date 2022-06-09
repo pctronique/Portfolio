@@ -40,3 +40,15 @@ table img {
 .comp-contenu figure {
     margin: 25px;
 }
+
+#checkProgress:checked ~ #formDateEndDisplay {
+    display: none;
+}
+
+.list-column {
+    display: flex;
+}
+
+.list-column .mb-3 {
+    margin: 0px 15px;
+}

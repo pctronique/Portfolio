@@ -32,8 +32,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
                 $src_img = "./data/img/".$dataPhoto['src_photo'];
             }
-                $name_img = "image du project ".$data['nom_produit'];
-                $description = str_replace("\n", "<br />", $data['description_produit']);
+            $name_img = "image du project ".$data['nom_produit'];
+            $description = str_replace("\n", "<br />", $data['description_produit']);
 
             $resCat = $sgbd->prepare("SELECT * FROM categorie INNER JOIN cat_produit ON categorie.id_cat=cat_produit.id_cat INNER JOIN produits ON produits.id_produit=cat_produit.id_produit WHERE produits.id_produit=:id_produit");
             $resCat->execute([":id_produit" => $id_desc]);
