@@ -62,3 +62,51 @@
     /*color: rgb(0 0 0 / 65%);*/
     text-shadow: 2px -2px rgb(162 162 163 / 87%), 1px -1px #9190bfab;
 }
+
+.text-3d-and-logo {
+    max-width: 800px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 19px;
+}
+
+.text-3d-and-logo .box-3D-logo {
+margin-top: -4px;
+}
+
+.logo-info-3d {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.box-3D-logo {
+    object-fit: contain;
+    display: flex;
+    width: 35px;
+    height: 35px;
+    opacity: 0.6;
+}
+
+.box-3D-logo-mov {
+    opacity: 0;
+    /*width: 53px;
+    height: 53px;*/
+}
+
+.logo-info-3d:hover .box-3D-logo {
+    opacity: 1;
+}
+
+.logo-info-3d:hover .box-3D-logo-mov {
+    opacity: 1;
+}
+
+.box-3D  .box-3D-logo {
+    margin-top: 8px;
+    margin-right: 8px;
+}

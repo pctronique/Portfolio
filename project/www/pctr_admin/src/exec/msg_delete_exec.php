@@ -36,6 +36,6 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         echo "Désolé, une erreur c'est produite lors du téléchargement de la page.";
     }
 } else {
-    echo "error 404";
+    header("Status: 403");
 }
       

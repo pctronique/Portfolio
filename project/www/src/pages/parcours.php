@@ -52,6 +52,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $cv_downlod = "./data/file/".$data['src_cv'];
         }
+    } else {
+        $page_acc->setNum_error(501);
     }
 
     $html = str_replace("[##formation##]", $formation, $html);
@@ -61,4 +63,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
     $page_parc->addCss("./src/css/style_parcours.css");
     $page_parc->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

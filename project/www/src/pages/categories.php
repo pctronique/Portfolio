@@ -57,7 +57,15 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
                     $contenu_cat .= addDesc($valueLine['id_produit'], $valueLine['nom_produit'], "")."\n";
                 }
             }
+        } else {
+            $id_cat = 0;
         }
+    } else {
+        $page_cat->setNum_error(501);
+    }
+
+    if($id_cat == 0 && $page_cat->getNum_error() == 0) {
+        $page_cat->setNum_error(404);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/categories.html', true);
@@ -68,4 +76,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
     $page_cat->addCss("./src/css/style_categorie.css");
     $page_cat->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

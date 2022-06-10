@@ -39,7 +39,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cv", $valueLine["id_cv"], $valueLine["title_cv"]);
+        $find .= add_td_find("cv", $valueLine["id_cv"], $valueLine["title_cv"], $valueLine['display_cv'] == "1", true);
     }
 
     $html = str_replace("[##SRC_CV##]", $src, $html);

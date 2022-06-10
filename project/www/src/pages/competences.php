@@ -32,6 +32,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && 
         foreach ($dataExp as $valueLine) {
             $comp .= addComp($valueLine['title_competence'], $valueLine['description_competences']);
         }
+    } else {
+        $page_acc->setNum_error(501);
     }
 
     $html = str_replace("[##LOGOS##]", $logos, $html);
@@ -40,4 +42,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && 
     $page_compet->addCss("./src/css/style_competences.css");
     $page_compet->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

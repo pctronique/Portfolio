@@ -46,8 +46,8 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             echo "Une erreur est survenu lors de la connexion.";
         }
     } else {
-        echo "error 404";
+        header("Status: 403");
     }
 } else {
-    echo "error 404";
+    header("Status: 403");
 }

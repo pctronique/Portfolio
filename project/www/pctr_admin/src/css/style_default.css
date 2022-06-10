@@ -19,6 +19,7 @@ body {
 
 table img {
     width: 35px;
+    min-width: 15px;
 }
 
 .dropdown {

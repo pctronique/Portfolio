@@ -131,5 +131,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     }
 
 } else {
-    echo "error 404";
+    header("Status: 403");
 }

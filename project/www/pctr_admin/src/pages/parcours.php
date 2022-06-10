@@ -69,7 +69,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("comp", $valueLine["id_parcours"], $valueLine["nom_parcours"]);
+        $find .= add_td_find("comp", $valueLine["id_parcours"], $valueLine["nom_parcours"], $valueLine['display_parcours'] == "1", true);
     }
 
     $html = str_replace("[##ID_PARC##]", $id, $html);

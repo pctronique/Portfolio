@@ -85,6 +85,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 $lang_framw .= '</figure>'."\n";
             }
         }
+    } else {
+        $page_acc->setNum_error(501);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
@@ -99,4 +101,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $page_desc->addJs("./src/js/drag_drop.js");
     $page_desc->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

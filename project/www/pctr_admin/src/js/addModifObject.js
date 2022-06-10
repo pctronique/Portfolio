@@ -2,6 +2,8 @@ let idform = "";
 let namePageExec = "";
 let namePageDeletExec = "";
 let namePageModifExec = "";
+let namePageDisplExec = "";
+let namePageFindExec = "";
 let nameLienModifExec = "";
 
 function valiadtionForm(e) {
@@ -56,9 +58,41 @@ function modifObject(e) {
    window.location.href = nameLienModifExec+"&id="+id;
 }
 
+function add_td_find(name_id, id, name, display = false, check_display = false) {
+   let td = "<tr id=\""+name_id+"_"+id+"\">";
+   td += "<td>";
+   td += "<a href=\"#\"><img class=\"delete_row\" id=\"delete_"+id+"\" src=\"./src/img/icons8-supprimer-pour-toujours-90_white.svg\" /></a>";
+   td += "</td>";
+   td += "<td>";
+   td += "<a href=\"#\"><img class=\"modif_row\" id=\"modif_"+id+"\" src=\"./src/img/icons8-modifier_white.svg\" /></a>";
+   td += "</td>";
+   if(check_display) {
+       td += "<td>";
+       td += "<div class=\"form-check form-switch\">";
+       td += "<input class=\"form-check-input display_row\" type=\"checkbox\" name=\"display\" value=\"true\" id=\"checkDisplay_"+id+"\" "+(display?"checked":"")+">";
+       td += "</div>";
+       td += "</td>";
+   }
+   td += "<td class=\"name\">";
+   td += name;
+   td += "</td>";
+   td += "</tr>";
+   return td;
+}
+
 document.querySelectorAll("#validation").forEach((element) => {
    element.addEventListener("click", valiadtionForm);
 });
+
+function display_change(e) {
+   // pour ne pas prendre l'adresse de l'action du formulaire.
+   e.preventDefault();
+   let values = {
+      id: e.target.id.split("_")[1]
+   };
+   console.log(values.id);
+   console.log(e.target.checked);
+}
 
 /**
  * activer les boutons de la page
@@ -77,6 +111,13 @@ document.querySelectorAll("#validation").forEach((element) => {
      .querySelectorAll(".modif_row")
      .forEach((element) => {
         element.addEventListener("click", modifObject);
+     });
+
+     /* activer le bouton de suppression */
+     element0
+     .querySelectorAll(".display_row")
+     .forEach((element) => {
+        element.addEventListener("change", display_change);
      });
    });
 }

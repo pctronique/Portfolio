@@ -122,7 +122,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cat", $valueLine["id_produit"], $valueLine["nom_produit"]);
+        $find .= add_td_find("cat", $valueLine["id_produit"], $valueLine["nom_produit"], $valueLine['display_produit'] == "1", true);
     }
 
     $html = str_replace("[##IMG_PROD##]", $img, $html);

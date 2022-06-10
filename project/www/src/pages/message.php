@@ -10,4 +10,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "msg" && d
     $page_msg->addJs("./src/js/message.js");
     $page_msg->setContenu(file_get_contents(dirname(__FILE__) . '/../templates/message.html', true));
 
+} else {
+    header("Status: 403");
 }

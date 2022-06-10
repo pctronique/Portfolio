@@ -34,6 +34,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
 
             $informations .= '</ul>'."\n";
         }
+    } else {
+        $page_acc->setNum_error(501);
     }
 
     $html = str_replace("[##descriptions##]", $description, $html);
@@ -42,4 +44,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
     $page_propos->addCss("./src/css/a_propos.css");
     $page_propos->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

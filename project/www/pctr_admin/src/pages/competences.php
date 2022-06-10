@@ -35,7 +35,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("info", $valueLine["id_competences"], $valueLine["title_competence"]);
+        $find .= add_td_find("info", $valueLine["id_competences"], $valueLine["title_competence"], $valueLine['display_competences'] == "1", true);
     }
 
     $html = str_replace("[##ID_COMP##]", $id, $html);
