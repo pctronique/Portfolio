@@ -17,7 +17,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         
         /* se proteger des erreurs de requete sql (pour ne pas afficher l'erreur a l'ecran) */
         try {
-            $res = $sgbd->prepare("UPDATE cv SET display_cv=:display WHERE id_cv=:id");
+            $res = $sgbd->prepare("UPDATE parcours SET display_parcours=:display WHERE id_parcours=:id");
             $res->execute([
                 ":id" => $_POST['id'],
                 ":display" => ($_POST['display']?1:0)
@@ -34,4 +34,3 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 } else {
     header("Status: 403");
 }
-

@@ -22,6 +22,10 @@ table img {
     min-width: 15px;
 }
 
+table .colum_display {
+    width: 35px;
+}
+
 .dropdown {
     margin-right: 15px;
 }
@@ -42,7 +46,7 @@ table img {
     margin: 25px;
 }
 
-#checkProgress:checked ~ #formDateEndDisplay {
+div #checkProgress:checked ~ div#formDateEndDisplay {
     display: none;
 }
 
@@ -60,4 +64,41 @@ table img {
 
 .img_add_contenu {
     width: 50px;
+}
+
+.custom-control-display {
+    border-color: red !important;
+    background-color: #ff7c00 !important;
+}
+
+.custom-control-display:checked {
+    border-color: green !important;
+    background-color: #01ff01 !important;
+}
+
+#block-exp-form {
+    box-sizing: border-box;
+    overflow: hidden;
+    border: black 1px solid;
+    border-radius: 15px;
+}
+#block-exp-form label {
+    background-color: rgb(221, 221, 221);
+    color: gray;
+}
+#block-exp-form #radiosExp:checked ~ #labelRadiosExp,
+#block-exp-form #radiosForma:checked ~ #labelRadiosForma {
+    background-color: #1cff33;
+    color: #212529;
+}
+
+#block-exp-form #radiosExp:checked ~ #labelRadiosExp {
+    border-right: rgb(0, 0, 0) 1px solid;
+}
+#block-exp-form #radiosForma:checked ~ #labelRadiosForma {
+    border-left: rgb(0, 0, 0) 1px solid;
+}
+
+#block-exp-form input[type="radio"] {
+    display: none;        
 }

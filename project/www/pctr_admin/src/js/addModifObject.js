@@ -88,10 +88,26 @@ function display_change(e) {
    // pour ne pas prendre l'adresse de l'action du formulaire.
    e.preventDefault();
    let values = {
-      id: e.target.id.split("_")[1]
+      "id": e.target.id.split("_")[1],
+      "display": e.target.checked
    };
-   console.log(values.id);
+   let lien = "./src/exec/"+namePageDisplExec+".php";
+   let get_id = function_GET('id');
    console.log(e.target.checked);
+   /*envoyer les informations du message sur la page php a partir d'un formulaire */
+   fetch_post(lien, values).then(function (
+      response
+   ) {
+      /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
+      if (response != "true") {
+         e.target.checked = !e.target.checked;
+         alert(response);
+      } else {
+         if(get_id != undefined && get_id==values.id) {
+            document.getElementById("checkDisplay").checked = values.display;
+         }
+      }
+   });
 }
 
 /**

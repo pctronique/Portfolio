@@ -3,8 +3,8 @@
 </section><section class="container mt-5">
     <form id="form-competence" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_COMP##]" />
-        <div class="mb-3 d-flex justify-content-center form-check form-switch ">
-            <input class="form-check-input" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_COMP##]>
+        <div class="mb-3 d-flex justify-content-center form-check form-switch">
+            <input class="form-check-input custom-control-display" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_COMP##]>
             <label class="form-check-label text-light labelDisplay" for="checkDisplay">
                 Afficher sur la page
             </label>
@@ -28,7 +28,7 @@
             <tr>
                 <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
                 <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
-                <th></th>
+                <th class="colum_display"></th>
                 <th>titre</th>
             </tr>
         </thead>

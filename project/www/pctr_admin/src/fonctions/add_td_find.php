@@ -19,7 +19,7 @@ if (!function_exists('add_td_find')) {
         if($check_display) {
             $td .= "<td>";
             $td .= "<div class=\"form-check form-switch\">";
-            $td .= "<input class=\"form-check-input display_row\" type=\"checkbox\" name=\"display\" value=\"true\" id=\"checkDisplay_".$id."\" ".($display?"checked":"").">";
+            $td .= "<input class=\"form-check-input display_row custom-control-display colum_display\" type=\"checkbox\" name=\"display\" value=\"true\" id=\"checkDisplay_".$id."\" ".($display?"checked":"").">";
             $td .= "</div>";
             $td .= "</td>";
         }
@@ -28,5 +28,18 @@ if (!function_exists('add_td_find')) {
         $td .= "</td>";
         $td .= "</tr>";
         return $td;
+    }
+}
+
+// verifier qu'on n'a pas deja creer la fonction
+if (!function_exists('add_td_find_line_js')) {
+    function add_td_find_line_js(?string $name_id, ?string $id, ?string $name, bool $display = false, bool $check_display = false): ?array {
+        return [
+            "name_id" => $name_id,
+            "id" => $id,
+            "name" => $name,
+            "display" => $display,
+            "check_display" => $check_display,
+        ];
     }
 }
