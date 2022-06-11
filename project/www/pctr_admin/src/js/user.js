@@ -25,4 +25,12 @@ function valiadtionModifPass(e) {
      });
 }
 
+// Replace the textarea #example with SCEditor
+var textarea = document.getElementById('formDescription');
+sceditor.create(textarea, {
+    format: 'bbcode',
+    icons: 'monocons',
+    style: './src/bbcode_editeur/minified/themes/defaultdark.min.css'
+});
+
 document.getElementById("validation_pass").addEventListener("click", valiadtionModifPass);

@@ -102,3 +102,31 @@ div #checkProgress:checked ~ div#formDateEndDisplay {
 #block-exp-form input[type="radio"] {
     display: none;        
 }
+
+.code_bbcode {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+code:before {
+    position: absolute;
+    content: 'Code:';
+    top: -1.35em;
+    left: 0;
+    min-height: 200px;
+    resize: vertical;
+}
+code {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 1.5em;
+    position: relative;
+    background: #eee;
+    border: 1px solid #aaa;
+    white-space: pre;
+    padding: .25em;
+}
+code:before, code {
+    display: block;
+    text-align: left;
+}

@@ -89,7 +89,7 @@ function display_change(e) {
    e.preventDefault();
    let values = {
       "id": e.target.id.split("_")[1],
-      "display": e.target.checked
+      "display": (e.target.checked?1:0)
    };
    let lien = "./src/exec/"+namePageDisplExec+".php";
    let get_id = function_GET('id');
@@ -104,7 +104,7 @@ function display_change(e) {
          alert(response);
       } else {
          if(get_id != undefined && get_id==values.id) {
-            document.getElementById("checkDisplay").checked = values.display;
+            document.getElementById("checkDisplay").checked = e.target.checked;
          }
       }
    });

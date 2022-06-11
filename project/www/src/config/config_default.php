@@ -25,6 +25,10 @@ if(!defined("DATA_WEB")) {
     define("DATA_WEB", RACINE."data/");
 }
 
+if(!defined("RACINE_ERROR")) {
+    define("RACINE_ERROR", RACINE."error/");
+}
+
 if(!defined("NAME_SITE")) {
     define("NAME_SITE", "Office du tourisme de Springfield");
 }

@@ -78,7 +78,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
   $html = str_replace("#list_msg#",$list,str_replace("#select_msg#", $select, $remp_box_msg));
 
 
-  $page_msg->addCss("./src/css/style-message.css");
+  $page_msg->addCss("./src/css/style_message.css");
   $page_msg->addJs("./../../src/js/popup.js");
   $page_msg->addJs("./src/js/message.js");
   $page_msg->setContenu($html);
