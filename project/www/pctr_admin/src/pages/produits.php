@@ -6,12 +6,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('email', $_SESSION)) {
 
     function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, bool $checked = false) {
-        $checkbox = "<input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
+        $checkbox = "<li class=\"row-prod list-group-item\"><input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
         $checkbox .= $checked ? "checked" : "";
         $checkbox .= " >"."\n";
-        $checkbox .= "<label class=\"form-check-label text-light\" for=\"flexCheck".$type.$name."\">"."\n";
+        $checkbox .= "<label class=\"form-check-label text-dark\" for=\"flexCheck".$type.$name."\">"."\n";
         $checkbox .= $title."\n";
-        $checkbox .= "</label>[##n##]"."\n";
+        $checkbox .= "</label></li>"."\n";
         return $checkbox;
     }
 
@@ -138,9 +138,9 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##n##]", "<br />", $html);
     $page_prod->setContenu($html);
     $page_prod->addCss("./src/css/addimg.css");
+    $page_prod->addCss("./src/css/style_produits.css");
     $page_prod->addJs("./src/js/addimg.js");
     $page_prod->addJs("./src/js/produits.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

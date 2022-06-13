@@ -46,6 +46,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_loisir->setContenu($html);
     $page_loisir->addJs("./src/js/loisir.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

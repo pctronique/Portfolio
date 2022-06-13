@@ -83,5 +83,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
   $page_msg->addJs("./src/js/message.js");
   $page_msg->setContenu($html);
 } else {
-  echo "error 404";
+  header("Status: 403");
 }

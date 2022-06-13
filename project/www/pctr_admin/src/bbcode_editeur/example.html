@@ -38,12 +38,16 @@
 				display: block;
 				text-align: left;
 			}
+			.test-bbcode {
+				border: gray 1px solid;
+				padding: 10px;
+			}
 		</style>
 	</head>
 	<body>
-		<form action="" method="post">
+		<form action="" id="bb-code-test" method="post">
 			<div>
-				<textarea id="example" style="height:300px;width:600px;">[center][size=3][b]BBCode SCEditor[/b][/size][/center]
+				<textarea id="example" name="test" style="height:300px;width:600px;">[center][size=3][b]BBCode SCEditor[/b][/size][/center]
 
 Give it a try! :)
 
@@ -66,7 +70,14 @@ Just type [b]:[/b]) and it should be converted into :) as you type.</textarea>
 					<option value="square">Square</option>
 				</select>
 			</div>
+			<button id="validate">valider</button>
 		</form>
+
+		<div class="test-bbcode" id="display-text"></div>
+		<div class="test-bbcode" id="display-test"></div>
+		<div class="test-bbcode" id="display-html"></div>
+		<div class="test-bbcode" id="display-test-0"></div>
+		<div class="test-bbcode" id="display-html-0"></div>
 
 
 		<script>
@@ -87,5 +98,39 @@ Just type [b]:[/b]) and it should be converted into :) as you type.</textarea>
 		</script>
 
 		<p>SCEditor is licensed under the <a href="http://www.opensource.org/licenses/mit-license.php">MIT</a></p>
+	
+		<script src="./../../../src/js/le_fetch.js"></script>
+		<script>
+			document.getElementById("validate").addEventListener("click", function(event) {
+				// pour ne pas prendre l'adresse de l'action du formulaire.
+				event.preventDefault();
+			let doc0 = document.querySelector("iframe").contentDocument;
+			let origine0 = doc0.body.innerHTML;
+			console.log("0001");
+				/* envoyer les informations du message sur la page php a partir d'un formulaire */
+   fetch_form("./test_bbcode_to_html.php", "bb-code-test").then(function (
+      response
+    ) {
+        /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
+
+        if (response.split("[##HTML##]")[0] == "true") {
+			console.log("0001");
+			let doc = document.querySelector("iframe").contentDocument;
+			document.getElementById("display-text").innerHTML = response.split("[##HTML##]")[1];
+			document.getElementById("display-test").innerHTML = response.split("[##HTML##]")[2];
+			let html = response.split("[##HTML##]")[2].replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br />");
+			document.getElementById("display-html").innerHTML = html;
+			let origine = doc.body.innerHTML;
+			document.getElementById("display-test-0").innerHTML = origine;
+			console.log();
+			document.getElementById("display-html-0").innerHTML = origine.replaceAll("<", "&lt;").replaceAll(">", "&gt;").replaceAll("\n", "<br />");
+
+        } else {
+            alert(response);
+        }
+    });
+
+			})
+		</script>
 	</body>
 </html>

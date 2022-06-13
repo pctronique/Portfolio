@@ -53,6 +53,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_cat->addJs("./src/js/addimg.js");
     $page_cat->addJs("./src/js/categories.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

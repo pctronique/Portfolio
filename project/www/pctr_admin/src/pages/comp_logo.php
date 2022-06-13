@@ -48,6 +48,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_comp_logo->setContenu($html);
     $page_comp_logo->addJs("./src/js/comp_logo.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

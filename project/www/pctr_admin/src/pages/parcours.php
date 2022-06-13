@@ -88,6 +88,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_parc->setContenu($html);
     $page_parc->addJs("./src/js/parcours.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

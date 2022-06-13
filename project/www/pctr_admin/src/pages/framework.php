@@ -40,6 +40,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_framW->setContenu($html);
     $page_framW->addJs("./src/js/framework.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

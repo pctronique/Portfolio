@@ -50,6 +50,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_add_logo->addJs("./src/js/addimg.js");
     $page_add_logo->addJs("./src/js/add_logo.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

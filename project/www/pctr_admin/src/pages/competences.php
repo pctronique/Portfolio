@@ -46,6 +46,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_comp->setContenu($html);
     $page_comp->addJs("./src/js/competences.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

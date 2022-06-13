@@ -35,7 +35,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
             $informations .= '</ul>'."\n";
         }
     } else {
-        $page_acc->setNum_error(501);
+        $page_acc->setNum_error(500);
     }
 
     $html = str_replace("[##descriptions##]", $description, $html);

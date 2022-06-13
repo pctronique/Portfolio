@@ -40,6 +40,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_langP->setContenu($html);
     $page_langP->addJs("./src/js/language.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

@@ -61,7 +61,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
             $id_cat = 0;
         }
     } else {
-        $page_cat->setNum_error(501);
+        $page_cat->setNum_error(500);
     }
 
     if($id_cat == 0 && $page_cat->getNum_error() == 0) {

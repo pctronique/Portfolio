@@ -47,6 +47,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_user->addJs("./src/js/user.js");
 
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

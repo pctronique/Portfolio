@@ -49,7 +49,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
             $i++;
         }
     } else {
-        $page_acc->setNum_error(501);
+        $page_acc->setNum_error(500);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);

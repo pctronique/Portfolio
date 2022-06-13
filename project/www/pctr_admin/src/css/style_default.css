@@ -52,6 +52,9 @@ div #checkProgress:checked ~ div#formDateEndDisplay {
 
 .list-column {
     display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .list-column .mb-3 {

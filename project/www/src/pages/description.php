@@ -84,9 +84,15 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 $lang_framw .= '</figure>'."\n";
                 $lang_framw .= '</figure>'."\n";
             }
+        } else {
+            $page_desc = 0;
         }
     } else {
-        $page_acc->setNum_error(501);
+        $page_acc->setNum_error(500);
+    }
+    
+    if($id_desc == 0 && $page_desc->getNum_error() != 0) {
+        $page_desc->setNum_error(404);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
@@ -100,6 +106,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $page_desc->addCss("./src/css/style_description.css");
     $page_desc->addJs("./src/js/drag_drop.js");
     $page_desc->setContenu($html);
+
 
 } else {
     header("Status: 403");

@@ -48,6 +48,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_disp_cv->setContenu($html);
     $page_disp_cv->addJs("./src/js/display_cv.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }
