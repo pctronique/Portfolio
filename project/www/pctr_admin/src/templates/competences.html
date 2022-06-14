@@ -1,6 +1,7 @@
 <section class="container mt-5">
     <h2 class="text-light text-center"><a href="./?ind=comp"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Compétences</h2>
-</section><section class="container mt-5">
+</section>
+<section class="container mt-5">
     <form id="form-competence" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_COMP##]" />
         <div class="mb-3 d-flex justify-content-center form-check form-switch">
@@ -20,6 +21,13 @@
         <button id="validation" class="btn btn-dark d-grid mx-auto">
             Valider
         </button>
+    </form>
+</section>
+<section class="container mt-5">
+    <form id="form_find">
+        <label for="recherche" class="form-label text-light m-2">Rechercher</label>
+        <input type="text" class="form-control m-2" id="recherche" name="recherche">
+        <button id="bt_find" type="submit" id="find" class="btn btn-dark m-2">Rechercher</button>
     </form>
 </section>
 <section class="container mt-5">

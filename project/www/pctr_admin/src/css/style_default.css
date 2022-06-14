@@ -133,3 +133,14 @@ code:before, code {
     display: block;
     text-align: left;
 }
+
+#form_find {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#recherche {
+    width: 320px;
+}

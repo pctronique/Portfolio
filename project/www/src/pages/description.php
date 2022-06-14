@@ -85,13 +85,13 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 $lang_framw .= '</figure>'."\n";
             }
         } else {
-            $page_desc = 0;
+            $id_desc = 0;
         }
     } else {
         $page_acc->setNum_error(500);
     }
     
-    if($id_desc == 0 && $page_desc->getNum_error() != 0) {
+    if($id_desc == 0 || $page_desc->getNum_error() != 0) {
         $page_desc->setNum_error(404);
     }
 
@@ -102,7 +102,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $html = str_replace("[##NAME_IMG##]", $name_img, $html);
     $html = str_replace("[##LANG_FRAMW##]", $lang_framw, $html);
     $html = str_replace("[##DESC##]", $description, $html);
-
+    
     $page_desc->addCss("./src/css/style_description.css");
     $page_desc->addJs("./src/js/drag_drop.js");
     $page_desc->setContenu($html);

@@ -14,6 +14,10 @@ if (!function_exists('addBox3D')) {
         $addBox = '<figure class="box-3D box-3D-mov">'."\n";
         $addBox .= '<figure class="object-3D">'."\n";
         $addBox .= '<figure class="box-3D-front box-3D-default box-3D-color-glass box-3D-size">'."\n";
+        $addBox .= '<div class="logo-info-3d">'."\n";
+        $addBox .= '<img class="box-3D-logo-mov box-3D-logo" src="./src/img/360-degrees_3.svg" alt="mouvement 3D" />'."\n";
+        $addBox .= '<img class="box-3D-logo image-clignote" src="./src/img/Shiny-3d.svg" alt="objet 3D" />'."\n";
+        $addBox .= '</div>'."\n";
         $addBox .= '<figure class="contenu-on-cat">'.$contenu.'</figure>'."\n";
         $addBox .= '</figure>'."\n";
         $addBox .= '</figure>'."\n";

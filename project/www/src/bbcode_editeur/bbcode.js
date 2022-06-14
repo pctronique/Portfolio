@@ -435,16 +435,16 @@ function create_buttons_end_bbcode() {
     button_list.classList.add("bbcode_list");
 
     // creation d'une div pour l'editer en format html
-    let bbcode_type = document.createElement("button");
+    let bbcode_bt_type = document.createElement("button");
 
-    bbcode_type.classList.add("bbcode_type");
-    bbcode_type.classList.add("bbcode_btn");
+    bbcode_bt_type.classList.add("bbcode_type");
+    bbcode_bt_type.classList.add("bbcode_btn");
 
-    bbcode_type.innerHTML = "&lt;&gt;";
+    bbcode_bt_type.innerHTML = "&lt;&gt;";
 
-    bbcode_type.addEventListener("click", bbcode_type);
+    bbcode_bt_type.addEventListener("click", bbcode_type);
 
-    button_list.appendChild(bbcode_type);
+    button_list.appendChild(bbcode_bt_type);
 
     return button_list;
 }
@@ -615,7 +615,7 @@ function display_text(edit) {
  * @param {*} edithtml l'editeur html
  * @param {*} type le type de bbcode (exemple "b" ou "title");
  */
-function remplaceSelectHtml(edithtml, type) {
+function remplaceSelectHtml(edithtml, type,info="") {
     // recuperation du texte selectionne dans l'editeur html
     let sel;
     if (document.getSelection) {    // all browsers, except IE before version 9
@@ -702,8 +702,8 @@ function remplaceTxt(text, allTab, posStart, posEnd) {
  * @param {*} type le type de bbcode (exemple "b" ou "title");
  * @returns retourne le texte modifier de celui-ci
  */
-function remplaceSelectText(edit, type) {
-    return remplaceTxt(edit.value, addBalise(0, type), edit.selectionStart, edit.selectionEnd);
+function remplaceSelectText(edit, type, info="") {
+    return remplaceTxt(edit.value, addBalise(0, type, info), edit.selectionStart, edit.selectionEnd);
 }
 
 /**
@@ -718,22 +718,20 @@ function addBalise(intType, type, info="") {
     // recupere le tableau des valeur bbcode et html
     let allTab = tab_values();
     // le choix entre bbcode ou html
-    let tab = replace_value_bb(type, info);
+    let tab = replace_value_bb(type, info, info);
     // si c'est b
     if(intType==1) {
         tab = replace_value_html(type, info);
     }
-    console.log(tab);
     // retourne le tableau
     return [tab.start, tab.end];
 }
 
 function findParentClass(item, nameClass) {
     if(item === undefined || item.classList.contains(nameClass)) {
-        console.log(item);
         return item;
     }
-    return findParentClass(item, nameClass);
+    return findParentClass(item.parentNode, nameClass);
 }
 
 /**
@@ -745,7 +743,6 @@ function findParentClass(item, nameClass) {
  */
 function bbcode_add_txt(e, type) {
     let bbcode = findParentClass(e.target, "bbcode");
-    console.log(bbcode);
     // recupere le type d'affichage du bbcode
     let edit_type = recupe_editor_type(bbcode);
     // recupere l'editeur html
@@ -759,13 +756,16 @@ function bbcode_add_txt(e, type) {
     if(type !== undefined) {
         // format texte
         if(edit_type.value == "txt") {
+            console.log("0001");
             // on remplace son texte
             edit.value = remplaceSelectText(edit, type);
         } else {
+            console.log("0002");
             // on remplace son texte
             remplaceSelectHtml(edit, type);
         }
     }
+    console.log("0003");
     // on fait l'affichage sur les deux editeurs.
     display_text(edit);
 }
@@ -924,7 +924,7 @@ document.querySelectorAll('.editor_bbcode').forEach(function(item) {
 function bbcode_type(e) {
     // pour ne pas prendre l'adresse de l'action du formulaire.
     e.preventDefault();
-    let node_main = e.targe;
+    let node_main = e.target;
     /* recupere les editeurs de la partir bbcode et le type d'affichage */
     let edit_html = recupe_editor_html(node_main);
     let edit_text = recupe_editor_bb(node_main);
@@ -965,8 +965,8 @@ document.querySelectorAll('.bbcode_title').forEach(function(item) {
 });
 
 /* pour changer l'affichage bbcode/html */
-document.querySelectorAll('.bbcode_type').forEach(function(item) {
+/*document.querySelectorAll('.bbcode_type').forEach(function(item) {
     item.addEventListener('click', bbcode_type);
-});
+});*/
 
 //document.getElementById("test021").innerHTML = replace_html_bb(document.querySelector(".editor_html_bbcode").innerHTML).replaceAll("\n", "<br />");

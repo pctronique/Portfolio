@@ -73,7 +73,7 @@
 }
 
 .text-3d-and-logo .box-3D-logo {
-margin-top: -4px;
+    margin-top: -4px;
 }
 
 .logo-info-3d {
@@ -82,6 +82,13 @@ margin-top: -4px;
     top: 0;
     right: 0;
     z-index: 5;
+}
+
+.logo-info-title-3d {
+    right: unset;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
 }
 
 .box-3D-logo {
@@ -109,4 +116,22 @@ margin-top: -4px;
 .box-3D  .box-3D-logo {
     margin-top: 8px;
     margin-right: 8px;
+}
+
+.image-clignote  {
+    animation-duration: 1s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+}
+
+.image-clignote:hover  {
+    animation-duration: unset;
+    opacity: 1;
+}
+
+@keyframes clignoter {
+   0%   { opacity:0.6; }
+   40%   {opacity:0; }
+   100% { opacity:0.6; }
 }
