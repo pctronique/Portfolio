@@ -118,11 +118,27 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $framW .= addCheckbox("framW", $valueLine["id_framework"], $valueLine["nom_framework"], $valueLine["id_framework"], $the_checked);
     }
 
-    $res = $sgbd->prepare("SELECT * FROM produits");
+    $res = $sgbd->prepare("SELECT *, id_produit AS id_produit_main FROM produits");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT *, SUM(produits.id_produit), produits.id_produit AS id_produit_main FROM produits ".
+            "LEFT JOIN cat_produit ON cat_produit.id_produit=produits.id_produit ".
+            "LEFT JOIN categorie ON cat_produit.id_cat=categorie.id_cat ".
+            "LEFT JOIN language_produit ON produits.id_produit=language_produit.id_produit ".
+            "LEFT JOIN language ON language.id_language=language_produit.id_language ".
+            "LEFT JOIN framework_produit ON cat_produit.id_produit=framework_produit.id_produit ".
+            "LEFT JOIN framework ON framework.id_framework=framework.id_framework ".
+            "WHERE (nom_cat LIKE :find OR description_cat LIKE :find OR ".
+            "nom_language LIKE :find OR nom_framework LIKE :find OR ".
+            "nom_produit LIKE :find OR description_produit LIKE :find ".
+            ") GROUP BY produits.id_produit");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cat", $valueLine["id_produit"], $valueLine["nom_produit"], $valueLine['display_produit'] == "1", true);
+        $find .= add_td_find("cat", $valueLine["id_produit_main"], $valueLine["nom_produit"], $valueLine['display_produit'] == "1", true);
     }
 
     $html = str_replace("[##IMG_PROD##]", $img, $html);

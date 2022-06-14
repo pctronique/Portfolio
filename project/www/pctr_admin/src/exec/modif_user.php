@@ -117,7 +117,14 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                         ":avatar_user" => $img,
                         ":id_user" => $values[":id_user"]
                     ]);
+                    $_SESSION['avatar'] = $img;
                 }
+                
+                $_SESSION['nom'] = htmlspecialchars(stripslashes(trim($_POST['name'])));
+                $_SESSION['prenom'] = htmlspecialchars(stripslashes(trim($_POST['first-name'])));
+                $_SESSION['login'] = htmlspecialchars(stripslashes(trim($_POST['login'])));
+                $_SESSION['email'] = htmlspecialchars(stripslashes(trim($_POST['email'])));
+                
                 echo "true";
             }
             /* on transmets les commits sous format securise */

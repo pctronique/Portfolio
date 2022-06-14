@@ -2,6 +2,7 @@
 let color_old = "white";
 let type_msg = "user";
 let msg_default = "";
+nameLienModifExec = "./?ind=msg";
 
 /**
  * Creation de la date a afficher

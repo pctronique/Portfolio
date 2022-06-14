@@ -13,7 +13,7 @@ function valiadtionForm(e) {
    /* envoyer les informations du message sur la page php a partir d'un formulaire */
    fetch_form(lien, idform).then(function (
       response
-    ) {
+   ) {
         /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
         if (response == "true") {
            //location.reload();
@@ -21,7 +21,7 @@ function valiadtionForm(e) {
         } else {
             alert(response);
         }
-    });
+   });
 }
 
 function deletObject(e) {
@@ -58,26 +58,15 @@ function modifObject(e) {
    window.location.href = nameLienModifExec+"&id="+id;
 }
 
-function add_td_find(name_id, id, name, display = false, check_display = false) {
-   let td = "<tr id=\""+name_id+"_"+id+"\">";
-   td += "<td>";
-   td += "<a href=\"#\"><img class=\"delete_row\" id=\"delete_"+id+"\" src=\"./src/img/icons8-supprimer-pour-toujours-90_white.svg\" /></a>";
-   td += "</td>";
-   td += "<td>";
-   td += "<a href=\"#\"><img class=\"modif_row\" id=\"modif_"+id+"\" src=\"./src/img/icons8-modifier_white.svg\" /></a>";
-   td += "</td>";
-   if(check_display) {
-       td += "<td>";
-       td += "<div class=\"form-check form-switch\">";
-       td += "<input class=\"form-check-input display_row\" type=\"checkbox\" name=\"display\" value=\"true\" id=\"checkDisplay_"+id+"\" "+(display?"checked":"")+">";
-       td += "</div>";
-       td += "</td>";
+function td_find(e) {
+   // pour ne pas prendre l'adresse de l'action du formulaire.
+   e.preventDefault();
+   if(document.getElementById("recherche") != undefined && document.getElementById("recherche").value != "") {
+      console.log(nameLienModifExec);
+      window.location.href = nameLienModifExec+"&find="+document.getElementById("recherche").value+"#tab_find";
+   } else {
+      window.location.href = nameLienModifExec+"#tab_find";
    }
-   td += "<td class=\"name\">";
-   td += name;
-   td += "</td>";
-   td += "</tr>";
-   return td;
 }
 
 document.querySelectorAll("#validation").forEach((element) => {
@@ -114,6 +103,9 @@ function display_change(e) {
  * activer les boutons de la page
  */
  function activeClick() {
+   document.querySelectorAll("#bt_find").forEach((element) => {
+      element.addEventListener("click", td_find)
+   });
    document.querySelectorAll("#tab_find").forEach((element0) => {
     /* activer le changement de format des cellules */
     element0

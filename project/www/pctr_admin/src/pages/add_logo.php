@@ -35,6 +35,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $res = $sgbd->prepare("SELECT * FROM competences_logo");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM competences_logo WHERE (title_competences_logo  LIKE :find OR nom_competences_logo LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
         $find .= add_td_find("logo", $valueLine["id_competences_logo"], $valueLine["title_competences_logo"]);

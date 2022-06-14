@@ -33,6 +33,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $res = $sgbd->prepare("SELECT * FROM competences");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM competences WHERE (title_competence LIKE :find OR description_competences LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
         $find .= add_td_find("info", $valueLine["id_competences"], $valueLine["title_competence"], $valueLine['display_competences'] == "1", true);

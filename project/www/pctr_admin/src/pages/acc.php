@@ -9,7 +9,11 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $page_acc = new Contenu_Page();
 
-    $page_acc->setContenu(file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true));
+    $html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);
+
+    $html = str_replace("[##NAME##]", $_SESSION['prenom'], $html);
+
+    $page_acc->setContenu($html);
 } else {
     header("Status: 403");
 }

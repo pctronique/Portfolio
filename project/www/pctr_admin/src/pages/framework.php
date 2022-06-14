@@ -29,6 +29,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $res = $sgbd->prepare("SELECT * FROM  framework");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM framework WHERE (nom_framework  LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
         $find .= add_td_find("framw", $valueLine["id_framework"], $valueLine["nom_framework"]);

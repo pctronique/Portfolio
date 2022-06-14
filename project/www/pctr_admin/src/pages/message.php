@@ -48,6 +48,16 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
       $res->execute([
         ":id_user" => $_SESSION['id_user']
       ]);
+      if(!empty($_GET) && array_key_exists("find", $_GET)) {
+          $res = $sgbd->prepare("SELECT * FROM messages INNER JOIN messages_utilisateur ".
+          "ON messages.id_msg = messages_utilisateur.id_msg WHERE ".
+          "id_user=:id_user AND (Nom_msg LIKE :find OR Prenom_msg LIKE :find OR Email_msg LIKE :find OR ".
+          "Objet_msg LIKE :find OR Message_msg LIKE :find) ORDER BY messages.Id_msg DESC");
+          $res->execute([
+            ":id_user" => $_SESSION['id_user'],
+            ":find" => "%".$_GET["find"]."%"
+          ]);
+      }
       $data = $res->fetchAll(PDO::FETCH_ASSOC);
       /* remplir la liste des messages */
       $data_list = "";

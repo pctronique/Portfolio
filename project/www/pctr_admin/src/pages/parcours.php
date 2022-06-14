@@ -67,6 +67,15 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $res = $sgbd->prepare("SELECT * FROM parcours");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM parcours WHERE (nom_parcours LIKE :find OR title_parcours LIKE :find OR ".
+            "entreprise_parcours LIKE :find OR type_parcours LIKE :find OR ".
+            "lieu_parcours LIKE :find OR description_parcours LIKE :find ".
+            ")");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
         $find .= add_td_find("comp", $valueLine["id_parcours"], $valueLine["nom_parcours"], $valueLine['display_parcours'] == "1", true);

@@ -11,10 +11,10 @@ if (!function_exists('add_td_find')) {
     function add_td_find(?string $name_id, ?string $id, ?string $name, bool $display = false, bool $check_display = false): ?string {
         $td = "<tr id=\"".$name_id."_".$id."\">";
         $td .= "<td>";
-        $td .= "<a href=\"#\"><img class=\"delete_row\" id=\"delete_".$id."\" src=\"./src/img/icons8-supprimer-pour-toujours-90_white.svg\" /></a>";
+        $td .= "<a href=\"#\"><img class=\"delete_row\" id=\"delete_".$id."\" src=\"./src/img/icons8-supprimer-pour-toujours-90.svg\" /></a>";
         $td .= "</td>";
         $td .= "<td>";
-        $td .= "<a href=\"#\"><img class=\"modif_row\" id=\"modif_".$id."\" src=\"./src/img/icons8-modifier_white.svg\" /></a>";
+        $td .= "<a href=\"#\"><img class=\"modif_row\" id=\"modif_".$id."\" src=\"./src/img/icons8-modifier.svg\" /></a>";
         $td .= "</td>";
         if($check_display) {
             $td .= "<td>";

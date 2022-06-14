@@ -26,6 +26,10 @@ table .colum_display {
     width: 35px;
 }
 
+table .colum_display_img {
+    width: 42px;
+}
+
 .dropdown {
     margin-right: 15px;
 }
@@ -143,4 +147,15 @@ code:before, code {
 
 #recherche {
     width: 320px;
+}
+
+.dropdown-menu img {
+    display: inline;
+    width: 15px;
+    margin-right: 5px;
+    filter: invert(1);
+}
+
+.table-dark img {
+    filter: invert(1);
 }
