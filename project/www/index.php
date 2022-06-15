@@ -127,7 +127,9 @@ if($num_error == 0) {
 
 } else {
     if(empty($msg_error)) {
-        header("Status: ".$num_error);
+        $_GET['error'] = $num_error;
+        include_once dirname(__FILE__) . '/../error/index.php';
+        //header("Status: ".$num_error);
     } else {
         echo $msg_error;
     }

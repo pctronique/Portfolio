@@ -159,3 +159,33 @@ code:before, code {
 .table-dark img {
     filter: invert(1);
 }
+
+.acc-main {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.block-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 10px;
+    border: gray 1px solid;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.block-admin img {
+    width: 268px;
+    filter: invert(1);
+}
+
+.block-admin p {
+    color: white;
+    font-size: 25px;
+}
+
+.btn img {
+    filter: invert(1);
+}
