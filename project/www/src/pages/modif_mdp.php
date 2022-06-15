@@ -19,6 +19,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "mmdp" && 
 
     $page_mmdp->addCss("./src/css/style_message.css");
     $page_mmdp->addJs("./src/js/modif_mdp.js");
+    $page_mmdp->addJs("./pctr_admin/src/js/utilisateur_password.js");
     $page_mmdp->setContenu(str_replace("#code#",$code,$html));
 
 } else {

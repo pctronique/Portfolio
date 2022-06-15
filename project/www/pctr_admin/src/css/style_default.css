@@ -12,6 +12,10 @@ body {
     min-width: 320px;
 }
 
+header h1 {
+    color: white;
+}
+
 .navbar-brand img {
     width: 55px;
     margin-left: 15px;

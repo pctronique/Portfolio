@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./src/css/normalizer.css" />
     <link rel="stylesheet" href="./src/css/font.css" />
     <link rel="stylesheet" href="./src/css/style_default.css" />
@@ -55,6 +56,20 @@
         </label>
         <nav id="nav-right" class="nav-default">
           <p>Accèx utilisateur</p>
+          <input type="checkbox" name="pass-perdu-display" id="pass-perdu-display" />
+          <form id="form-pass" action="#" method="post">
+            <div id="display-name" class="display-login">
+              <i class="bi bi-person"></i>
+            <input type="text" name="name-user" id="name-user" placeholder="Login" />
+            </div>
+            <div id="display-pass" class="display-login">
+              <i class="bi bi-lock"></i>
+              <input type="password" name="pass-user" id="pass-user" class="formPass" placeholder="Mot de passe" autocomplete />
+              <div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>
+            </div>
+            <label for="pass-perdu-display">Mot de passe perdu</label>
+            <a href="#" id="connected" class="bt-connect">Se connecter</a>
+          </form>";
           [##CONNECTED##]
           <form id="form-pass-perdu">
             <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
