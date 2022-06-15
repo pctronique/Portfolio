@@ -16,7 +16,7 @@ $ini_array = parse_ini_file(dirname(__FILE__) . '/src/includes/message.ini', tru
 if(!empty($ini_array) && array_key_exists($key, $ini_array)) {
     $title = $ini_array[$key]['title_erreur'];
     if(!empty($ini_array[$key]['img_erreur'])) {
-        $img = $ini_array[$key]['img_erreur'];
+        $img = "<img src=\"".RACINE."error/src/img/".$ini_array[$key]['img_erreur']."\" alt=\"error\" />";
     }
     $text = $ini_array[$key]['txt_erreur'];
 }
