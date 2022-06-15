@@ -47,3 +47,8 @@
 .list-group {
     border-radius: unset;
 }
+
+#add-img {
+    width: 510px;
+    height: unset;
+}

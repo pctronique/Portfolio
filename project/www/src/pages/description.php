@@ -12,6 +12,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $name_desc = "";
     $lang_framw = "";
     $description = "";
+    $logos_src = "";
 
     $id_desc = 0;
     if(!empty($_GET) && array_key_exists("desc", $_GET)) {
@@ -25,12 +26,18 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
         if($res->rowCount() > 0) {
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $name_desc = $data["nom_produit"];
+            if(!empty($data["src_git_produit"])) {
+                $logos_src .= '<a target="_blank" href="'.$data["src_git_produit"].'"><img src="./src/img/icons8-git-50.svg" alt="icon logo git" title="le lien vers le git du projet"></a>';
+            }
+            if(!empty($data["src_produit"])) {
+                $logos_src .= '<a target="_blank" href="'.$data["src_produit"].'"><img src="./src/img/icons8-project-64.svg" alt="icon logo projet" title="le lien vers le projet"></a>';
+            }
 
             $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id_produit LIMIT 1");
             $resPhoto->execute([":id_produit" => $id_desc]);
             if($resPhoto->rowCount() > 0) {
                 $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
-                $src_img = "./data/img/".$dataPhoto['src_photo'];
+                $src_img = "./data/thumb/".$dataPhoto['src_photo'];
             }
             $name_img = "image du project ".$data['nom_produit'];
             $description = str_replace("\n", "<br />", $data['description_produit']);
@@ -98,6 +105,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
 
     $html = str_replace("[##produit##]", $name_desc, $html);
+    $html = str_replace("[##logos_lien##]", $logos_src, $html);
     $html = str_replace("[##SRC_IMG##]", $src_img, $html);
     $html = str_replace("[##NAME_IMG##]", $name_img, $html);
     $html = str_replace("[##LANG_FRAMW##]", $lang_framw, $html);

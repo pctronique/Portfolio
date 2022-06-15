@@ -214,6 +214,7 @@ function delete_msg(e) {
                     document.getElementById('msg_'+values.id_msg).remove();
                     /* on vide le contenu du message */
                     init_values(e);
+                    window.location.href = nameLienModifExec;
                 } else {
                     alert(response);
                 }

@@ -13,7 +13,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
         $contenu .= '</figure>';
         $contenu .= '<figure class="image" id="image_'.$id.'">';
         $contenu .= '<a class="image_a" id="img_a_'.$id.'" href="./?ind=desc&desc='.$id.'">';
-        $contenu .= '<img class="img" id="img_'.$id.'" alt="produit '.$name.'" src="./data/img/'.$src.'">';
+        $contenu .= '<img class="img" id="img_'.$id.'" alt="produit '.$name.'" src="./data/thumb/'.$src.'">';
         $contenu .= '</a>';
         $contenu .= '</figure>';
         $contenu .= '</figure>';

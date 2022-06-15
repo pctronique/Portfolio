@@ -22,11 +22,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/produits.html', true);
 
     $id = 0;
-    $img = "./src/img/icons8-ajouter-une-image-90.png";
+    $img = "./src/img/Add_Image_icon-icons_54218.svg";
     $display = "checked";
     $name = "";
     $desc = "";
     $src = "";
+    $srcGit = "";
     $cat = "";
     $langp = "";
     $framW = "";
@@ -44,16 +45,14 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $display = $data['display_produit'] == "1" ? "checked" : "";
             $desc = $data['description_produit'];
             $src = $data['src_produit'];
-            /*if(!empty($data["avatar_user"])) {
-                $img = "./../data/img/".$data["avatar_user"];
-            }*/
+            $srcGit = $data['src_git_produit'];
             $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id");
             $resPhoto->execute([
                 ":id" => $_GET['id']
             ]);
             $dataPhoto = $resPhoto->fetchAll(PDO::FETCH_ASSOC);
             foreach ($dataPhoto as $valueLine) {
-                $img = "./../data/img/".$valueLine["src_photo"];
+                $img = "./../data/thumb/".$valueLine["src_photo"];
             }
         }
     }
@@ -147,6 +146,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##DESC_PROD##]", $desc, $html);
     $html = str_replace("[##CAT_PROD##]", $cat, $html);
     $html = str_replace("[##SRC_PROD##]", $src, $html);
+    $html = str_replace("[##SRC_GIT_PROD##]", $srcGit, $html);
     $html = str_replace("[##LANGP_PROD##]", $langp, $html);
     $html = str_replace("[##FRAMW_PROD##]", $framW, $html);
     $html = str_replace("[##FIND_PROD##]", $find, $html);

@@ -174,18 +174,43 @@ code:before, code {
     border: gray 1px solid;
     padding: 5px;
     border-radius: 10px;
+    width: 174px;
+}
+
+.block-admin:hover {
+    transform: scale(1.07);
 }
 
 .block-admin img {
-    width: 268px;
+    width: 134px;
+    height: 134px;
     filter: invert(1);
 }
 
 .block-admin p {
+    text-align: center;
     color: white;
     font-size: 25px;
 }
 
 .btn img {
     filter: invert(1);
+}
+
+/**********************/
+/** version < 800px ***/
+/**********************/
+@media screen and (max-width: 800px) {
+    .block-admin {
+        width: 87px;
+    }
+
+    .block-admin img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .block-admin p {
+        font-size: 25px;
+    }
 }

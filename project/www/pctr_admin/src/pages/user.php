@@ -11,7 +11,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/user.html', true);
 
-    $img = "./src/img/icons8-ajouter-une-image-90.png";
+    $img = "./src/img/Add_Image_icon-icons_54218.svg";
     $name = "";
     $first_name = "";
     $login = "";
@@ -30,7 +30,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $email = $data["email_user"];
         $description = $data["description_user"];
         if(!empty($data["avatar_user"])) {
-            $img = "./../data/img/".$data["avatar_user"];
+            $img = "./../data/thumb/".$data["avatar_user"];
         }
     }
 
@@ -43,6 +43,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $page_user->setContenu($html);
     $page_user->addCss("./src/css/addimg.css");
+    $page_user->addCss("./src/css/style_add_logo.css");
     $page_user->addJs("./src/js/addimg.js");
     $page_user->addJs("./src/js/user.js");
 

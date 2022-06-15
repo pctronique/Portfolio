@@ -16,7 +16,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $desc = "";
     $find = "";
     $display = "checked";
-    $img = "./src/img/icons8-ajouter-une-image-90.png";
+    $img = "./src/img/Add_Image_icon-icons_54218.svg";
 
     if(!empty($_GET) && array_key_exists("id", $_GET)) {
         $res = $sgbd->prepare("SELECT * FROM categorie WHERE id_cat=:id");
@@ -30,7 +30,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $desc = $data['description_cat'];
             $display = $data['display_cat'] == "1" ? "checked" : "";
             if(!empty($data["avatar_cat"])) {
-                $img = "./../data/img/".$data["avatar_cat"];
+                $img = "./../data/thumb/".$data["avatar_cat"];
             }
         }
     }
@@ -56,6 +56,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##DISPLAY_CAT##]", $display, $html);
     $page_cat->setContenu($html);
     $page_cat->addCss("./src/css/addimg.css");
+    $page_cat->addCss("./src/css/style_cat.css");
     $page_cat->addJs("./src/js/addimg.js");
     $page_cat->addJs("./src/js/categories.js");
 } else {

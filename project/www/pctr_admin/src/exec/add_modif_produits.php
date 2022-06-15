@@ -12,12 +12,13 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     include_once dirname(__FILE__) . '/../fonctions/add_img.php';
     include_once dirname(__FILE__) . '/../fonctions/delete_file.php';
     include_once dirname(__FILE__) . '/../fonctions/modif_name_file.php';
-    include_once dirname(__FILE__) . '/../fonctions/enum_type.php';
+    include_once dirname(__FILE__) . '/../class/enum_type.php';
     
     $values = array(
                 ":name" => "",
                 ":desc" => "",
                 ":src" => "",
+                ":srcGit" => "",
                 ":display" => 0
             );
 
@@ -60,6 +61,14 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         $values[":desc"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
     }
 
+    if(array_key_exists("src", $_POST) && !empty($_POST['src'])) {
+        $values[":src"] = htmlspecialchars(stripslashes(trim($_POST['src'])));
+    }
+
+    if(array_key_exists("srcGit", $_POST) && !empty($_POST['srcGit'])) {
+        $values[":srcGit"] = htmlspecialchars(stripslashes(trim($_POST['srcGit'])));
+    }
+
     if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
         $values[":display"] = 1;
     }
@@ -97,7 +106,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE produits SET nom_produit=:name, description_produit=:desc, src_produit=:src, display_produit=:display WHERE id_produit=:id");
+                    $res = $sgbd->prepare("UPDATE produits SET nom_produit=:name, description_produit=:desc, src_produit=:src, src_git_produit=:srcGit, display_produit=:display WHERE id_produit=:id");
                     $res->execute($values);
 
                     $res = $sgbd->prepare("DELETE FROM cat_produit WHERE id_produit=:id");
@@ -107,7 +116,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                     $res = $sgbd->prepare("DELETE FROM framework_produit WHERE id_produit=:id");
                     $res->execute([":id" => $id]);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO produits (nom_produit, description_produit, src_produit, display_produit, id_user) VALUES (:name, :desc, :src, :display, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO produits (nom_produit, description_produit, src_produit, src_git_produit, display_produit, id_user) VALUES (:name, :desc, :src, :srcGit, :display, :id_user)");
                     $res->execute($values);
                     /* recupere son id */
                     $id = $sgbd->lastInsertId();

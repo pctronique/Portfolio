@@ -10,7 +10,7 @@ function addDesc(?string $id, ?string $name, ?string $src):?string {
     $desc .= '<a href="./?ind=desc&desc='.$id.'">'."\n";
 
     if(!empty($src)) {
-        $desc .= '<img alt="image de '.$name.'" src="./data/img/'.$src.'" />'."\n";
+        $desc .= '<img alt="image de '.$name.'" src="./data/thumb/'.$src.'" />'."\n";
     }
     $desc .= '</a>'."\n";
     $desc .= '</figure>'."\n";

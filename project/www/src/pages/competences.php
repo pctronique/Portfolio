@@ -3,7 +3,7 @@
 if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && defined("USER_ID") && !empty(USER_ID)) {
 
     function addLogo(?string $name, ?string $src):?string {
-        return '<figure class="section-logo"><h3 class="text_grav title-logo">'.$name.'</h3><img src="./data/img/'.$src.'" alt="logo '.$name.'" /></figure>';
+        return '<figure class="section-logo"><h3 class="text_grav title-logo">'.$name.'</h3><img src="./data/thumb/'.$src.'" alt="logo '.$name.'" /></figure>';
     }
 
     function addComp(?string $title, ?string $desc):?string {

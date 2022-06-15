@@ -24,7 +24,12 @@ if(!empty($sgbd)) {
     $res->execute();
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $cats .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./?ind=cat&cat=".$valueLine["id_cat"]."\">".$valueLine["nom_cat"]."</a></li>";
+        $cat_img = "";
+        if(!empty($valueLine["avatar_cat"])) {
+            $cat_img = '<img src="./data/thumb/'.$valueLine["avatar_cat"].'" alt="icon '.$valueLine["nom_cat"].'">';
+        }
+        
+        $cats .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./?ind=cat&cat=".$valueLine["id_cat"]."\">".$cat_img.$valueLine["nom_cat"]."</a></li>";
     }
 }
 
@@ -51,8 +56,8 @@ $connected .= "</form>";
 
 if($isConnected) {
     $connected = "<ul>";
-    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./pctr_admin\">Admin</a></li>";
-    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./src/exec/deconnexion_exec.php\">Déconnexion</a></li>";
+    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./pctr_admin\"><img src=\"./pctr_admin/src/img/utilisateur.svg\" alt=\"icon messages\" />Admin</a></li>";
+    $connected .= "<li class=\"lien\"><a class=\"click-lien\" href=\"./src/exec/deconnexion_exec.php\"><img src=\"./pctr_admin/src/img/deconnexion.svg\" alt=\"icon messages\" />Déconnexion</a></li>";
     $connected .= "</ul>";
 }
 

@@ -12,9 +12,9 @@ check_nav_right.addEventListener("click", function() {
         check_nav_left.click();
     }
     if(check_nav_right.checked) {
-        document.getElementById("img-nav-right").src="./src/img/cadenas-deverrouille-white.svg";
+        document.getElementById("img-nav-right").src="./src/img/cadenas-deverrouille.svg";
     } else {
-        document.getElementById("img-nav-right").src="./src/img/cadenas-ferme-white.svg";
+        document.getElementById("img-nav-right").src="./src/img/cadenas-ferme.svg";
     }
 })
 

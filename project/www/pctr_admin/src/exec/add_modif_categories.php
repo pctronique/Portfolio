@@ -12,7 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     include_once dirname(__FILE__) . '/../fonctions/add_img.php';
     include_once dirname(__FILE__) . '/../fonctions/delete_file.php';
     include_once dirname(__FILE__) . '/../fonctions/modif_name_file.php';
-    include_once dirname(__FILE__) . '/../fonctions/enum_type.php';
+    include_once dirname(__FILE__) . '/../class/enum_type.php';
     $img = "";
 
     if(!empty($_FILES) && array_key_exists('file', $_FILES) && !empty($_FILES['file']['name'])) {
