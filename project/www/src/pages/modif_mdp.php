@@ -21,5 +21,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "mmdp" && 
     $page_mmdp->addJs("./src/js/modif_mdp.js");
     $page_mmdp->setContenu(str_replace("#code#",$code,$html));
 
+} else {
+    header("Status: 403");
 }
 

@@ -12,6 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/loisir.html', true);
 
     $id = 0;
+    $display = "checked";
     $name = "";
     $desc = "";
     $find = "";
@@ -26,23 +27,30 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['name_loisir'];
             $desc = $data['description_loisir'];
+            $display = $data['display_loisir'] == "1" ? "checked" : "";
         }
     }
 
     $res = $sgbd->prepare("SELECT * FROM loisir");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM loisir WHERE (name_loisir LIKE :find OR description_loisir LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cat", $valueLine["id_loisir"], $valueLine["name_loisir"]);
+        $find .= add_td_find("cat", $valueLine["id_loisir"], $valueLine["name_loisir"], $valueLine['display_loisir'] == "1", true);
     }
 
     $html = str_replace("[##ID_LOISI##]", $id, $html);
     $html = str_replace("[##NAME_LOISI##]", $name, $html);
     $html = str_replace("[##DESC_LOISI##]", $desc, $html);
     $html = str_replace("[##FIND_LOISI##]", $find, $html);
+    $html = str_replace("[##DISPLAY_LOISI##]", $display, $html);
     $page_loisir->setContenu($html);
     $page_loisir->addJs("./src/js/loisir.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

@@ -119,7 +119,7 @@ if (!function_exists('modifier_images_folder')) {
      * @param boolean $cut : couper l'image si la taille ou la hauteur depasse la taille.
      * @return void retourne l'image de celui ci
      */
-    function image_resize(?string $filename, int $width_max, int $height_max, bool $cut = true) {
+    function image_resize(?string $filename, int $width_max, int $height_max, bool $cut = true, bool $top = false) {
         list($width, $height, $type) = getimagesize($filename);
         $newwidth = $width;
         $newheight = $height;
@@ -141,6 +141,10 @@ if (!function_exists('modifier_images_folder')) {
 
         $position_y = ($newheight-$height_max)/2;
         if($position_y < 0) {
+            $position_y = 0;
+        }
+
+        if($top) {
             $position_y = 0;
         }
 
@@ -173,11 +177,11 @@ if (!function_exists('modifier_images_folder')) {
      * @param boolean $cut : couper l'image si la taille ou la hauteur depasse la taille.
      * @return void ne retourne rien
      */
-    function modifier_image(?string $filename, ?string $folder_save, ?string $name_file_save, int $width_max, int $height_max, bool $cut = true):void {
+    function modifier_image(?string $filename, ?string $folder_save, ?string $name_file_save, int $width_max, int $height_max, bool $cut = true, bool $top = false):void {
         list($width, $height, $type) = getimagesize($filename);
         if(type_valide($type)) {
             header('Content-Type: '.$type);
-            save_image(image_resize($filename, $width_max, $height_max, $cut), $folder_save . DIRECTORY_SEPARATOR . $name_file_save, $type);
+            save_image(image_resize($filename, $width_max, $height_max, $cut), $folder_save . DIRECTORY_SEPARATOR . $name_file_save, $type, $top);
         }
     }
 

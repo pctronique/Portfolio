@@ -1,8 +1,15 @@
 <section class="container mt-5">
-    <h2 class="text-light text-center">Compétences</h2>
-</section><section class="container mt-5">
+    <h2 class="text-light text-center"><a href="./?ind=comp"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Compétences</h2>
+</section>
+<section class="container mt-5">
     <form id="form-competence" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_COMP##]" />
+        <div class="mb-3 d-flex justify-content-center form-check form-switch">
+            <input class="form-check-input custom-control-display" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_COMP##]>
+            <label class="form-check-label text-light labelDisplay" for="checkDisplay">
+                Afficher sur la page
+            </label>
+        </div>
         <div class="mb-3">
             <label for="formName" class="form-label text-light">nom</label>
             <input type="text" class="form-control" name="name" id="formName" placeholder="" value="[##NAME_COMP##]">
@@ -17,11 +24,19 @@
     </form>
 </section>
 <section class="container mt-5">
+    <form id="form_find">
+        <label for="recherche" class="form-label text-light m-2">Rechercher</label>
+        <input type="text" class="form-control m-2" id="recherche" name="recherche">
+        <button id="bt_find" type="submit" id="find" class="btn btn-dark m-2">Rechercher</button>
+    </form>
+</section>
+<section id="tab_find" class="container mt-5">
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
-                <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
+                <th class="delete col-md-1 colum_display_img"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90.svg" /></th>
+                <th class="edit col-md-1 colum_display_img"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier.svg" /></th>
+                <th class="colum_display"></th>
                 <th>titre</th>
             </tr>
         </thead>

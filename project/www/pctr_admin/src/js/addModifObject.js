@@ -2,6 +2,8 @@ let idform = "";
 let namePageExec = "";
 let namePageDeletExec = "";
 let namePageModifExec = "";
+let namePageDisplExec = "";
+let namePageFindExec = "";
 let nameLienModifExec = "";
 
 function valiadtionForm(e) {
@@ -11,7 +13,7 @@ function valiadtionForm(e) {
    /* envoyer les informations du message sur la page php a partir d'un formulaire */
    fetch_form(lien, idform).then(function (
       response
-    ) {
+   ) {
         /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
         if (response == "true") {
            //location.reload();
@@ -19,7 +21,7 @@ function valiadtionForm(e) {
         } else {
             alert(response);
         }
-    });
+   });
 }
 
 function deletObject(e) {
@@ -56,14 +58,54 @@ function modifObject(e) {
    window.location.href = nameLienModifExec+"&id="+id;
 }
 
+function td_find(e) {
+   // pour ne pas prendre l'adresse de l'action du formulaire.
+   e.preventDefault();
+   if(document.getElementById("recherche") != undefined && document.getElementById("recherche").value != "") {
+      console.log(nameLienModifExec);
+      window.location.href = nameLienModifExec+"&find="+document.getElementById("recherche").value+"#tab_find";
+   } else {
+      window.location.href = nameLienModifExec+"#tab_find";
+   }
+}
+
 document.querySelectorAll("#validation").forEach((element) => {
    element.addEventListener("click", valiadtionForm);
 });
+
+function display_change(e) {
+   // pour ne pas prendre l'adresse de l'action du formulaire.
+   e.preventDefault();
+   let values = {
+      "id": e.target.id.split("_")[1],
+      "display": (e.target.checked?1:0)
+   };
+   let lien = "./src/exec/"+namePageDisplExec+".php";
+   let get_id = function_GET('id');
+   console.log(e.target.checked);
+   /*envoyer les informations du message sur la page php a partir d'un formulaire */
+   fetch_post(lien, values).then(function (
+      response
+   ) {
+      /* si c'est bon, on recupere le tableau des valeurs de la liste des messages */
+      if (response != "true") {
+         e.target.checked = !e.target.checked;
+         alert(response);
+      } else {
+         if(get_id != undefined && get_id==values.id) {
+            document.getElementById("checkDisplay").checked = e.target.checked;
+         }
+      }
+   });
+}
 
 /**
  * activer les boutons de la page
  */
  function activeClick() {
+   document.querySelectorAll("#bt_find").forEach((element) => {
+      element.addEventListener("click", td_find)
+   });
    document.querySelectorAll("#tab_find").forEach((element0) => {
     /* activer le changement de format des cellules */
     element0
@@ -77,6 +119,13 @@ document.querySelectorAll("#validation").forEach((element) => {
      .querySelectorAll(".modif_row")
      .forEach((element) => {
         element.addEventListener("click", modifObject);
+     });
+
+     /* activer le bouton de suppression */
+     element0
+     .querySelectorAll(".display_row")
+     .forEach((element) => {
+        element.addEventListener("change", display_change);
      });
    });
 }

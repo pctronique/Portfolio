@@ -12,11 +12,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     include_once dirname(__FILE__) . '/../fonctions/add_img.php';
     include_once dirname(__FILE__) . '/../fonctions/delete_file.php';
     include_once dirname(__FILE__) . '/../fonctions/modif_name_file.php';
+    include_once dirname(__FILE__) . '/../class/enum_type.php';
     $img = "";
 
     if(!empty($_FILES) && array_key_exists('file', $_FILES) && !empty($_FILES['file']['name'])) {
         $name = modif_name_file($_FILES['file']['name']);
-        if(add_img($_FILES['file']['tmp_name'], $name)) {
+        if(add_img($_FILES['file']['tmp_name'], $name, Enum_Type::USER)) {
             $img = $name;
         }
     }
@@ -117,7 +118,14 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                         ":avatar_user" => $img,
                         ":id_user" => $values[":id_user"]
                     ]);
+                    $_SESSION['avatar'] = $img;
                 }
+                
+                $_SESSION['nom'] = htmlspecialchars(stripslashes(trim($_POST['name'])));
+                $_SESSION['prenom'] = htmlspecialchars(stripslashes(trim($_POST['first-name'])));
+                $_SESSION['login'] = htmlspecialchars(stripslashes(trim($_POST['login'])));
+                $_SESSION['email'] = htmlspecialchars(stripslashes(trim($_POST['email'])));
+                
                 echo "true";
             }
             /* on transmets les commits sous format securise */
@@ -131,5 +139,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     }
 
 } else {
-    echo "error 404";
+    header("Status: 403");
 }

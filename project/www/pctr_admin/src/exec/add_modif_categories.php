@@ -12,18 +12,20 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     include_once dirname(__FILE__) . '/../fonctions/add_img.php';
     include_once dirname(__FILE__) . '/../fonctions/delete_file.php';
     include_once dirname(__FILE__) . '/../fonctions/modif_name_file.php';
+    include_once dirname(__FILE__) . '/../class/enum_type.php';
     $img = "";
 
     if(!empty($_FILES) && array_key_exists('file', $_FILES) && !empty($_FILES['file']['name'])) {
         $name = modif_name_file($_FILES['file']['name']);
-        if(add_img($_FILES['file']['tmp_name'], $name)) {
+        if(add_img($_FILES['file']['tmp_name'], $name, Enum_Type::CATEGORIE)) {
             $img = $name;
         }
     }
     
     $values = array(
                 ":name" => "",
-                ":desc" => ""
+                ":desc" => "",
+                ":display" => 0
             );
 
     $id = 0;
@@ -40,6 +42,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     if(array_key_exists("description", $_POST) && !empty($_POST['description'])) {
         $values[":desc"] = htmlspecialchars(stripslashes(trim($_POST['description'])));
+    }
+
+    if(array_key_exists("display", $_POST) && !empty($_POST['display'])) {
+        $values[":display"] = 1;
     }
 
     /*Connexion*/
@@ -77,10 +83,10 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             /* si c'est valide, on continu la verification */
             if($valide) {
                 if(!empty($id)) {
-                    $res = $sgbd->prepare("UPDATE categorie SET nom_cat=:name, description_cat=:desc WHERE id_cat=:id");
+                    $res = $sgbd->prepare("UPDATE categorie SET nom_cat=:name, description_cat=:desc, display_cat=:display WHERE id_cat=:id");
                     $res->execute($values);
                 } else {
-                    $res = $sgbd->prepare("INSERT INTO categorie (nom_cat, description_cat, id_user) VALUES (:name, :desc, :id_user)");
+                    $res = $sgbd->prepare("INSERT INTO categorie (nom_cat, description_cat, display_cat, id_user) VALUES (:name, :desc, :display, :id_user)");
                     $res->execute($values);
                     /* recupere son id */
                     $id = $sgbd->lastInsertId();
@@ -111,5 +117,5 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     }
 
 } else {
-    echo "error 404";
+    header("Status: 403");
 }

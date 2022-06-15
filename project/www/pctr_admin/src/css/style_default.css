@@ -19,6 +19,15 @@ body {
 
 table img {
     width: 35px;
+    min-width: 15px;
+}
+
+table .colum_display {
+    width: 35px;
+}
+
+table .colum_display_img {
+    width: 42px;
 }
 
 .dropdown {
@@ -41,14 +50,167 @@ table img {
     margin: 25px;
 }
 
-#checkProgress:checked ~ #formDateEndDisplay {
+div #checkProgress:checked ~ div#formDateEndDisplay {
     display: none;
 }
 
 .list-column {
     display: flex;
+    align-items: flex-start;
+    flex-direction: row;
+    justify-content: center;
 }
 
 .list-column .mb-3 {
     margin: 0px 15px;
+}
+
+.labelDisplay {
+    margin: 0px 5px;
+}
+
+.img_add_contenu {
+    width: 50px;
+}
+
+.custom-control-display {
+    border-color: red !important;
+    background-color: #ff7c00 !important;
+}
+
+.custom-control-display:checked {
+    border-color: green !important;
+    background-color: #01ff01 !important;
+}
+
+#block-exp-form {
+    box-sizing: border-box;
+    overflow: hidden;
+    border: black 1px solid;
+    border-radius: 15px;
+}
+#block-exp-form label {
+    background-color: rgb(221, 221, 221);
+    color: gray;
+}
+#block-exp-form #radiosExp:checked ~ #labelRadiosExp,
+#block-exp-form #radiosForma:checked ~ #labelRadiosForma {
+    background-color: #1cff33;
+    color: #212529;
+}
+
+#block-exp-form #radiosExp:checked ~ #labelRadiosExp {
+    border-right: rgb(0, 0, 0) 1px solid;
+}
+#block-exp-form #radiosForma:checked ~ #labelRadiosForma {
+    border-left: rgb(0, 0, 0) 1px solid;
+}
+
+#block-exp-form input[type="radio"] {
+    display: none;        
+}
+
+.code_bbcode {
+    width: 100%;
+    min-height: 200px;
+    resize: vertical;
+}
+code:before {
+    position: absolute;
+    content: 'Code:';
+    top: -1.35em;
+    left: 0;
+    min-height: 200px;
+    resize: vertical;
+}
+code {
+    margin: 0px;
+    padding: 0px;
+    margin-top: 1.5em;
+    position: relative;
+    background: #eee;
+    border: 1px solid #aaa;
+    white-space: pre;
+    padding: .25em;
+}
+code:before, code {
+    display: block;
+    text-align: left;
+}
+
+#form_find {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+#recherche {
+    width: 320px;
+}
+
+.dropdown-menu img {
+    display: inline;
+    width: 15px;
+    margin-right: 5px;
+    filter: invert(1);
+}
+
+.table-dark img {
+    filter: invert(1);
+}
+
+.acc-main {
+    display:flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.block-admin {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px 10px;
+    border: gray 1px solid;
+    padding: 5px;
+    border-radius: 10px;
+    width: 174px;
+}
+
+.block-admin:hover {
+    transform: scale(1.07);
+}
+
+.block-admin img {
+    width: 134px;
+    height: 134px;
+    filter: invert(1);
+}
+
+.block-admin p {
+    text-align: center;
+    color: white;
+    font-size: 25px;
+}
+
+.btn img {
+    filter: invert(1);
+}
+
+/**********************/
+/** version < 800px ***/
+/**********************/
+@media screen and (max-width: 800px) {
+    .block-admin {
+        width: 87px;
+    }
+
+    .block-admin img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .block-admin p {
+        font-size: 25px;
+    }
 }

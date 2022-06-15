@@ -3,7 +3,7 @@
 if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && defined("USER_ID") && !empty(USER_ID)) {
 
     function addLogo(?string $name, ?string $src):?string {
-        return '<figure class="section-logo"><h3 class="text_grav title-logo">'.$name.'</h3><img src="./data/img/'.$src.'" alt="logo '.$name.'" /></figure>';
+        return '<figure class="section-logo"><h3 class="text_grav title-logo">'.$name.'</h3><img src="./data/thumb/'.$src.'" alt="logo '.$name.'" /></figure>';
     }
 
     function addComp(?string $title, ?string $desc):?string {
@@ -26,12 +26,14 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && 
         foreach ($dataForm as $valueLine) {
             $logos .= addLogo($valueLine['nom_competences_logo'], $valueLine['src_competences_logo']);
         }
-        $res = $sgbd->prepare("SELECT * FROM competences WHERE id_user=:id_user ORDER BY id_competences DESC");
+        $res = $sgbd->prepare("SELECT * FROM competences WHERE id_user=:id_user AND display_competences=1 ORDER BY id_competences DESC");
         $res->execute([":id_user" => USER_ID]);
         $dataExp = $res->fetchAll(PDO::FETCH_ASSOC);
         foreach ($dataExp as $valueLine) {
             $comp .= addComp($valueLine['title_competence'], $valueLine['description_competences']);
         }
+    } else {
+        $page_acc->setNum_error(500);
     }
 
     $html = str_replace("[##LOGOS##]", $logos, $html);
@@ -40,4 +42,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "comp" && 
     $page_compet->addCss("./src/css/style_competences.css");
     $page_compet->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

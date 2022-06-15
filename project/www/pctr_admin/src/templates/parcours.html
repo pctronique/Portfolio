@@ -1,22 +1,23 @@
 <section class="container mt-5">
-    <h2 class="text-light text-center">Parcours</h2>
+    <h2 class="text-light text-center"><a href="./?ind=parc"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Parcours</h2>
 </section>
 <section class="container mt-5">
     <form id="form-parcours" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_PARC##]" />
-        <div class="mb-3">
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="type" id="radiosExp" value="exp" [##EXP_PARC##]>
-                <label class="form-check-label text-light" for="radiosExp">
-                  Expériences
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input" type="radio" name="type" id="radiosForma" value="forma" [##FORM_PARC##]>
-                <label class="form-check-label text-light" for="radiosForma">
-                  Formations
-                </label>
-            </div>
+        <div class="mb-3 d-flex justify-content-center form-check form-switch">
+            <input class="form-check-input custom-control-display" type="checkbox" name="display" value="true" id="checkDisplay" [##DISPLAY_PARC##]>
+            <label class="form-check-label text-light labelDisplay" for="checkDisplay">
+                Afficher sur la page
+            </label>
+        </div>
+        <div class="widget">
+        <fieldset class="d-inline-flex" id="block-exp-form">
+            <legend></legend>
+            <input type="radio" name="type" id="radiosExp" value="exp" [##EXP_PARC##]>
+            <label class="p-2" id="labelRadiosExp" for="radiosExp">Expériences</label>
+            <input type="radio" name="type" id="radiosForma" value="forma" [##FORM_PARC##]>
+            <label class="p-2" id="labelRadiosForma" for="radiosForma">Formations</label>
+          </fieldset>
         </div>
         <div class="mb-3">
             <label for="formTitle" class="form-label text-light">nom</label>
@@ -35,10 +36,12 @@
             <input type="date" class="form-control" name="date-start" id="formDateStart" placeholder="" value="[##START_PARC##]">
         </div>
         <div class="mb-3">
-            <input class="form-check-input" type="checkbox" name="progress" value="true" id="checkProgress" [##PROGRESS_PARC##]>
-            <label class="form-check-label text-light" for="checkProgress">
-                En cours
-            </label>
+            <div class="mb-3 form-check form-switch">
+                <input class="form-check-input" type="checkbox" name="progress" value="true" id="checkProgress" [##PROGRESS_PARC##]>
+                <label class="form-check-label text-light" for="checkProgress">
+                    En cours
+                </label>
+            </div>
             <div class="mb-3" id="formDateEndDisplay">
                 <label for="formDateEnd" class="form-label text-light">fin</label>
                 <input type="date" class="form-control" name="date-end" id="formDateEnd" placeholder="" value="[##FIN_PARC##]">
@@ -59,11 +62,19 @@
     <pre class='xdebug-var-dump' dir='ltr'>
 </section>
 <section class="container mt-5">
+    <form id="form_find">
+        <label for="recherche" class="form-label text-light m-2">Rechercher</label>
+        <input type="text" class="form-control m-2" id="recherche" name="recherche">
+        <button id="bt_find" type="submit" id="find" class="btn btn-dark m-2">Rechercher</button>
+    </form>
+</section>
+<section id="tab_find" class="container mt-5">
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
-                <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
+                <th class="delete col-md-1 colum_display_img"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90.svg" /></th>
+                <th class="edit col-md-1 colum_display_img"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier.svg" /></th>
+                <th class="colum_display"></th>
                 <th>titre</th>
             </tr>
         </thead>

@@ -12,6 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/add_cv.html', true);
 
     $id = 0;
+    $display = "checked";
     $src = "";
     $name = "";
     $title = "";
@@ -27,6 +28,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $id = $_GET['id'];
             $name = $data['nom_cv'];
             $title = $data['title_cv'];
+            $display = $data['display_cv'] == "1" ? "checked" : "";
             if(!empty($data["src_cv"])) {
                 $src = $data["src_cv"];
             }
@@ -35,9 +37,15 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
 
     $res = $sgbd->prepare("SELECT * FROM cv");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM cv WHERE (title_cv LIKE :find OR nom_cv LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
-        $find .= add_td_find("cv", $valueLine["id_cv"], $valueLine["title_cv"]);
+        $find .= add_td_find("cv", $valueLine["id_cv"], $valueLine["title_cv"], $valueLine['display_cv'] == "1", true);
     }
 
     $html = str_replace("[##SRC_CV##]", $src, $html);
@@ -45,9 +53,9 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##NAME_CV##]", $name, $html);
     $html = str_replace("[##TITLE_CV##]", $title, $html);
     $html = str_replace("[##FIND_CV##]", $find, $html);
+    $html = str_replace("[##DISPLAY_CV##]", $display, $html);
     $page_add_cv->setContenu($html);
     $page_add_cv->addJs("./src/js/add_cv.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

@@ -12,6 +12,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
     $name_desc = "";
     $lang_framw = "";
     $description = "";
+    $logos_src = "";
 
     $id_desc = 0;
     if(!empty($_GET) && array_key_exists("desc", $_GET)) {
@@ -20,17 +21,23 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
 
     $sgbd = connexion_sgbd();
     if(!empty($sgbd)) {
-        $res = $sgbd->prepare("SELECT * FROM produits WHERE id_produit=:id_produit");
+        $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit INNER JOIN categorie ON cat_produit.id_cat=categorie.id_cat WHERE produits.id_produit=:id_produit AND display_produit=1 AND categorie.display_cat=1");
         $res->execute([":id_produit" => $id_desc]);
         if($res->rowCount() > 0) {
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $name_desc = $data["nom_produit"];
+            if(!empty($data["src_git_produit"])) {
+                $logos_src .= '<a target="_blank" href="'.$data["src_git_produit"].'"><img src="./src/img/icons8-git-50.svg" alt="icon logo git" title="le lien vers le git du projet"></a>';
+            }
+            if(!empty($data["src_produit"])) {
+                $logos_src .= '<a target="_blank" href="'.$data["src_produit"].'"><img src="./src/img/icons8-project-64.svg" alt="icon logo projet" title="le lien vers le projet"></a>';
+            }
 
             $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id_produit LIMIT 1");
             $resPhoto->execute([":id_produit" => $id_desc]);
             if($resPhoto->rowCount() > 0) {
                 $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
-                $src_img = "./data/img/".$dataPhoto['src_photo'];
+                $src_img = "./data/thumb/".$dataPhoto['src_photo'];
             }
             $name_img = "image du project ".$data['nom_produit'];
             $description = str_replace("\n", "<br />", $data['description_produit']);
@@ -84,19 +91,31 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "desc" && 
                 $lang_framw .= '</figure>'."\n";
                 $lang_framw .= '</figure>'."\n";
             }
+        } else {
+            $id_desc = 0;
         }
+    } else {
+        $page_acc->setNum_error(500);
+    }
+    
+    if($id_desc == 0 || $page_desc->getNum_error() != 0) {
+        $page_desc->setNum_error(404);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/description.html', true);
 
     $html = str_replace("[##produit##]", $name_desc, $html);
+    $html = str_replace("[##logos_lien##]", $logos_src, $html);
     $html = str_replace("[##SRC_IMG##]", $src_img, $html);
     $html = str_replace("[##NAME_IMG##]", $name_img, $html);
     $html = str_replace("[##LANG_FRAMW##]", $lang_framw, $html);
     $html = str_replace("[##DESC##]", $description, $html);
-
+    
     $page_desc->addCss("./src/css/style_description.css");
     $page_desc->addJs("./src/js/drag_drop.js");
     $page_desc->setContenu($html);
 
+
+} else {
+    header("Status: 403");
 }

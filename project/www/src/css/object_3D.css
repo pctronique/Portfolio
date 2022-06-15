@@ -62,3 +62,107 @@
     /*color: rgb(0 0 0 / 65%);*/
     text-shadow: 2px -2px rgb(162 162 163 / 87%), 1px -1px #9190bfab;
 }
+
+.text-3d-and-logo {
+    max-width: 800px;
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 19px;
+}
+
+.text-3d-and-logo .box-3D-logo {
+    margin-top: -4px;
+}
+
+.logo-info-3d {
+    position: absolute;
+    display: flex;
+    top: 0;
+    right: 0;
+    z-index: 5;
+}
+
+.logo-info-title-3d {
+    right: unset;
+    top: 15px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.box-3D-logo {
+    object-fit: contain;
+    display: flex;
+    width: 35px;
+    height: 35px;
+    opacity: 0.6;
+}
+
+.box-3D-logo-mov {
+    opacity: 0;
+    /*width: 53px;
+    height: 53px;*/
+}
+
+.logo-info-3d:hover .box-3D-logo {
+    opacity: 1;
+}
+
+.logo-info-3d:hover .box-3D-logo-mov {
+    opacity: 1;
+}
+
+.box-3D  .box-3D-logo {
+    margin-top: 8px;
+    margin-right: 8px;
+}
+
+.image-clignote  {
+    animation-duration: 1s;
+    animation-name: clignoter;
+    animation-iteration-count: infinite;
+    transition: none;
+}
+
+.image-clignote:hover  {
+    animation-duration: unset;
+    opacity: 1;
+}
+
+#info-3D-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    z-index: 15;
+    position: absolute;
+    right: 0;
+    margin-top: -22px;
+}
+
+#info-3D-logo .box-3D-logo {
+    opacity: 1;
+    width: 50px;
+}
+
+#info-3D-logo:hover p {
+    display: unset;
+}
+
+#info-3D-logo p {
+    display: none;
+    max-width: 120px;
+    min-width: 120px;
+    padding: 5px;
+    margin: 5px;
+    border: gray 1px solid;
+    border-radius: 5px;
+    background-color: black;
+    text-align: center;
+}
+
+@keyframes clignoter {
+   0%   { opacity:1; }
+   40%   {opacity:0.4; }
+   100% { opacity:1; }
+}

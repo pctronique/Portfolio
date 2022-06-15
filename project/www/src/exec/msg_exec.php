@@ -67,5 +67,5 @@ if(!empty($_POST) && array_key_exists('name', $_POST) && array_key_exists('first
     }
 
 } else {
-    echo "Vous ne pouvez pas utiliser cette page.";
+    header("Status: 403");
 }

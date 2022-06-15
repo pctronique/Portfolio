@@ -12,7 +12,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = file_get_contents(dirname(__FILE__) . '/../templates/add_logo.html', true);
 
     $id = 0;
-    $img = "./src/img/icons8-ajouter-une-image-90.png";
+    $img = "./src/img/Add_Image_icon-icons_54218.svg";
     $name = "";
     $title = "";
     $find = "";
@@ -28,13 +28,19 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             $name = $data['nom_competences_logo'];
             $title = $data['title_competences_logo'];
             if(!empty($data["src_competences_logo"])) {
-                $img = "./../data/img/".$data["src_competences_logo"];
+                $img = "./../data/thumb/".$data["src_competences_logo"];
             }
         }
     }
 
     $res = $sgbd->prepare("SELECT * FROM competences_logo");
     $res->execute();
+
+    if(!empty($_GET) && array_key_exists("find", $_GET)) {
+        $res = $sgbd->prepare("SELECT * FROM competences_logo WHERE (title_competences_logo  LIKE :find OR nom_competences_logo LIKE :find)");
+        $res->execute([":find" => "%".$_GET["find"]."%"]);
+    }
+
     $data = $res->fetchAll(PDO::FETCH_ASSOC);
     foreach ($data as $valueLine) {
         $find .= add_td_find("logo", $valueLine["id_competences_logo"], $valueLine["title_competences_logo"]);
@@ -47,9 +53,9 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $html = str_replace("[##FIND_LOGO##]", $find, $html);
     $page_add_logo->setContenu($html);
     $page_add_logo->addCss("./src/css/addimg.css");
+    $page_add_logo->addCss("./src/css/style_add_logo.css");
     $page_add_logo->addJs("./src/js/addimg.js");
     $page_add_logo->addJs("./src/js/add_logo.js");
 } else {
-    header('Location: ./../../../');
-    exit();
+    header("Status: 403");
 }

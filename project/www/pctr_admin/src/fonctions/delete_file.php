@@ -20,6 +20,10 @@ if (!function_exists('delete_file')) {
         if(file_exists($file)) {
             unlink($file);
         }
+        $file = dirname(__FILE__) . '/../../../data/thumb/'.$name;
+        if(file_exists($file)) {
+            unlink($file);
+        }
         return true;
     }
 }

@@ -42,7 +42,7 @@
     grid-row-end: 2;
 }
 
-#language-framework {
+#language-framework-main {
   grid-column-start: 1;
   grid-column-end: 2;
   grid-row-start: 2;
@@ -56,7 +56,7 @@
     grid-row-end: 3;
 }
 
-#language-framework, #description {
+#language-framework-main, #description {
     margin: 10px;
     padding: 15px;
     background-color: black;
@@ -70,6 +70,26 @@
     color: #646464;
     margin-left: -62px;
     margin-right: -33px;
+}
+
+#language-framework-main {
+    display: flex;
+    padding-bottom: 45px;
+    flex-direction: column;
+}
+
+#logo-lien {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#logo-lien img {
+    display:inline;
+    width: 50px;
+    filter: invert(1);
+    margin: 5px;
 }
 
 #language-framework {
@@ -92,6 +112,10 @@
 
 #language-framework h2 {
     margin-top : 20px;
+}
+
+.object-3D .logo-info-3d {
+    margin-top: -28px;
 }
 
 

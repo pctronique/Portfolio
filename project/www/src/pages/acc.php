@@ -13,7 +13,7 @@ if(defined("USER_ID") && !empty(USER_ID)) {
         $contenu .= '</figure>';
         $contenu .= '<figure class="image" id="image_'.$id.'">';
         $contenu .= '<a class="image_a" id="img_a_'.$id.'" href="./?ind=desc&desc='.$id.'">';
-        $contenu .= '<img class="img" id="img_'.$id.'" alt="produit '.$name.'" src="./data/img/'.$src.'">';
+        $contenu .= '<img class="img" id="img_'.$id.'" alt="produit '.$name.'" src="./data/thumb/'.$src.'">';
         $contenu .= '</a>';
         $contenu .= '</figure>';
         $contenu .= '</figure>';
@@ -30,21 +30,26 @@ if(defined("USER_ID") && !empty(USER_ID)) {
     /*Connexion*/
     include_once dirname(__FILE__) . '/../fonctions/connexion_sgbd.php';
 
-    $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit WHERE id_user=:id_user LIMIT 5");
-    $res->execute([":id_user" => USER_ID]);
-            
-    $data = $res->fetchAll(PDO::FETCH_ASSOC);
-    $i = 0;
-    foreach ($data as $valueLine) {
-        $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id_produit LIMIT 1");
-        $resPhoto->execute([":id_produit" => $valueLine['id_produit']]);
-        if($resPhoto->rowCount() > 0) {
-            $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
-            $div_produit .= add_produit($valueLine['id_produit'], $valueLine['nom_produit'], $dataPhoto['src_photo'], $i== 0)."\n";
-        } else {
-            $div_produit .= add_produit($valueLine['id_produit'], $valueLine['nom_produit'], "", $i==0)."\n";
+
+    if(!empty($sgbd)) {
+        $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit INNER JOIN categorie ON cat_produit.id_cat =categorie.id_cat WHERE produits.id_user=:id_user AND display_produit=1 AND display_cat=1 LIMIT 5");
+        $res->execute([":id_user" => USER_ID]);
+                
+        $data = $res->fetchAll(PDO::FETCH_ASSOC);
+        $i = 0;
+        foreach ($data as $valueLine) {
+            $resPhoto = $sgbd->prepare("SELECT * FROM photos WHERE id_produit=:id_produit LIMIT 1");
+            $resPhoto->execute([":id_produit" => $valueLine['id_produit']]);
+            if($resPhoto->rowCount() > 0) {
+                $dataPhoto = $resPhoto->fetch(PDO::FETCH_ASSOC);
+                $div_produit .= add_produit($valueLine['id_produit'], $valueLine['nom_produit'], $dataPhoto['src_photo'], $i== 0)."\n";
+            } else {
+                $div_produit .= add_produit($valueLine['id_produit'], $valueLine['nom_produit'], "", $i==0)."\n";
+            }
+            $i++;
         }
-        $i++;
+    } else {
+        $page_acc->setNum_error(500);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/acc.html', true);
@@ -58,4 +63,6 @@ if(defined("USER_ID") && !empty(USER_ID)) {
     $page_acc->addJs("./src/js/acc.js");
     $page_acc->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

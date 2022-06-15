@@ -2,6 +2,7 @@
 let color_old = "white";
 let type_msg = "user";
 let msg_default = "";
+nameLienModifExec = "./?ind=msg";
 
 /**
  * Creation de la date a afficher
@@ -213,6 +214,7 @@ function delete_msg(e) {
                     document.getElementById('msg_'+values.id_msg).remove();
                     /* on vide le contenu du message */
                     init_values(e);
+                    window.location.href = nameLienModifExec;
                 } else {
                     alert(response);
                 }

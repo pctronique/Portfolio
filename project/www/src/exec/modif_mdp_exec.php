@@ -112,5 +112,5 @@ if(!empty($_POST) && array_key_exists('code', $_POST) && array_key_exists('login
     }
 
 } else {
-    echo "Vous ne pouvez pas utiliser cette page.";
+    header("Status: 403");
 }

@@ -10,7 +10,7 @@ function addDesc(?string $id, ?string $name, ?string $src):?string {
     $desc .= '<a href="./?ind=desc&desc='.$id.'">'."\n";
 
     if(!empty($src)) {
-        $desc .= '<img alt="image de '.$name.'" src="./data/img/'.$src.'" />'."\n";
+        $desc .= '<img alt="image de '.$name.'" src="./data/thumb/'.$src.'" />'."\n";
     }
     $desc .= '</a>'."\n";
     $desc .= '</figure>'."\n";
@@ -43,7 +43,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
             $data = $res->fetch(PDO::FETCH_ASSOC);
             $name_cat = $data["nom_cat"];
 
-            $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit WHERE id_cat=:id_cat");
+            $res = $sgbd->prepare("SELECT * FROM produits INNER JOIN cat_produit ON cat_produit.id_produit=produits.id_produit WHERE id_cat=:id_cat AND display_produit=1");
             $res->execute([":id_cat" => $id_cat]);
             
             $data = $res->fetchAll(PDO::FETCH_ASSOC);
@@ -57,7 +57,15 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
                     $contenu_cat .= addDesc($valueLine['id_produit'], $valueLine['nom_produit'], "")."\n";
                 }
             }
+        } else {
+            $id_cat = 0;
         }
+    } else {
+        $page_cat->setNum_error(500);
+    }
+
+    if($id_cat == 0 && $page_cat->getNum_error() == 0) {
+        $page_cat->setNum_error(404);
     }
 
     $html = file_get_contents(dirname(__FILE__) . '/../templates/categories.html', true);
@@ -68,4 +76,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "cat" && d
     $page_cat->addCss("./src/css/style_categorie.css");
     $page_cat->setContenu($html);
 
+} else {
+    header("Status: 403");
 }

@@ -22,7 +22,7 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
         foreach ($dataForm as $valueLine) {
             $description = str_replace("\n", "<br />", $valueLine['description_user']);
         }
-        $resCat = $sgbd->prepare("SELECT * FROM loisir WHERE id_user=:id_user");
+        $resCat = $sgbd->prepare("SELECT * FROM loisir WHERE id_user=:id_user AND display_loisir=1");
         $resCat->execute([":id_user" => USER_ID]);
         if($resCat->rowCount() > 0) {
             $informations .= '<h2 class="text_grav">Informations complémentaires</h2>'."\n";
@@ -34,6 +34,8 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
 
             $informations .= '</ul>'."\n";
         }
+    } else {
+        $page_acc->setNum_error(500);
     }
 
     $html = str_replace("[##descriptions##]", $description, $html);
@@ -42,4 +44,6 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "propos" &
     $page_propos->addCss("./src/css/a_propos.css");
     $page_propos->setContenu($html);
 
+} else {
+    header("Status: 403");
 }
