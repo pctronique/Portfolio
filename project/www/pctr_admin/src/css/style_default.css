@@ -221,6 +221,24 @@ code:before, code {
     }
 
     .block-admin p {
-        font-size: 25px;
+        font-size: 14px;
+    }
+}
+
+/**********************/
+/** version < 991px ***/
+/**********************/
+@media screen and (max-width: 991px) {
+    .dropdown-menu.show {
+        margin-left: -160px;
+    }
+}
+
+/**********************/
+/** version < 800px ***/
+/**********************/
+@media screen and (max-width: 380px) {
+    .icon-site {
+        display: none;
     }
 }

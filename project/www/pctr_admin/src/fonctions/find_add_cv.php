@@ -1,4 +1,7 @@
 <?php
+/**
+ * Pour supprimer les fichiers du serveur. A supprimer, pas utilise.
+ */
 
 if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) && 
     array_key_exists('id_admin', $_SESSION) && array_key_exists('nom', $_SESSION) &&   

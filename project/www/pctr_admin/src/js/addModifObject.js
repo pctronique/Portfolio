@@ -82,7 +82,6 @@ function display_change(e) {
    };
    let lien = "./src/exec/"+namePageDisplExec+".php";
    let get_id = function_GET('id');
-   console.log(e.target.checked);
    /*envoyer les informations du message sur la page php a partir d'un formulaire */
    fetch_post(lien, values).then(function (
       response
