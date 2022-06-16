@@ -165,6 +165,14 @@
       <p id="choix-background">BINARY</p>
 	  <input type="hidden" id="text_3d1" value="Développeur WEB\n et WEB Mobile" />
       <div id="text_3d"></div>
+      <input type="hidden" value="obj/ROBO/ROBO.mtl" id="mtl-obj-3D">
+      <input type="hidden" value="obj/ROBO/ROBO.obj" id="obj-3D">
+      <form>
+        <label>obj</label><input type="file" name="file-obj" id="file-obj">
+        <label>mtl</label><input type="file" name="mtl-file-obj" id="mtl-file-obj">
+        <button id="valid-obj">valider</button>
+      </form>
+      <figure id="obj-3D-display"></figure>
     </section>
     <canvas id="body_matrix"></canvas>
     <footer>
@@ -177,7 +185,6 @@
         <li><a href="https://www.linkedin.com/in/ludovic-naulot-0451284b"><img src="./src/img/linkedin.svg" alt="" /></a></li>
       </ul>
     </footer>
-    <script src="./src/js/mwgokv.js"></script>
     <script src="./src/js/menu.js"></script>
     <script src="./src/js/object_glass.js"></script>
     <script src="./src/js/le_fetch.js"></script>
@@ -197,82 +204,90 @@
 		import { OBJLoader } from '../../src/bin/three_js/examples/jsm/loaders/OBJLoader.js'
 		import Stats from '../../src/bin/three_js/examples/jsm/libs/stats.module.js'
 		
-		const scene = new THREE.Scene()
-		scene.add(new THREE.AxesHelper(5))
-		
-		const light = new THREE.PointLight()
-		light.position.set(10, 800, 800)
-		scene.add(light)
-		
-		const camera = new THREE.PerspectiveCamera(
-			75,
-			window.innerWidth / window.innerHeight,
-			0.1,
-			1000
-		)
-		camera.position.z = 3
-		
-		const renderer = new THREE.WebGLRenderer()
-		renderer.setSize(window.innerWidth, window.innerHeight)
-		document.body.appendChild(renderer.domElement)
-		
-		const controls = new OrbitControls(camera, renderer.domElement)
-		controls.enableDamping = true
-		
-		// const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
-		
-		var mtlLoader = new MTLLoader();
-		mtlLoader.load('obj/ROBO/ROBO.mtl', function(materials)
-		{
-			materials.preload();
-			const objLoader = new OBJLoader();
-			objLoader.setMaterials(materials);
-			objLoader.load(
-				'obj/ROBO/ROBO.obj',
-				(object) => {
-					// (object.children[0] as THREE.Mesh).material = material
-					// object.traverse(function (child) {
-					//     if ((child as THREE.Mesh).isMesh) {
-					//         (child as THREE.Mesh).material = material
-					//     }
-					// })
-					scene.add(object)
-				},
-				(xhr) => {
-					console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
-				},
-				(error) => {
-					console.log(error)
-				}
-			)
-		});
-		
-		window.addEventListener('resize', onWindowResize, false)
-		function onWindowResize() {
-			camera.aspect = window.innerWidth / window.innerHeight
-			camera.updateProjectionMatrix()
-			renderer.setSize(window.innerWidth, window.innerHeight)
-			render()
-		}
-		
-		const stats = Stats()
-		document.body.appendChild(stats.dom)
-		
-		function animate() {
-			requestAnimationFrame(animate)
-		
-			controls.update()
-		
-			render()
-		
-			stats.update()
-		}
-		
-		function render() {
-			renderer.render(scene, camera)
-		}
-		
-		animate()
+    function display_obj_3D() {
+      const scene = new THREE.Scene()
+      scene.add(new THREE.AxesHelper(5))
+
+      let display_3D = document.getElementById('obj-3D-display');
+      let file_obj = document.getElementById('file-obj').value;
+      let mtl_file_obj = document.getElementById('mtl-file-obj').value;
+      
+      const light = new THREE.PointLight()
+      light.position.set(10, 800, 800)
+      scene.add(light)
+      
+      const camera = new THREE.PerspectiveCamera(
+        75,
+        window.innerWidth / window.innerHeight,
+        0.1,
+        1000
+      )
+      camera.position.z = 3
+      
+      const renderer = new THREE.WebGLRenderer()
+      renderer.setSize(window.innerWidth, window.innerHeight)
+      display_3D.appendChild(renderer.domElement)
+      
+      const controls = new OrbitControls(camera, renderer.domElement)
+      controls.enableDamping = true
+      
+      // const material = new THREE.MeshBasicMaterial({ color: 0x00ff00, wireframe: true })
+      
+      var mtlLoader = new MTLLoader();
+      mtlLoader.load(mtl_file_obj, function(materials)
+      {
+        materials.preload();
+        const objLoader = new OBJLoader();
+        objLoader.setMaterials(materials);
+        objLoader.load(
+          file_obj,
+          (object) => {
+            // (object.children[0] as THREE.Mesh).material = material
+            // object.traverse(function (child) {
+            //     if ((child as THREE.Mesh).isMesh) {
+            //         (child as THREE.Mesh).material = material
+            //     }
+            // })
+            scene.add(object)
+          },
+          (xhr) => {
+            console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+          },
+          (error) => {
+            console.log(error)
+          }
+        )
+      });
+      
+      window.addEventListener('resize', onWindowResize, false)
+      function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight
+        camera.updateProjectionMatrix()
+        renderer.setSize(window.innerWidth, window.innerHeight)
+        render()
+      }
+      
+      const stats = Stats()
+      document.body.appendChild(stats.dom)
+      
+      function animate() {
+        requestAnimationFrame(animate)
+      
+        controls.update()
+      
+        render()
+      
+        stats.update()
+      }
+      
+      function render() {
+        renderer.render(scene, camera)
+      }
+      
+      animate()
+    }
+
+    display_obj_3D();
 		
 		</script>
   </body>

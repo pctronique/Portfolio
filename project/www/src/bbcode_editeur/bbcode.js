@@ -6,6 +6,8 @@ let tags_tab = tags.split("|");
 let tags_html_tab = tags_html.split("|");
 let tags_def_html_tab = tags_def_html.split("|");
 
+// <input type="color" id="head" name="head" value="#e66465">
+
 function createNodeHtml(type, info="") {
     // recuperation du texte selectionne dans l'editeur html
     let newNode;
