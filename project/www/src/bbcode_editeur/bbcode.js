@@ -6,6 +6,27 @@ let tags_tab = tags.split("|");
 let tags_html_tab = tags_html.split("|");
 let tags_def_html_tab = tags_def_html.split("|");
 
+function createNodeHtml(type, info="") {
+    // recuperation du texte selectionne dans l'editeur html
+    let newNode;
+    let elementHtml = tags_html_tab[tags_tab.indexOf(type)];
+    let explode = elementHtml.split(":");
+    newNode = document.createElement(explode[0]);
+    if(elementHtml == "font:size") {
+        newNode.style.fontSize = info;
+    } else if (elementHtml == "font:color") {
+        newNode.setAttribute("color", info);
+    } else if (elementHtml == "font:color") {
+        newNode.setAttribute("color", info);
+    } else if (elementHtml == "span:underline") {
+        newNode.style.textDecoration = "underline";
+    } else if (elementHtml == "div:center" || elementHtml == "div:justify"
+     || elementHtml == "div:right" || elementHtml == "div:left") {
+        newNode.setAttribute("align", explode[1]);
+    }
+    return newNode;
+}
+
 function replace_value_bb_html(element, textBB) {
     let matches;
     switch (element) {
@@ -107,14 +128,16 @@ function replace_value_html_bb(element, textHTML) {
             break;
         case 'div':
             matches = textHTML.match(/<(div)=?(.*?)>(.*?)<\/\1>/g);
+
+            
             if(matches != undefined) {
                 matches.forEach(element1 => {
-                    let elementMain = element1.replaceAll(/<(div)=?(.*?)>(.*?)<\/\1>/g, "$2");
+                    let elementMain = element1.replaceAll(/<(div)=?(.*?)>(.*?)<\/\1>/g, "$2").split("=")[0];
                     if(elementMain == undefined) {
                         textHTML = textHTML.replace(element1, element1.replace(/<(div)=?(.*?)>(.*?)<\/\1>/g, '$3'));
                     } else if(elementMain.trim() == "") {
                         textHTML = textHTML.replace(element1, element1.replace(/<(div)=?(.*?)>(.*?)<\/\1>/g, '$3'));
-                    } else if(elementMain.trim() == 'align=') {
+                    } else if(elementMain.trim() == 'align') {
                         textHTML = textHTML.replace(element1, element1.replace(/<(div)? align="(.*?)">(.*?)<\/\1>/g, '[$2]$3[/$2]'))
                     }
                     
@@ -486,15 +509,17 @@ function replace_bb_html(textBB) {
 
 function replace_html_bb(textHTML) {
     // verifier qu'on a du texte
+    let i = 0;
     if(textHTML != undefined) {
         let matchesMain = textHTML.match(/<(.*)=?(.*?)>(.*?)<\/\1>/g);
-        while(matchesMain != undefined) {
+        while(matchesMain != undefined && i != 15) {
             matchesMain.forEach(element => {
                 let elementMain = element.replaceAll(/<(.*)=?(.*?)>(.*?)<\/\1>/g, "$1");
                 textHTML = replace_value_html_bb(elementMain, textHTML);
             });
             //textHTML = replace_html_bb0(textHTML);
             matchesMain = textHTML.match(/<(.*)=?(.*?)>(.*?)<\/\1>/g);
+            i++;
         }
         // retourne le texte html
         return textHTML.replaceAll("<br>", "\n\n");
@@ -578,6 +603,8 @@ function conversion_bbcode(chaine, edit_type) {
         chaine = replace_bb_html(chaine);
         /*tabFrom = allTab[0];
         tabTo = allTab[1];*/
+    } else {
+        chaine = replace_html_bb(chaine);
     }
     // on remplace les valeurs de bbcode dans le texte
     /*for(let i=0; i < tabFrom.length; i++) {
@@ -605,7 +632,7 @@ function display_text(edit) {
         editModif.innerHTML = conversion_bbcode(edit.value, edit_type);
     } else {
         // modifier son contenu a partir de celui de l'editeur html
-        editModif.value = conversion_bbcode(edit.innerHTML.replaceAll('&nbsp;', ' ').replaceAll('<div>', '').replaceAll('</div>', ''), edit_type);
+        editModif.value = conversion_bbcode(edit.innerHTML.replaceAll('&nbsp;', ' '), edit_type);
     }
 }
 
@@ -615,7 +642,7 @@ function display_text(edit) {
  * @param {*} edithtml l'editeur html
  * @param {*} type le type de bbcode (exemple "b" ou "title");
  */
-function remplaceSelectHtml(edithtml, type,info="") {
+function remplaceSelectHtml(edithtml, type, info="") {
     // recuperation du texte selectionne dans l'editeur html
     let sel;
     if (document.getSelection) {    // all browsers, except IE before version 9
@@ -624,24 +651,13 @@ function remplaceSelectHtml(edithtml, type,info="") {
     else {
         sel = document.selection;   // Internet Explorer before version 9
     }
-    // recupere les balise a placer dans le texte
-    let allTab = addBalise(0, type);
     // recupere le range de selection
     // => https://fr.javascript.info/selection-range
     let range = sel.getRangeAt(0);
     // recupere le noeud de fin de selection
     let endContainer = range.endContainer;
     // new noeud non defit par defaut
-    let newNode = undefined;
-    // choissir le bbcode a ajouter
-    if(allTab[0] == "[b]") {
-        // creation du noeud pour le gras
-        newNode = document.createElement("STRONG");
-    } else if(allTab[0] == "[title]") {
-        // creation du noeud pour le titre
-        newNode = document.createElement("SPAN");
-        newNode.classList.add("bb_title");
-    }
+    let newNode = createNodeHtml(type, info);
     // si on a un noeud bbcode a ajouter
     if(newNode != undefined) {
         try {
@@ -756,16 +772,13 @@ function bbcode_add_txt(e, type) {
     if(type !== undefined) {
         // format texte
         if(edit_type.value == "txt") {
-            console.log("0001");
             // on remplace son texte
             edit.value = remplaceSelectText(edit, type);
         } else {
-            console.log("0002");
             // on remplace son texte
             remplaceSelectHtml(edit, type);
         }
     }
-    console.log("0003");
     // on fait l'affichage sur les deux editeurs.
     display_text(edit);
 }

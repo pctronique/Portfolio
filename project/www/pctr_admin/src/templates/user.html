@@ -35,15 +35,24 @@
     <form id="form-pass" action="#" method="post" enctype="multipart/form-data">
         <div class="mb-3">
             <label for="formOldPass" class="form-label text-light">old-pass</label>
-            <input type="password" class="form-control" name="old-pass" id="formOldPass" autocomplete >
+            <div class="input-group mb-3">
+                <input type="password" class="form-control formPass" name="old-pass" autocomplete >
+                <div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="formNewPass" class="form-label text-light">new-pass</label>
-            <input type="password" class="form-control" name="new_pass" id="formNewPass" autocomplete >
+            <div class="input-group mb-3">
+                <input type="password" class="form-control formPass" name="new_pass" autocomplete >
+                <div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>
+            </div>
         </div>
         <div class="mb-3">
             <label for="formRepetPass" class="form-label text-light">repet-pass</label>
-            <input type="password" class="form-control" name="repet-pass" id="formRepetPass" autocomplete >
+            <div class="input-group mb-3">
+                <input type="password" class="form-control formPass" name="repet-pass" autocomplete >
+                <div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>
+            </div>
         </div>
         <button id="validation_pass" class="btn btn-dark d-grid mx-auto">
             Valider

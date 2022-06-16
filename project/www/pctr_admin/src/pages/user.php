@@ -46,6 +46,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     $page_user->addCss("./src/css/style_add_logo.css");
     $page_user->addJs("./src/js/addimg.js");
     $page_user->addJs("./src/js/user.js");
+    $page_user->addJs("./src/js/utilisateur_password.js");
 
 } else {
     header("Status: 403");

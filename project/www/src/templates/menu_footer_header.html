@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./src/css/normalizer.css" />
     <link rel="stylesheet" href="./src/css/font.css" />
     <link rel="stylesheet" href="./src/css/style_default.css" />
@@ -55,9 +56,14 @@
         </label>
         <nav id="nav-right" class="nav-default">
           <p>Accèx utilisateur</p>
+          
           [##CONNECTED##]
           <form id="form-pass-perdu">
-            <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
+            <div id="display-name" class="display-login">
+              <i class="bi bi-envelope"></i>
+              <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
+            </div>
+            
             <a href="#" id="recep-mod-pass" class="bt-connect">Valider</a>
           </form>
         </nav>
@@ -140,13 +146,6 @@
     <script src="./src/js/object_3D.js"></script>[##CONTENU_JS##]
     <script src="./src/js/mwgokv.js"></script>
     <script type="module" src="./src/js/threejs_text_3D.js"></script>
-		<script>
-      /*document.querySelectorAll(".box-3D").forEach(element0 => {
-
-        deleteNode3D(element0);
-        createFormeBox3D(element0);
-      
-      });*/
-		</script>
+    <script src="./pctr_admin/src/js/utilisateur_password.js"></script>
   </body>
 </html>
