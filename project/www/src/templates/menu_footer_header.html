@@ -56,23 +56,14 @@
         </label>
         <nav id="nav-right" class="nav-default">
           <p>Accèx utilisateur</p>
-          <input type="checkbox" name="pass-perdu-display" id="pass-perdu-display" />
-          <form id="form-pass" action="#" method="post">
-            <div id="display-name" class="display-login">
-              <i class="bi bi-person"></i>
-            <input type="text" name="name-user" id="name-user" placeholder="Login" />
-            </div>
-            <div id="display-pass" class="display-login">
-              <i class="bi bi-lock"></i>
-              <input type="password" name="pass-user" id="pass-user" class="formPass" placeholder="Mot de passe" autocomplete />
-              <div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>
-            </div>
-            <label for="pass-perdu-display">Mot de passe perdu</label>
-            <a href="#" id="connected" class="bt-connect">Se connecter</a>
-          </form>";
+          
           [##CONNECTED##]
           <form id="form-pass-perdu">
-            <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
+            <div id="display-name" class="display-login">
+              <i class="bi bi-envelope"></i>
+              <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
+            </div>
+            
             <a href="#" id="recep-mod-pass" class="bt-connect">Valider</a>
           </form>
         </nav>
@@ -155,13 +146,6 @@
     <script src="./src/js/object_3D.js"></script>[##CONTENU_JS##]
     <script src="./src/js/mwgokv.js"></script>
     <script type="module" src="./src/js/threejs_text_3D.js"></script>
-		<script>
-      /*document.querySelectorAll(".box-3D").forEach(element0 => {
-
-        deleteNode3D(element0);
-        createFormeBox3D(element0);
-      
-      });*/
-		</script>
+    <script src="./pctr_admin/src/js/utilisateur_password.js"></script>
   </body>
 </html>

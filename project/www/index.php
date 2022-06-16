@@ -46,13 +46,28 @@ if(!empty($_GET) && array_key_exists("ind", $_GET)) {
     $ind=$_GET['ind'];
 }
 
-$connected = "<input type=\"checkbox\" name=\"pass-perdu-display\" id=\"pass-perdu-display\" />";
+/*$connected = "<input type=\"checkbox\" name=\"pass-perdu-display\" id=\"pass-perdu-display\" />";
 $connected .= "<form id=\"form-pass\" action=\"#\" method=\"post\">";
 $connected .= "<input type=\"text\" name=\"name-user\" id=\"name-user\" placeholder=\"Login\" />";
 $connected .= "<input type=\"password\" name=\"pass-user\" id=\"pass-user\" placeholder=\"Mot de passe\" autocomplete />";
 $connected .= "<label for=\"pass-perdu-display\">Mot de passe perdu</label>";
 $connected .= "<a href=\"#\" id=\"connected\" class=\"bt-connect\">Se connecter</a>";
-$connected .= "</form>";
+$connected .= "</form>";*/
+
+$connected = '<input type="checkbox" name="pass-perdu-display" id="pass-perdu-display" />';
+$connected .= '<form id="form-pass" action="#" method="post">';
+$connected .= '<div id="display-name" class="display-login">';
+$connected .= '<i class="bi bi-person"></i>';
+$connected .= '<input type="text" name="name-user" id="name-user" placeholder="Login" />';
+$connected .= '</div>';
+$connected .= '<div id="display-pass" class="display-login">';
+$connected .= '<i class="bi bi-lock"></i>';
+$connected .= '<input type="password" name="pass-user" id="pass-user" class="formPass" placeholder="Mot de passe" autocomplete />';
+$connected .= '<div class="input-group-text togglePassword"><i class="bi bi-eye-slash"></i></div>';
+$connected .= '</div>';
+$connected .= '<label for="pass-perdu-display" class="pass-perdu-display">Mot de passe perdu</label>';
+$connected .= '<a href="#" id="connected" class="bt-connect">Se connecter</a>';
+$connected .= '</form>';
 
 if($isConnected) {
     $connected = "<ul>";
