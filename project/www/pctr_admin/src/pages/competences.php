@@ -26,7 +26,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     if(!empty($sgbd)) {
         /* se proteger des erreurs de requete sql (pour ne pas afficher l'erreur a l'ecran) */
         try {
-            /* si on a unid recuperer le contnu a afficher */
+            /* si on a un id recuperer le contnu a afficher */
             if(!empty($_GET) && array_key_exists("id", $_GET)) {
                 $res = $sgbd->prepare("SELECT * FROM competences WHERE id_competences=:id");
                 $res->execute([

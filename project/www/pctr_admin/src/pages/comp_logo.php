@@ -6,6 +6,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION)) {
 
+    /* pour ajouter les checkbox dans la page */
     function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, string $src, bool $checked = false) {
         $checkbox = "<figure><input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
         $checkbox .= $checked ? "checked" : "";

@@ -177,7 +177,8 @@ if($num_error == 0) {
 } else {
     /* si on n'a pas de message d'erreur personnalise */
     if(empty($msg_error)) {
-        header("Status: ".$num_error);
+        $status = "Status: ".$num_error;
+        header("Status: 404");
     } else {
         echo $msg_error;
     }

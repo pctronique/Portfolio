@@ -36,13 +36,17 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
         try {
             /* si on a unid recuperer le contnu a afficher */
             if(!empty($_GET) && array_key_exists("id", $_GET)) {
+                /* recupere le parcours */
                 $res = $sgbd->prepare("SELECT * FROM parcours WHERE id_parcours=:id");
                 $res->execute([
                     ":id" => $_GET['id']
                 ]);
+                /* s'il n'est pas vide */
                 if($res->rowCount() > 0) {
+                    /* recupere le type de parcours */
                     $exp = "";
                     $form = "";
+                    /* pour une formation */
                     $resForm = $sgbd->prepare("SELECT * FROM formations WHERE id_parcours=:id");
                     $resForm->execute([
                         ":id" => $_GET['id']
@@ -50,6 +54,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                     if($resForm->rowCount() > 0) {
                         $form = "checked";
                     }
+                    /* experience professionel */
                     $resExp = $sgbd->prepare("SELECT * FROM experiences WHERE id_parcours=:id");
                     $resExp->execute([
                         ":id" => $_GET['id']
@@ -57,6 +62,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
                     if($resExp->rowCount() > 0) {
                         $exp = "checked";
                     }
+                    /* recupere les informations du parcours */
                     $data = $res->fetch(PDO::FETCH_ASSOC);
                     $id = $_GET['id'];
                     $name = $data['nom_parcours'];

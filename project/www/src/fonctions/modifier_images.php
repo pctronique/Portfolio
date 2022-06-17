@@ -117,6 +117,7 @@ if (!function_exists('modifier_images_folder')) {
      * @param integer $width_max : la largeur maximale
      * @param integer $height_max : la hauteur maximale
      * @param boolean $cut : couper l'image si la taille ou la hauteur depasse la taille.
+     * @param boolean $top : couper l'image a partir du haut.
      * @return void retourne l'image de celui ci
      */
     function image_resize(?string $filename, int $width_max, int $height_max, bool $cut = true, bool $top = false) {
@@ -175,6 +176,7 @@ if (!function_exists('modifier_images_folder')) {
      * @param integer $width_max :  largeur max
      * @param integer $height_max :  hauteur max
      * @param boolean $cut : couper l'image si la taille ou la hauteur depasse la taille.
+     * @param boolean $top : couper l'image a partir du haut.
      * @return void ne retourne rien
      */
     function modifier_image(?string $filename, ?string $folder_save, ?string $name_file_save, int $width_max, int $height_max, bool $cut = true, bool $top = false):void {

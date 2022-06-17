@@ -46,6 +46,7 @@ if(!empty($_POST) && array_key_exists('name', $_POST) && array_key_exists('first
                     ":id_msg" => $id_insert,
                     ":id_user" => 1
                 ]);
+                /* envoyer un message par email */
                 $text = htmlspecialchars(stripslashes(trim($_POST['name'])))."<br />";
                 $text = htmlspecialchars(stripslashes(trim($_POST['first_name'])))."<br />";
                 $text = htmlspecialchars(stripslashes(trim($_POST['user_text'])))."<br />";

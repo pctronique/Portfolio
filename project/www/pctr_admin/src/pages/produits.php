@@ -6,6 +6,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION)) {
 
+        /* pour ajouter les checkbox dans la page */
     function addCheckbox(?string $type, ?string $name, ?string $title, ?string $id, bool $checked = false) {
         $checkbox = "<li class=\"row-prod list-group-item\"><input class=\"form-check-input\" type=\"checkbox\" value=\"".$id."\" name=\"".$type."_".$name."\" id=\"flexCheck".$type.$name."\"";
         $checkbox .= $checked ? "checked" : "";
@@ -42,7 +43,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     if(!empty($sgbd)) {
         /* se proteger des erreurs de requete sql (pour ne pas afficher l'erreur a l'ecran) */
         try {
-            /* si on a unid recuperer le contnu a afficher */
+            /* si on a un id recuperer le contnu a afficher */
             if(!empty($_GET) && array_key_exists("id", $_GET)) {
                 $res = $sgbd->prepare("SELECT * FROM produits WHERE id_produit=:id");
                 $res->execute([
