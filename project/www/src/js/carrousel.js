@@ -35,7 +35,6 @@ function create_carrousel_main() {
         /* mettre en pause l'annimation */
         function paused() {
             if(liste_defilement[num_carrousel].style.animationPlayState == "paused") {
-                //function_timed_out(temps_restent);
                 liste_defilement[num_carrousel].style.animationPlayState = "running";
                 if(activated_progressBar) {
                     listProgress[num_carrousel].style.animationPlayState = "running";
@@ -143,12 +142,6 @@ function create_carrousel_main() {
                 }
             });
 
-            document.querySelectorAll(".button-fake").forEach(element => {
-                element.addEventListener('click', function (e) {
-                    paused();
-                });
-            });
-
             /* on ajoute le bouton dans une liste */
             listBouton.unshift(new_button);
             listProgress.unshift(progress);
@@ -156,6 +149,12 @@ function create_carrousel_main() {
             new_flex.insertAdjacentElement("afterbegin", new_button);
 
         }
+
+        document.querySelectorAll(".button-fake").forEach(element => {
+            element.addEventListener('click', function (e) {
+                paused();
+            });
+        });
     }
 
     /* verifiont qu'on a bien des images a faire annimer */
