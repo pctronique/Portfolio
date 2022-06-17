@@ -29,6 +29,10 @@
     margin: auto;
   }
 
+  .logo-info-3d {
+    margin-right: 59px;
+  }
+
   #msg .conteneur-parc {
     display: grid;
     grid-template-columns: auto auto 1fr;

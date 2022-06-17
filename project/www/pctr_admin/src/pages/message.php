@@ -13,13 +13,13 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION)) {
 
-  
-
+      /* inclure la classe d'affichage de la page */
   include_once dirname(__FILE__) . '/../../../src/class/Contenu_Page.php';
 
+  /* creation de la page d'affichage de la page */
   $page_msg = new Contenu_Page();
 
-  /* pas de selection si c'est un gestionnaire */
+  /* pas de selection */
   $select = "";
   /* si c'est un administrateur */
   if($_SESSION['id_admin'] == 1) {
@@ -30,7 +30,7 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
       "</select>";
   }
 
-  /* recupere le contenu de la page html a afficher */
+  /* recuperer la page a afficher */
   $html = file_get_contents(dirname(__FILE__) . '/../templates/message.html', true);
 
   /* creation d'une liste vide */
@@ -87,10 +87,12 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
   /* affiche la page html */
   $html = str_replace("#list_msg#",$list,str_replace("#select_msg#", $select, $remp_box_msg));
 
-
+  /* affiche les valeurs sur la page html */
   $page_msg->addCss("./src/css/style_message.css");
   $page_msg->addJs("./../../src/js/popup.js");
   $page_msg->addJs("./src/js/message.js");
+
+  /* recupere le contenu */
   $page_msg->setContenu($html);
 } else {
   header("Status: 403");
