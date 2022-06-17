@@ -24,7 +24,7 @@ if (!function_exists('error_msg')) {
         $error_msg = $error_msg_ini->error($error);
 
         // recupere le html a afficher
-        $html = file_get_contents(dirname(__FILE__) . '/../template/msg-error.html', true);
+        $html = file_get_contents(dirname(__FILE__) . '/../templates/msg-error.html', true);
 
         // remplace les valeurs dans le html par ceux de l'erreur.
         $html = str_replace("##racine##",RACINE,$html);

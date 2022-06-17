@@ -1,0 +1,58 @@
+
+@keyframes defilement {
+    from {
+      visibility: hidden;
+      transform: translateX(50%);
+      opacity: 0%;
+    }
+  
+    1% {
+      visibility: visible;
+      transform: translateX(50%);
+      opacity: 0%;
+    }
+  
+    15% {
+      visibility: visible;
+      transform: translate(0);
+      opacity: 100%;
+    }
+  
+    84% {
+      visibility: visible;
+      transform: translate(0);
+      opacity: 100%;
+    }
+  
+    98% {
+      visibility: visible;
+      transform: translateX(-50%);
+      opacity: 0%;
+    }
+    to {
+      transform: translateX(-50%);
+      visibility: hidden;
+      opacity: 0%;
+    }
+  }
+  
+  @keyframes progressBar {
+    from {
+      width: 0%;
+    }
+    to {
+      width: 100%;
+    }
+}
+
+.carrousel {
+    /*width: 1020px;*/
+    /*position: absolute;*/
+}
+
+#carrousel_animation_principale {
+    position: absolute;
+    bottom: 0;
+    padding-left: auto;
+    z-index: 5;
+}

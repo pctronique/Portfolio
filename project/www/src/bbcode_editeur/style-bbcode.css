@@ -1,0 +1,125 @@
+.bbcode {
+  display: flex;
+  flex-direction: column;
+  align-content: flex-start;
+  margin: 0px;
+  padding: 0px;
+}
+
+.bbcode_list {
+  display: flex;
+  background: #ddd;
+  margin: 1px 5px 1px 0;
+  padding: 1px;
+  border-bottom: 1px solid #aaa;
+  border-radius: 3px;
+  background-clip: padding-box;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-content: center;
+}
+
+.bbcode-btns button {
+  /*display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;*/
+  cursor: pointer;
+  /*padding: 3px 5px;*/
+  margin: 1px 5px 1px 0;
+  /*width: 16px;
+  height: 20px;*/
+  /*border-radius: 3px;*/
+  background-clip: padding-box;
+  border: none;
+  border: gray 1px solid;
+  border-radius: 3px;
+  min-width: 25px;
+  min-height: 25px;
+}
+
+.icon-img {
+  display: flex;
+  background-size: cover;
+  min-width: 25px;
+  min-height: 25px;
+  border: none;
+}
+
+.icon-list-ol {
+  background-image: url("./img/list-ol.svg");
+
+}
+
+.icon-list-ul {
+  background-image: url("./img/list-ul.svg");
+}
+
+.icon-quote {
+  background-image: url("./img/chat-quote-fill.svg");
+}
+
+.icon-text-left {
+  background-image: url("./img/text-left.svg");
+}
+
+.icon-text-center {
+  background-image: url("./img/text-center.svg");
+}
+
+.icon-text-right {
+  background-image: url("./img/text-right.svg");
+}
+
+.icon-text-paragraph {
+  background-image: url("./img/text-paragraph.svg");
+}
+
+.bbcode-btns {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  padding: 3px 5px 2px;
+  background: #f7f7f7;
+  border-bottom: 1px solid silver;
+  margin: 0px;
+  padding: 0px;
+  align-items: center;
+}
+
+.editor_bbcode {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  border-radius: unset;
+}
+
+.editor_html_bbcode {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  border: black 1px solid;
+  padding: 5px;
+  background-color: white;
+  box-sizing: border-box;
+  display: inline;
+  resize: both;
+  overflow: auto;
+  height: 35px;
+}
+
+.editor_type_bbcode {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 4;
+  grid-row-end: 5;
+}
+
+.bb_title {
+  color: blue;
+  font-size: 40px;
+  font-weight: bold;
+  text-align: center;
+}

@@ -1,66 +1,76 @@
-<h2 class="effect-3">contacter</h2>
-<br />
-<div id="msg">
-  <figure class="rectangular-glass-back">
-    <figure id="form_contact" class="rectangular-glass">
-      <form id="form_inform" action="#" method="post">
-        <div class="user_name">
-          <label>Nom</label>
-          <input
-            type="text"
-            id="name"
-            name="name"
-            pattern=".{3,40}"
-            placeholder="Nom"
-            required
-          />
-        </div>
-        <div class="user_name name_2">
-          <label>Prénom</label>
-          <input
-            type="text"
-            id="first_name"
-            name="first_name"
-            placeholder="Prénom"
-            pattern=".{3,40}"
-            required
-          />
-        </div>
-        <label>Adresse e-mail</label>
-        <input
-          type="email"
-          id="email"
-          name="email"
-          placeholder="monAdresseMail@gmail.com"
-          pattern="[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)"
-          required
-        />
-        <label>Objet</label>
-        <input
-          type="text"
-          id="objet"
-          name="objet"
-          placeholder="information"
-          pattern=".{3,255}"
-          required
-        />
-        <label>Message</label>
-        <textarea
-          id="user_text"
-          name="user_text"
-          pattern=".{8,}"
-          placeholder="Votre message/demande de réservation"
-          required
-        ></textarea>
-        <div class="text_center">
-          <button id="button_form" class="button_bleu" type="sumit">
-            Envoyer
-          </button>
-        </div>
-      </form>
-      <div id="form_image">
-        <img src="./src/img/2022-05-31 11_47_23-Window.svg" alt="Image simpson pour les messages" />
-      </div>
+<!--<h2 class="effect-3">contacter</h2>-->
+<input type="hidden" id="text_3d1" value="contacter" />
+    <figure class="box-3D box-3D-mov">
+      <figure class="object-3D">
+        <figure class="box-3D-front box-3D-size box-3D-default box-3D-color-glass">
+          <input type="hidden" class="box-3D-depth3D" value="20" />
+          <input type="hidden" class="box-3D-maxWidth" value="1020" />
+          <div class="logo-info-3d">
+              <img class="box-3D-logo-mov box-3D-logo" src="./src/img/360-degrees_3.svg" alt="mouvement 3D" />
+              <img class="box-3D-logo" src="./src/img/Shiny-3d.svg" alt="objet 3D" />
+          </div>
+          <div id="msg">
+            <figure id="form_contact">
+              <form id="form_inform" action="#" method="post">
+                <div class="user_name">
+                  <label>Nom</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    pattern=".{3,40}"
+                    placeholder="Nom"
+                    required
+                  />
+                </div>
+                <div class="user_name name_2">
+                  <label>Prénom</label>
+                  <input
+                    type="text"
+                    id="first_name"
+                    name="first_name"
+                    placeholder="Prénom"
+                    pattern=".{3,40}"
+                    required
+                  />
+                </div>
+                <label>Adresse e-mail</label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="monAdresseMail@gmail.com"
+                  pattern="[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)"
+                  required
+                />
+                <label>Objet</label>
+                <input
+                  type="text"
+                  id="objet"
+                  name="objet"
+                  placeholder="information"
+                  pattern=".{3,255}"
+                  required
+                />
+                <label>Message</label>
+                <textarea
+                  id="user_text"
+                  name="user_text"
+                  pattern=".{8,}"
+                  placeholder="Votre message/demande de réservation"
+                  required
+                ></textarea>
+                <div class="text_center">
+                  <button id="button_form" class="button_bleu" type="sumit">
+                    Envoyer
+                  </button>
+                </div>
+              </form>
+              <div id="form_image">
+                <img src="./src/img/2022-05-31 11_47_23-Window.svg" alt="Image simpson pour les messages" />
+              </div>
+            </figure>
+          </div>
+        </figure>
+      </figure>
     </figure>
-  </figure>
-</div>

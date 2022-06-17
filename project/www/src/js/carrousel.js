@@ -1,8 +1,9 @@
-let liste_defilement = document.getElementsByClassName("carrousel1");
+let liste_defilement = document.getElementsByClassName("carrousel");
 let listBouton = [];
 let click_first_button = false; /* pour verifier si on a cliquer au moins une fois sur le bouton */
 
 function create_carrousel_main() {
+    let decalag = 0;
 
     /* pour ne pas corrompre l'annimation lors du changement de taille */
     /* pour eviter d'ajout en continu de bouton sur le carrousel */
@@ -14,11 +15,11 @@ function create_carrousel_main() {
         let background_color_progressBar_def = "lightgrey";
         let color_progressBar_def = "green";
         let background_color_progressBar_paused = "lightgrey";
-        let color_progressBar_paused = "green";
+        let color_progressBar_paused = "orange";
         let activated_progressBar = true;
         let activated_paused = true;
-        let activated_paused_button = true;
-        let activated_paused_click = true;
+        let activated_paused_button = false;
+        let activated_paused_click = false;
 
         /* creation de la div d'affichage */
         let new_flex = document.createElement("div");
@@ -68,10 +69,10 @@ function create_carrousel_main() {
             new_button.appendChild(progress);
             new_button.classList.add("bouton");
             new_button.id = "carrousel_button_"+i; /* id primordiale pour les boutons */
-            new_button.style.width = "40px";
-            new_button.style.height = "40px";
+            new_button.style.width = "25px";
+            new_button.style.height = "10px";
             new_button.style.border = "1px solid black";
-            new_button.style.borderRadius = "50%";
+            //new_button.style.borderRadius = "50%";
             new_button.style.backgroundColor = background_color_progressBar_def;
             new_button.style.margin = "5px";
             new_button.style.boxSizing = "border-box";
@@ -119,8 +120,10 @@ function create_carrousel_main() {
                 }
             });
 
+            
+            
             /* Action a effectuer a la fin de l'animation */
-            liste_defilement[i].addEventListener('animationiteration', function (e) {
+            liste_defilement[i].addEventListener('animationend', function (e) {
                 click_first_button = false;
                 liste_defilement[num_carrousel].style.animationPlayState = "paused";
                 listBouton[num_carrousel].style.backgroundColor = background_color_progressBar_def;
@@ -140,6 +143,12 @@ function create_carrousel_main() {
                 }
             });
 
+            document.querySelectorAll(".button-fake").forEach(element => {
+                element.addEventListener('click', function (e) {
+                    paused();
+                });
+            });
+
             /* on ajoute le bouton dans une liste */
             listBouton.unshift(new_button);
             listProgress.unshift(progress);
@@ -157,7 +166,10 @@ function create_carrousel_main() {
 }
 
 let start_load_carrousel = false;
+create_carrousel_main();
+start_load_carrousel = true;
 
+/*
 if (screen.width < 1024 || window.innerWidth < 1024) {
     create_carrousel_main();
     start_load_carrousel = true;
@@ -177,4 +189,4 @@ window.addEventListener('resize', function (e) {
             liste_defilement[i].style.animationName = null;
         }
     }
-});
+});*/

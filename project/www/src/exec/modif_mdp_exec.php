@@ -42,13 +42,11 @@ if(!empty($_POST) && array_key_exists('code', $_POST) && array_key_exists('login
             try {
                 /* recupere l'adresse email d'un administrateur */
                 $res = $sgbd->prepare("SELECT * FROM utilisateur WHERE id_admin=1 LIMIT 1");
-                $res->execute([
-                    ":email" => htmlspecialchars(stripslashes(trim($_POST['email'])))
-                ]);
+                $res->execute();
                 /* si une adresse email a ete trouve */
                 if($res->rowCount() > 0) {
                     /* recupere l'email de l'administrateur */
-                    $email_admin = $res->fetch(PDO::FETCH_ASSOC)["email"];
+                    $email_admin = $res->fetch(PDO::FETCH_ASSOC)["email_user"];
                     /* rempli les clees avec les bonnes valeurs */
                     $tab_code["[##EMAIL##]"] = $email_admin;
                     /* on place id utilisateur et son niveau admin a 0 */
@@ -63,7 +61,7 @@ if(!empty($_POST) && array_key_exists('code', $_POST) && array_key_exists('login
                     if($valide) {
                         /* verifier la valider du code pour modifier le mot de passe */
                         $res = $sgbd->prepare("SELECT * FROM utilisateur INNER JOIN pass_perdu  ON utilisateur.id_user = pass_perdu.id_user ".
-                        "WHERE login=:login AND email=:email AND jeton=:jeton AND valide=1 AND expiration > CURRENT_TIMESTAMP");
+                        "WHERE login_user=:login AND email_user=:email AND jeton_pass_perdu=:jeton AND valide_pass_perdu=1 AND expiration_pass_perdu > CURRENT_TIMESTAMP");
                         $res->execute([
                             ":login" => htmlspecialchars(stripslashes(trim($_POST['login']))),
                             ":jeton" => htmlspecialchars(stripslashes(trim($_POST['code']))),
@@ -82,13 +80,13 @@ if(!empty($_POST) && array_key_exists('code', $_POST) && array_key_exists('login
                     /* si tout est bon */
                     if($valide) {
                         /* on modifit le mot de passe de l'utilisateur */
-                        $res = $sgbd->prepare("UPDATE utilisateur SET mot_pass=:mot_pass WHERE id_user=:id_user");
+                        $res = $sgbd->prepare("UPDATE utilisateur SET mot_pass_user=:mot_pass WHERE id_user=:id_user");
                          $res->execute([
                             ":id_user" => $id,
                             ":mot_pass" => Pass_Crypt::password($_POST['password']),
                         ]);
                         /* on dessactive la validite du code, pour pas le re-utiliser */
-                        $res = $sgbd->prepare("UPDATE pass_perdu SET valide=0 WHERE id_pass_perdu=:id_pass_perdu");
+                        $res = $sgbd->prepare("UPDATE pass_perdu SET valide_pass_perdu=0 WHERE id_pass_perdu=:id_pass_perdu");
                         $res->execute([
                             ":id_pass_perdu" => $id_mmdp,
                         ]);
@@ -114,5 +112,5 @@ if(!empty($_POST) && array_key_exists('code', $_POST) && array_key_exists('login
     }
 
 } else {
-    echo "Vous ne pouvez pas utiliser cette page.";
+    header("Status: 403");
 }

@@ -4,17 +4,20 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
     <link rel="stylesheet" href="./src/css/normalizer.css" />
     <link rel="stylesheet" href="./src/css/font.css" />
     <link rel="stylesheet" href="./src/css/style_default.css" />
     <link rel="stylesheet" href="./src/css/texte_3d.css" />
+    <link rel="stylesheet" href="./src/css/object_3D.css" />
     <link rel="stylesheet" href="./src/css/triangle_3d_test.css" />
+    <link rel="stylesheet" href="./src/css/button_lum_3d.css" />
     <link rel="stylesheet" href="./src/css/object_glass.css" />[##CONTENU_CSS##]
     <script async src="https://unpkg.com/es-module-shims@1.3.6/dist/es-module-shims.js"></script>
     <title>Portfolio</title>
   </head>
   <body>
-    <header>
+    <header id="header-main">
       <div class="menu-and-bt" id="menu-and-bt-left">
         <input
           type="checkbox"
@@ -24,19 +27,19 @@
         />
         <figure id="nav-left" class="nav-default">
           <ul>
-            <li class="lien"><a class="click-lien" href="./">Accueil</a></li>
+            <li class="lien"><a class="click-lien" href="./"><img src="./pctr_admin/src/img/home-page.svg" alt="icon home">Accueil</a></li>
             <li>
-              Projects
+              <img src="./pctr_admin/src/img/project-64.svg" alt="icon Conpétences">Projects
               <ul class="submenu">
                 [##CATEGORIES##]
               </ul>
             </li>
-            <li class="lien"><a class="click-lien" href="./?ind=comp">Conpétences</a></li>
-            <li class="lien"><a class="click-lien" href="./?ind=parc">Parcours</a></li>
+            <li class="lien"><a class="click-lien" href="./?ind=comp"><img src="./pctr_admin/src/img/competences-64.svg" alt="icon Conpétences">Conpétences</a></li>
+            <li class="lien"><a class="click-lien" href="./?ind=parc"><img src="./pctr_admin/src/img/parcours-de-carriere-64.svg" alt="icon Parcours">Parcours</a></li>
           </ul>
         </figure>
         <label id="bt-nav-left" class="bt-nav-default" for="check-nav-left">
-          <img id="img-nav-left" src="./src/img/menu-white.svg" alt="" />
+          <img id="img-nav-left" src="./src/img/menu.svg" alt="" />
         </label>
       </div>
       <h1 id="txt_matrix">Ludovic NAULOT</h1>
@@ -49,33 +52,100 @@
           class="check-nav"
         />
         <label id="bt-nav-right" class="bt-nav-default" for="check-nav-right">
-          <img id="img-nav-right" src="./src/img/cadenas-ferme-white.svg" alt="" />
+          <img id="img-nav-right" src="./src/img/cadenas-ferme.svg" alt="" />
         </label>
         <nav id="nav-right" class="nav-default">
           <p>Accèx utilisateur</p>
+          
           [##CONNECTED##]
+          <form id="form-pass-perdu">
+            <div id="display-name" class="display-login">
+              <i class="bi bi-envelope"></i>
+              <input type="email" name="email-pass-perdu" id="email-pass-perdu" placeholder="email" />
+            </div>
+            
+            <a href="#" id="recep-mod-pass" class="bt-connect">Valider</a>
+          </form>
         </nav>
       </div>
     </header>
-    <section>
+    <section id="contenu-main" class="contenu-main">
       <p id="choix-background">BINARY</p>
-      [##CONTENU##]
+      <div class="wrap">
+        <div class="rotor-x">
+            <div class="rotor-y">
+                <div class="rotor-z">
+                    <div class="triangle face-1"></div>
+                    <div class="triangle face-2"></div>
+                    <div class="triangle face-3"></div>
+                    <div class="triangle face-4"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <figure id="info-3D-logo">
+      <img class="box-3D-logo image-clignote" src="./src/img/Shiny-3d.svg" alt="mouvement 3D" />
+      <p>La page contient des animations 3D (avec l'utilisation de la souris).</p>
+    </figure>
+    <div class="text-3d-and-logo">
+      <div class="logo-info-title-3d logo-info-3d">
+        <img class="box-3D-logo-mov box-3D-logo" src="./src/img/360-degree_3.svg" alt="mouvement 3D" />
+        <img class="box-3D-logo" src="./src/img/Shiny-3d.svg" alt="objet 3D" />
+      </div>
+      <div id="text_3d"></div>
+    </div>
+      <figure id="section-main">
+        [##CONTENU##]
+      </figure>
     </section>
     <canvas id="body_matrix"></canvas>
-    <footer>
-      <ul>
-        <li><a href="./?ind=msg">Contact</a></li>
-        <li><a href="./?ind=legales"></a>Mentions Légales</li>
-      </ul>
-      <ul id="taking">
-        <li><a href="https://github.com/pctronique"><img src="./src/img/signe-github.svg" alt="" /></a></li>
-        <li><a href="https://www.linkedin.com/in/ludovic-naulot-0451284b"><img src="./src/img/linkedin.svg" alt="" /></a></li>
-      </ul>
+    <footer id="footer-main">
+      <figure id="footer_main">
+        <ul>
+          <li><a href="./?ind=propos">A propos</a></li>
+          <li><a href="./?ind=msg">Contact</a></li>
+          <li><a href="./?ind=legales">Mentions Légales</a></li>
+        </ul>
+        <ul id="taking">
+          <li class="container-bt-3D"><a href="https://github.com/pctronique" class="button-3D">
+            <span class="button_glow"><img src="./src/img/signe-github.svg" alt="" /></span>
+            <span class="button_side button_front"><img src="./src/img/signe-github.svg" alt="" /></span>
+            <span class="button_side button_bottom"></span>
+            <span class="button_side button_back"></span>
+            <span class="button_side button_top"><img src="./src/img/signe-github.svg" alt="" /></span>
+            <span class="button_side button_left"></span>
+            <span class="button_side button_right"><img src="./src/img/signe-github.svg" alt="" /></span>
+          </a></li>
+          <li class="container-bt-3D"><a href="https://www.linkedin.com/in/ludovic-naulot-0451284b" class="button-3D">
+            <span class="button_glow"></span>
+            <span class="button_side button_front"><img src="./src/img/linkedin.svg" alt="" /></span>
+            <span class="button_side button_bottom"></span>
+            <span class="button_side button_back"></span>
+            <span class="button_side button_top"><img src="./src/img/linkedin.svg" alt="" /></span>
+            <span class="button_side button_left"></span>
+            <span class="button_side button_right"><img src="./src/img/linkedin.svg" alt="" /></span>
+          </a></li>
+        </ul>
+      </figure>
+      <p id="reserves">Tous droits réservés @Ludovic NAULOT - 2022</p>
     </footer>
-    <script src="./src/js/mwgokv.js"></script>
+		<script type="importmap">
+			{
+				"imports": {
+					"three": "./src/bin/three_js/build/three.module.js"
+				}
+			}
+		</script>
+
+    <script src="./src/js/cookies.js"></script>
     <script src="./src/js/menu.js"></script>
     <script src="./src/js/object_glass.js"></script>
     <script src="./src/js/le_fetch.js"></script>
-    <script src="./src/js/connexion.js"></script>[##CONTENU_JS##]
+    <script src="./src/js/connexion.js"></script>
+    <script src="./src/js/button_lum_3d.js"></script>
+    <script src="./src/js/object_3D.js"></script>[##CONTENU_JS##]
+    <script src="./src/js/mwgokv.js"></script>
+    <script type="module" src="./src/js/threejs_text_3D.js"></script>
+    <script src="./pctr_admin/src/js/utilisateur_password.js"></script>
   </body>
 </html>

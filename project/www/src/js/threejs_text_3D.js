@@ -1,355 +1,313 @@
-			import * as THREE from 'three';
+import * as THREE from "three";
 
-			import { FontLoader } from './src/bin/three_js/examples/jsm/loaders/FontLoader.js';
-			import { TextGeometry } from './src/bin/three_js/examples/jsm/geometries/TextGeometry.js';
+import { FontLoader } from "./../../src/bin/three_js/examples/jsm/loaders/FontLoader.js";
+import { TextGeometry } from "./../../src/bin/three_js/examples/jsm/geometries/TextGeometry.js";
 
-			import Stats from './src/bin/three_js/examples/jsm/libs/stats.module.js';
+function textTitle3D() {
 
-			THREE.Cache.enabled = true;
+	THREE.Cache.enabled = true;
 
-			let container, stats, permalink, hex;
+	let container, stats, permalink, hex;
 
-			let camera1, cameraTarget, scene1, renderer1;
+	let camera1, cameraTarget, scene1, renderer1;
 
-			let group, textMesh1, textMesh2, textGeo, materials;
+	let group, textMesh1, textMesh2, textGeo, materials;
 
-			let firstLetter = true;
+	let firstLetter = true;
 
-			let text = document.getElementById('text_3d1').value.replace("\\n", "\n"),
+	let text = document.getElementById("text_3d1").value.replace("\\n", "\n"),
+	bevelEnabled = true,
+	font = undefined,
+	fontName = "optimer", // helvetiker, optimer, gentilis, droid sans, droid serif
+	fontWeight = "bold"; // normal bold
 
-				bevelEnabled = true,
+	const height = 20,
+	size = 70,
+	hover = 30,
+	curveSegments = 4,
+	bevelThickness = 2,
+	bevelSize = 1.5;
 
-				font = undefined,
+	const mirror = true;
 
-				fontName = 'optimer', // helvetiker, optimer, gentilis, droid sans, droid serif
-				fontWeight = 'bold'; // normal bold
+	const fontMap = {
+	helvetiker: 0,
+	optimer: 1,
+	gentilis: 2,
+	"droid/droid_sans": 3,
+	"droid/droid_serif": 4,
+	};
 
-			const height = 20,
-				size = 70,
-				hover = 30,
+	const weightMap = {
+	regular: 0,
+	bold: 1,
+	};
 
-				curveSegments = 4,
+	const reverseFontMap = [];
+	const reverseWeightMap = [];
 
-				bevelThickness = 2,
-				bevelSize = 1.5;
+	for (const i in fontMap) reverseFontMap[fontMap[i]] = i;
+	for (const i in weightMap) reverseWeightMap[weightMap[i]] = i;
 
-			const mirror = true;
+	let targetRotation = 0;
+	let targetRotationOnPointerDown = 0;
 
-			const fontMap = {
+	let pointerX = 0;
+	let pointerXOnPointerDown = 0;
 
-				'helvetiker': 0,
-				'optimer': 1,
-				'gentilis': 2,
-				'droid/droid_sans': 3,
-				'droid/droid_serif': 4
+	function sizeBox3D() {
+	return {
+		x: document.getElementById("text_3d").offsetWidth,
+		y: document.getElementById("text_3d").offsetHeight * 3,
+	};
+	}
+	
+	let windowHalfX = sizeBox3D().x / 2;
 
-			};
+	let fontIndex = 1;
 
-			const weightMap = {
+	init();
+	animate();
 
-				'regular': 0,
-				'bold': 1
+	function decimalToHex(d) {
+	let hex = Number(d).toString(16);
+	hex = "000000".substring(0, 6 - hex.length) + hex;
+	return hex.toUpperCase();
+	}
 
-			};
+	function init() {
+	container = document.getElementById("text_3d");
 
-			const reverseFontMap = [];
-			const reverseWeightMap = [];
+	// CAMERA
+	camera1 = new THREE.PerspectiveCamera(30, 1, 1, 2500);
+	camera1.position.set(0, 0, 1800);
 
-			for ( const i in fontMap ) reverseFontMap[ fontMap[ i ] ] = i;
-			for ( const i in weightMap ) reverseWeightMap[ weightMap[ i ] ] = i;
+	cameraTarget = new THREE.Vector3(0, -200, 0);
 
-			let targetRotation = 0;
-			let targetRotationOnPointerDown = 0;
+	// SCENE
 
-			let pointerX = 0;
-			let pointerXOnPointerDown = 0;
+	scene1 = new THREE.Scene();
 
-			function sizeBox3D() {
-				return {
-					x: document.getElementById("text_3d").offsetWidth, 
-					y: document.getElementById("text_3d").offsetHeight*3
-				};
-			}
+	// LIGHTS
 
-			console.log(sizeBox3D());
-			let windowHalfX = sizeBox3D().x / 2;
+	const dirLight = new THREE.DirectionalLight(0xffffff, 0.125);
+	dirLight.position.set(0, 0, 1).normalize();
+	scene1.add(dirLight);
 
-			let fontIndex = 1;
+	const pointLight = new THREE.PointLight(0xffffff, 1.5);
+	pointLight.position.set(0, 100, 90);
+	scene1.add(pointLight);
 
-			init();
-			animate();
+	// Get text from hash
 
-			function decimalToHex( d ) {
+	const hash = document.location.hash.slice(1);
+	hex = decimalToHex("FFFFFF");
 
-				let hex = Number( d ).toString( 16 );
-				hex = '000000'.substring( 0, 6 - hex.length ) + hex;
-				return hex.toUpperCase();
+	if (hash.length !== 0) {
+		const colorhash = hash.substring(0, 6);
+		const fonthash = hash.substring(6, 7);
+		const weighthash = hash.substring(7, 8);
+		const bevelhash = hash.substring(8, 9);
+		const texthash = hash.substring(10);
 
-			}
+		pointLight.color.setHex(parseInt(colorhash, 16));
 
-			function init() {
+		fontName = reverseFontMap[parseInt(fonthash)];
+		fontWeight = reverseWeightMap[parseInt(weighthash)];
 
-				container = document.getElementById("text_3d");
+		bevelEnabled = parseInt(bevelhash);
 
-				// CAMERA
-				camera1 = new THREE.PerspectiveCamera( 30, 1, 1, 2500 );
-				camera1.position.set( 0, 0, 1800 );
+		text = decodeURI(texthash);
+	} else {
+		//pointLight.color.setHSL(255, 1, 0.5 );
+	}
 
-				cameraTarget = new THREE.Vector3( 0, -200, 0 );
+	materials = [
+		new THREE.MeshPhongMaterial({ color: 0xffffff, flatShading: true }), // front
+		new THREE.MeshPhongMaterial({ color: 0xffffff }), // side
+	];
 
-				// SCENE
+	group = new THREE.Group();
+	group.position.y = 100;
 
-				scene1 = new THREE.Scene();
+	scene1.add(group);
 
-				// LIGHTS
+	loadFont();
 
-				const dirLight = new THREE.DirectionalLight( 0xffffff, 0.125 );
-				dirLight.position.set( 0, 0, 1 ).normalize();
-				scene1.add( dirLight );
+	// RENDERER
+	renderer1 = new THREE.WebGLRenderer({ alpha: true });
+	renderer1.setPixelRatio(window.devicePixelRatio);
+	renderer1.setSize(sizeBox3D().x, sizeBox3D().y);
+	container.appendChild(renderer1.domElement);
 
-				const pointLight = new THREE.PointLight( 0xffffff, 1.5 );
-				pointLight.position.set( 0, 100, 90 );
-				scene1.add( pointLight );
+	// EVENTS
 
-				// Get text from hash
+	container.style.touchAction = "none";
+	container.addEventListener("pointerdown", onPointerDown);
 
-				const hash = document.location.hash.slice( 1 );
-				hex = decimalToHex("FFFFFF");
+	/*document.addEventListener("keypress", onDocumentKeyPress);
+	document.addEventListener("keydown", onDocumentKeyDown);*/
 
-				if ( hash.length !== 0 ) {
+	hex = decimalToHex("FFFFFF");
 
-					const colorhash = hash.substring( 0, 6 );
-					const fonthash = hash.substring( 6, 7 );
-					const weighthash = hash.substring( 7, 8 );
-					const bevelhash = hash.substring( 8, 9 );
-					const texthash = hash.substring( 10 );
+	fontName = reverseFontMap[fontIndex % reverseFontMap.length];
+	loadFont();
 
-					pointLight.color.setHex( parseInt( colorhash, 16 ) );
+	fontWeight = "regular";
 
-					fontName = reverseFontMap[ parseInt( fonthash ) ];
-					fontWeight = reverseWeightMap[ parseInt( weighthash ) ];
+	//
 
-					bevelEnabled = parseInt( bevelhash );
+	window.addEventListener("resize", onWindowResize);
+	}
 
-					text = decodeURI( texthash );
+	function onWindowResize() {
+	windowHalfX = sizeBox3D().x / 2;
 
-				} else {
+	/*camera1.aspect = sizeBox3D().x / sizeBox3D().y;
+	camera1.updateProjectionMatrix();*/
 
-					//pointLight.color.setHSL(255, 1, 0.5 );
+	renderer1.setSize(sizeBox3D().x, sizeBox3D().y);
+	}
 
-				}
+	//
 
-				materials = [
-					new THREE.MeshPhongMaterial( { color: 0xffffff, flatShading: true } ), // front
-					new THREE.MeshPhongMaterial( { color: 0xffffff } ) // side
-				];
+	function boolToNum(b) {
+	return b ? 1 : 0;
+	}
 
-				group = new THREE.Group();
-				group.position.y = 100;
+	function onDocumentKeyDown(event) {
+	if (firstLetter) {
+		firstLetter = false;
+		text = "";
+	}
 
-				scene1.add( group );
+	const keyCode = event.keyCode;
 
-				loadFont();
+	// backspace
 
-				// RENDERER
-				console.log(sizeBox3D());
-				renderer1 = new THREE.WebGLRenderer( { alpha: true } );
-				renderer1.setPixelRatio( window.devicePixelRatio );
-				renderer1.setSize( sizeBox3D().x, sizeBox3D().y );
-				container.appendChild( renderer1.domElement );
+	if (keyCode == 8) {
+		event.preventDefault();
 
-				// EVENTS
+		text = text.substring(0, text.length - 1);
+		refreshText();
 
-				container.style.touchAction = 'none';
-				container.addEventListener( 'pointerdown', onPointerDown );
+		return false;
+	}
+	}
 
-				document.addEventListener( 'keypress', onDocumentKeyPress );
-				document.addEventListener( 'keydown', onDocumentKeyDown );
+	function onDocumentKeyPress(event) {
+	const keyCode = event.which;
 
-				hex = decimalToHex("FFFFFF");
+	// backspace
 
-				fontName = reverseFontMap[ fontIndex % reverseFontMap.length ];
-				loadFont();
+	if (keyCode == 8) {
+		event.preventDefault();
+	} else {
+		const ch = String.fromCharCode(keyCode);
+		text += ch;
 
-				fontWeight = 'regular';
+		refreshText();
+	}
+	}
 
-				//
+	function loadFont() {
+	const loader = new FontLoader();
+	loader.load(
+		"src/bin/three_js/examples/fonts/" +
+		fontName +
+		"_" +
+		fontWeight +
+		".typeface.json",
+		function (response) {
+		font = response;
 
-				window.addEventListener( 'resize', onWindowResize );
+		refreshText();
+		}
+	);
+	}
 
-			}
+	function createText() {
+	textGeo = new TextGeometry(text, {
+		font: font,
 
-			function onWindowResize() {
-				console.log(sizeBox3D());
-				windowHalfX = sizeBox3D().x / 2;
+		size: size,
+		height: height,
+		curveSegments: curveSegments,
 
-				camera1.aspect = sizeBox3D().x / sizeBox3D().y;
-				camera1.updateProjectionMatrix();
+		bevelThickness: bevelThickness,
+		bevelSize: bevelSize,
+		bevelEnabled: bevelEnabled,
+	});
 
-				renderer1.setSize( sizeBox3D().x, sizeBox3D().y );
+	textGeo.computeBoundingBox();
 
-			}
+	const centerOffset =
+		-0.5 * (textGeo.boundingBox.max.x - textGeo.boundingBox.min.x);
 
-			//
+	textMesh1 = new THREE.Mesh(textGeo, materials);
 
-			function boolToNum( b ) {
+	textMesh1.position.x = centerOffset;
+	textMesh1.position.y = hover;
+	textMesh1.position.z = 0;
 
-				return b ? 1 : 0;
+	textMesh1.rotation.x = 0;
+	textMesh1.rotation.y = Math.PI * 2;
 
-			}
+	group.add(textMesh1);
+	}
 
-			function onDocumentKeyDown( event ) {
+	function refreshText() {
+	group.remove(textMesh1);
+	//if ( mirror ) group.remove( textMesh2 );
 
-				if ( firstLetter ) {
+	if (!text) return;
 
-					firstLetter = false;
-					text = '';
+	createText();
+	}
 
-				}
+	function onPointerDown(event) {
+	if (event.isPrimary === false) return;
 
-				const keyCode = event.keyCode;
+	pointerXOnPointerDown = event.clientX - windowHalfX;
+	targetRotationOnPointerDown = targetRotation;
 
-				// backspace
+	document.addEventListener("pointermove", onPointerMove);
+	document.addEventListener("pointerup", onPointerUp);
+	}
 
-				if ( keyCode == 8 ) {
+	function onPointerMove(event) {
+	if (event.isPrimary === false) return;
 
-					event.preventDefault();
+	pointerX = event.clientX - windowHalfX;
 
-					text = text.substring( 0, text.length - 1 );
-					refreshText();
+	targetRotation =
+		targetRotationOnPointerDown + (pointerX - pointerXOnPointerDown) * 0.02;
+	}
 
-					return false;
+	function onPointerUp(event) {
+	if (event.isPrimary === false) return;
 
-				}
+	document.removeEventListener("pointermove", onPointerMove);
+	document.removeEventListener("pointerup", onPointerUp);
+	}
 
-			}
+	//
 
-			function onDocumentKeyPress( event ) {
+	function animate() {
+	requestAnimationFrame(animate);
 
-				const keyCode = event.which;
+	render();
+	}
 
-				// backspace
+	function render() {
+	group.rotation.y += (targetRotation - group.rotation.y) * 0.05;
 
-				if ( keyCode == 8 ) {
+	camera1.lookAt(cameraTarget);
 
-					event.preventDefault();
+	renderer1.clear();
+	renderer1.render(scene1, camera1);
+	}
 
-				} else {
+}
 
-					const ch = String.fromCharCode( keyCode );
-					text += ch;
-
-					refreshText();
-
-				}
-
-			}
-
-			function loadFont() {
-
-				const loader = new FontLoader();
-				loader.load( 'src/bin/three_js/examples/fonts/' + fontName + '_' + fontWeight + '.typeface.json', function ( response ) {
-
-					font = response;
-
-					refreshText();
-
-				} );
-
-			}
-
-			function createText() {
-
-				textGeo = new TextGeometry( text, {
-
-					font: font,
-
-					size: size,
-					height: height,
-					curveSegments: curveSegments,
-
-					bevelThickness: bevelThickness,
-					bevelSize: bevelSize,
-					bevelEnabled: bevelEnabled
-
-				} );
-
-				textGeo.computeBoundingBox();
-
-				const centerOffset = - 0.5 * ( textGeo.boundingBox.max.x - textGeo.boundingBox.min.x );
-
-				textMesh1 = new THREE.Mesh( textGeo, materials );
-
-				textMesh1.position.x = centerOffset;
-				textMesh1.position.y = hover;
-				textMesh1.position.z = 0;
-
-				textMesh1.rotation.x = 0;
-				textMesh1.rotation.y = Math.PI * 2;
-
-				group.add( textMesh1 );
-
-			}
-
-			function refreshText() {
-
-				group.remove( textMesh1 );
-				//if ( mirror ) group.remove( textMesh2 );
-
-				if ( ! text ) return;
-
-				createText();
-
-			}
-
-			function onPointerDown( event ) {
-
-				if ( event.isPrimary === false ) return;
-
-				pointerXOnPointerDown = event.clientX - windowHalfX;
-				targetRotationOnPointerDown = targetRotation;
-
-				document.addEventListener( 'pointermove', onPointerMove );
-				document.addEventListener( 'pointerup', onPointerUp );
-
-			}
-
-			function onPointerMove( event ) {
-
-				if ( event.isPrimary === false ) return;
-
-				pointerX = event.clientX - windowHalfX;
-
-				targetRotation = targetRotationOnPointerDown + ( pointerX - pointerXOnPointerDown ) * 0.02;
-
-			}
-
-			function onPointerUp() {
-
-				if ( event.isPrimary === false ) return;
-
-				document.removeEventListener( 'pointermove', onPointerMove );
-				document.removeEventListener( 'pointerup', onPointerUp );
-
-			}
-
-			//
-
-			function animate() {
-
-				requestAnimationFrame( animate );
-
-				render();
-
-			}
-
-			function render() {
-
-				group.rotation.y += ( targetRotation - group.rotation.y ) * 0.05;
-
-				camera1.lookAt( cameraTarget );
-
-				renderer1.clear();
-				renderer1.render( scene1, camera1 );
-
-			}
+textTitle3D();

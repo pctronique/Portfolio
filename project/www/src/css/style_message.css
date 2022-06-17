@@ -25,6 +25,7 @@
     box-shadow: unset;
     margin-left: -2px;
     margin-top: 2px;
+    background-color: #63d49678;
     /*transform: scale(1.05);*/
     cursor: pointer;
   }
@@ -64,6 +65,12 @@
     margin-top: 20px;
     margin-left: 5px;
     margin-right: 5px;
+  }
+
+  .togglePassword {
+    margin-top: 15px;
+    padding: 0px 5px;
+    background-color: gray;
   }
   
   .add-marge-btm-6 {
@@ -121,13 +128,10 @@
   }
 
   #msg {
-    margin: auto;
     float: none;
-    margin-top: 30px;
+    /*margin-top: 30px;*/
     width: 1020px;
   }
-
-  
   
   /** formulaire **/
   #form_contact {
@@ -265,6 +269,14 @@
     margin-right: 5px;
     object-fit: unset;
   }
+
+  .box-3D {
+    margin: auto;
+  }
+
+  .button-form-3D {
+    transform: translateZ(15px);
+  }
   
   /**********************/
   /** version tablette **/
@@ -273,7 +285,7 @@
       /*--------------*/
       /** formulaire **/
       #msg {
-        width: 95%;
+        width: 100%;
       }
     
       #section_contact_title {

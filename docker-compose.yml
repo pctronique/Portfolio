@@ -71,7 +71,7 @@ services:
             - ./.docker/mysql/mariadb.cnf:/etc/mysql/conf.d/mariadb.cnf:ro
             - ./.docker/sgbd_data/0000_phpmyadmin.sql:/docker-entrypoint-initdb.d/0000_phpmyadmin.sql
             # start sql
-            - ./.docker/sgbd_data/0001_damp.sql:/docker-entrypoint-initdb.d/0001_damp.sql
+            - ./config/portfolio_mariadb_5.sql:/docker-entrypoint-initdb.d/portfolio_mariadb_5.sql
             # stop sql
         environment:
             - MYSQL_ROOT_PASSWORD=secret

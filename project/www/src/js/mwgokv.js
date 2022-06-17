@@ -6,6 +6,12 @@ let myInterval = undefined;
 
 let choice_display = 0;
 
+let choice_background = getCookie("choice_background");
+
+if(choice_background != undefined) {
+	choice_display = parseInt(choice_background);
+}
+
 let tabNamesCode = [
 	"BINARY",
 	"HEXADECIMAL",
@@ -57,15 +63,28 @@ if(document.querySelector("#txt_matrix") != undefined) {
 }
 
 function matrix() {
+	let header_main = document.getElementById('header-main');
+	let footer_main = document.getElementById('footer-main');
+	let contenu_main = document.getElementById('contenu-main');
 	//making the canvas full screen
-	body_matrix.height = window.innerHeight;
+	body_matrix.height = contenu_main.offsetHeight;
 	body_matrix.width = window.innerWidth;
+	let windowHeight = window.innerHeight-footer_main.offsetHeight;
 	if(screen.height < window.innerHeight) {
-		body_matrix.height = screen.height;
+		windowHeight = screen.height-footer_main.offsetHeight;
+	}
+	if(contenu_main.offsetHeight < windowHeight) {
+		body_matrix.height = windowHeight;
+		//contenu_main.style.height = "90%";
 	}
 	if(screen.width < window.innerWidth) {
 		body_matrix.width = screen.width;
 	}
+
+	/*document.querySelectorAll(".contenu_main").forEach(element => {
+		element.height = body_matrix.height+"px";
+		element.width = body_matrix.width+"px";
+	});*/
 
 	// si l'ecran est trop petit, mettre a une taille fixe
 	if(body_matrix.width < 320) {
@@ -75,6 +94,10 @@ function matrix() {
 	//txt_matrix characters - taken from the unicode charset
 	let txt_matrix = text_display[choice_display];
 	//let txt_matrix = "4E41554C4F54204C75646F766963";
+	if(txt_matrix == undefined) {
+		choice_display = 0;
+		txt_matrix = text_display[choice_display];
+	}
 	//converting the string into an array of single characters
 	txt_matrix = txt_matrix.split("");
 
@@ -139,6 +162,7 @@ document.querySelectorAll("#choix-background").forEach(element => {
 	element.innerText = tabNamesCode[choice_display];
 	element.addEventListener("click", function() {
 		modifBackground();
+		setCookie("choice_background",choice_display);
 		element.innerText = tabNamesCode[choice_display];
 	});
 });

@@ -1,0 +1,39 @@
+#contenu_cat {
+    display: flex;
+    justify-content: space-around;
+    align-content: space-around;
+    flex-wrap: wrap;
+}
+
+#contenu_cat .box-3D-front {
+    padding: 10px;
+    width: 300px;
+    height: 300px;
+}
+
+.desc h4 {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 25px !important;
+}
+
+.desc h4:hover {
+    transform: scale(1.05);
+}
+
+.desc img {
+    position: absolute;
+    width: 280px;
+    height: 162px;
+    margin-bottom: 44px;
+    bottom: 0;
+}
+
+.desc img:hover {
+    transform: scale(1.05);
+}
+
+.box-3D {
+    margin: 10px;
+}
+    

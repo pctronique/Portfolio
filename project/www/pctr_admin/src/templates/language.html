@@ -1,4 +1,7 @@
 <section class="container mt-5">
+    <h2 class="text-light text-center"><a href="./?ind=lang"><img alt="ajouter un nouveau contenu" title="ajouter un nouveau contenu" class="img_add_contenu" src="./src/img/ajouter-contenu.svg" alt="ajouter uncontenu" /></a>Languages</h2>
+</section>
+<section class="container mt-5">
     <form id="form-languageP" action="#" method="post" enctype="multipart/form-data">
         <input type="hidden" name="id" id="id" value="[##ID_LANGP##]" />
         <div class="mb-3">
@@ -11,11 +14,18 @@
     </form>
 </section>
 <section class="container mt-5">
+    <form id="form_find">
+        <label for="recherche" class="form-label text-light m-2">Rechercher</label>
+        <input type="text" class="form-control m-2" id="recherche" name="recherche">
+        <button id="bt_find" type="submit" id="find" class="btn btn-dark m-2">Rechercher</button>
+    </form>
+</section>
+<section id="tab_find" class="container mt-5">
     <table class="table table-dark table-striped">
         <thead>
             <tr>
-                <th class="delete col-md-1"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90_white.svg" /></th>
-                <th class="edit col-md-1"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier_white.svg" /></th>
+                <th class="delete col-md-1 colum_display_img"><img alt="suprimer le plat" title="suprimer le plat" src="./src/img/icons8-supprimer-pour-toujours-90.svg" /></th>
+                <th class="edit col-md-1 colum_display_img"><img alt="modifier le plat" title="modifier le plat" src="./src/img/icons8-modifier.svg" /></th>
                 <th>titre</th>
             </tr>
         </thead>
