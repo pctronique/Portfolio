@@ -6,15 +6,16 @@
 /* demarrer la session */
 session_start();
 
-/* inclure des fonctionnalites à la page */
-include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
-include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
-
 /* verifier qu'on as le droit de venir sur cette page */
 if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) && 
     array_key_exists('id_admin', $_SESSION) && array_key_exists('nom', $_SESSION) &&   
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION) && !empty($_POST)) {
+
+/* inclure des fonctionnalites à la page */
+include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
+include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
+
     /* verifier qu'on vient a partir d'un formulaire */
     if (!empty($_POST) && array_key_exists('id', $_POST)) {
         /* se connecter a la base de donnees */

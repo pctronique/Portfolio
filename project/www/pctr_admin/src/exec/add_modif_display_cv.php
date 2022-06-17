@@ -1,12 +1,20 @@
 <?php
+/**
+ * N'est plus utiliser, doit etre supprimer. Aucune consequence pour le site.
+ */
 
 /* demarrer la session */
 session_start();
 
+/* verifier qu'on a le droit de venir sur la page */
 if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) && 
     array_key_exists('id_admin', $_SESSION) && array_key_exists('nom', $_SESSION) &&   
     array_key_exists('prenom', $_SESSION) && array_key_exists('login', $_SESSION) && 
     array_key_exists('email', $_SESSION) && !empty($_POST)) {
+
+    /* inclure des fonctionnalites à la page */
+    include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
+    include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
     
     $tab_logos = [];
     
@@ -16,10 +24,6 @@ if (!empty($_SESSION) && array_key_exists('id_user', $_SESSION) &&
             array_push($tab_logos, $value);
         }
     }
-
-    /*Connexion*/
-    include_once dirname(__FILE__) . '/../../../src/fonctions/connexion_sgbd.php';
-    include_once dirname(__FILE__) . '/../../../src/class/Error_Log.php';
 
     $sgbd = connexion_sgbd();
     if(!empty($sgbd)) {

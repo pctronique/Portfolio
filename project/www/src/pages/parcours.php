@@ -1,5 +1,6 @@
 <?php
 
+/* verifier qu'on a le droit de venir sur la page */
 if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && defined("USER_ID") && !empty(USER_ID)) {
 
     function parcours(?array $array):?string {
@@ -21,12 +22,15 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
         return $value;
     }
 
+    /* inclure la classe d'affichage de la page */
     include_once dirname(__FILE__) . '/../class/Contenu_Page.php';
     /*Connexion*/
     include_once dirname(__FILE__) . '/../fonctions/connexion_sgbd.php';
 
+    /* creation de la page d'affichage de la page */
     $page_parc = new Contenu_Page();
 
+    /* recuperer la page a afficher */
     $html = file_get_contents(dirname(__FILE__) . '/../templates/parcours.html', true);
     $formation = "";
     $experience = "";
@@ -56,10 +60,12 @@ if(!empty($_GET) && array_key_exists('ind', $_GET) && $_GET['ind'] == "parc" && 
         $page_acc->setNum_error(501);
     }
 
+    /* affiche les valeurs sur la page html */
     $html = str_replace("[##formation##]", $formation, $html);
     $html = str_replace("[##experience##]", $experience, $html);
     $html = str_replace("[##cv_download##]", $cv_downlod, $html);
 
+    /* recupere le contenu a afficher */
     $page_parc->addCss("./src/css/style_parcours.css");
     $page_parc->setContenu($html);
 

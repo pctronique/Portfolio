@@ -1,17 +1,23 @@
 <?php
 /**
- * Pour se connecter a la base de donner a partir du fichier "sgbd_config.php".
- * Pouvoir avoir une connexion a la base de donnees differentes.
+ * Pour supprimer les fichiers du serveur.
  */
 
 // verifier qu'on n'a pas deja creer la fonction
 if (!function_exists('delete_file')) {
 
-    // fonction pour faire la connexion a la base de donnes
+    /**
+     * Undocumented function
+     *
+     * @param string|null $name
+     * @return boolean
+     */
     function delete_file(?string $name): bool {
+        // verifier qu'on a un non de fichier a supprimer.
         if(empty($name)) {
             return false;
         }
+        // supprimer le fichier partout.
         $file = dirname(__FILE__) . '/../../../data/file/'.$name;
         if(file_exists($file)) {
             unlink($file);
